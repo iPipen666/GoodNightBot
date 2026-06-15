@@ -1,0 +1,7 @@
+﻿StatusEffectKey,StatusEffectType,Duration,BuffKeys,OverrideType,Param0,Param1,Param2,Param3
+101,Chill,400,1011 1012,InitDuration,,,,
+102,Freeze,150,,NotOverride,,,,
+103,Ignite,400,1031,NotOverride,50,2,,
+104,Shock,600,1041,InitDuration,800,100,,
+105,Bleed,700,1051,NotOverride,30,2,,
+106,Stun,200,1061,InitDuration,,,,

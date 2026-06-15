@@ -1,0 +1,9 @@
+﻿CubeKey,RECIPETYPE,Index,IsDefaultUnlocked,TooltipStringKey
+100001,SYNTHESIS,0,True,Cube_RecipeTooltip_Synthesis
+200001,ALCHEMY,1,,Cube_RecipeTooltip_Alchemy
+300001,DECORATION,3,,Cube_RecipeTooltip_Decoration
+400001,ENGRAVING,4,,Cube_RecipeTooltip_Engraving
+500001,INSCRIPTION,5,,Cube_RecipeTooltip_Inscription
+600001,CRAFTING,2,,Cube_RecipeTooltip_Crafting
+700001,OFFERING,7,,Cube_RecipeTooltip_Offering
+900001,EXTRACTION,6,,Cube_RecipeTooltip_Extraction

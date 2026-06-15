@@ -1,0 +1,34 @@
+{
+  "_comment": "Calibration for boxes.py chest-counter. Edit live — reloaded every count_boxes() call.",
+
+  "match_threshold": 0.65,
+  "scales": [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.4, 1.6, 1.8, 2.0],
+  "nms_iou": 0.4,
+  "search_downscale": 0.5,
+
+  "dots_roi": {
+    "_comment": "Band below each matched chest box where pip-dots live.",
+    "dy_frac": 0.05,
+    "h_frac":  0.35,
+    "pad_frac": 0.05
+  },
+
+  "pip_fill": {
+    "_comment": "A pip cell is 'filled' if its MAX brightness (V in HSV, 0-255) >= min_brightness. Max-V per cell so a single bright pixel in a narrow cell registers as filled.",
+    "min_brightness": 140
+  },
+
+  "max_pips": 20,
+  "min_pip_cells": 3,
+
+  "_tuning_notes": [
+    "match_threshold: lower if chests not found; raise if false positives appear.",
+    "scales: the game renders chests ~64px natively at 1x UI scale. Adjust if your window scale differs.",
+    "dots_roi.dy_frac: fraction of matched-box HEIGHT to skip below the box before the dot band starts.",
+    "dots_roi.h_frac: height of the dot band as fraction of matched-box HEIGHT.",
+    "dots_roi.pad_frac: horizontal padding on each side of the dot band (fraction of box WIDTH).",
+    "pip_fill.min_brightness: 0-255 HSV-V threshold. Filled pip = bright colored circle; empty = dark hollow.",
+    "max_pips: cap on pip count returned (game UI shows at most ~10-20 pips per chest type).",
+    "min_pip_cells: minimum number of non-trivial (non-empty) cells to trust a pip row was actually found."
+  ]
+}

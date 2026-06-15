@@ -1,0 +1,27 @@
+[
+  {
+    "CurrencyKey": 100001,
+    "CurrencyNameStringKey": "CurrencyName_100001",
+    "CurrencyNameStringKey_i18n": {
+      "zh-Hans": "金币",
+      "zh-Hant": "金幣",
+      "en-US": "Gold",
+      "fr-FR": "Or",
+      "de-DE": "Gold",
+      "id-ID": "Emas",
+      "ja-JP": "ゴールド",
+      "ko-KR": "골드",
+      "pl-PL": "Złoto",
+      "pt-BR": "Ouro",
+      "ru-RU": "Золото",
+      "es-ES": "Oro",
+      "th-TH": "ทอง",
+      "tr-TR": "Altın",
+      "uk-UA": "Золото",
+      "vi-VN": "Vàng"
+    },
+    "Description": "기본화폐",
+    "InitialAmount": 100,
+    "IconPath": "UI/Icon/Item/Item_100001"
+  }
+]

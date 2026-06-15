@@ -1,0 +1,875 @@
+[
+ {
+  "name": "heroes",
+  "label": "Heroes",
+  "group": "Heroes & Combat",
+  "rows": 6,
+  "columns": [
+   "HeroKey",
+   "HeroNameKey",
+   "HeroNameKey_i18n",
+   "DescriptionKey",
+   "DescriptionKey_i18n",
+   "ClassType",
+   "MainWeaponGearType",
+   "SubWeaponGearType",
+   "SkillKey",
+   "AttackDamage",
+   "AttackSpeed",
+   "CastSpeed",
+   "CriticalChance",
+   "CriticalDamage",
+   "MaxHp",
+   "Armor",
+   "CooldownReduction",
+   "MovementSpeed",
+   "UnlockCost",
+   "IsAvailable",
+   "IsFirstAvailable",
+   "SelectSoundKey",
+   "DeadSoundKey",
+   "DLCAppId",
+   "DLCBitIndex",
+   "HasDLCDrop",
+   "IconPath",
+   "DeadIconPath",
+   "PrefabPath",
+   "AnimatorPath",
+   "icon",
+   "dead_icon",
+   "animations_folder",
+   "skill_name_i18n",
+   "attribute_keys",
+   "attributes"
+  ],
+  "i18nFields": [
+   "HeroNameKey_i18n",
+   "DescriptionKey_i18n",
+   "skill_name_i18n"
+  ],
+  "hasIcon": true,
+  "route": "/heroes"
+ },
+ {
+  "name": "monsters",
+  "label": "Monsters",
+  "group": "Heroes & Combat",
+  "rows": 61,
+  "columns": [
+   "MonsterKey",
+   "MonsterNameStringKey",
+   "MonsterNameStringKey_i18n",
+   "MONSTERTYPE",
+   "RewardGold",
+   "RewardExp",
+   "SkillKey",
+   "AttackDamage",
+   "AttackSpeed",
+   "MaxLife",
+   "MovementSpeed",
+   "DeadSoundKey",
+   "PrefabPath",
+   "AnimatorPath",
+   "portrait",
+   "sprite_folder",
+   "skill_name_i18n",
+   "attack",
+   "attacks",
+   "attackElements",
+   "stages"
+  ],
+  "i18nFields": [
+   "MonsterNameStringKey_i18n",
+   "skill_name_i18n"
+  ],
+  "hasIcon": true,
+  "route": "/monsters"
+ },
+ {
+  "name": "skills",
+  "label": "Skills",
+  "group": "Heroes & Combat",
+  "rows": 106,
+  "columns": [
+   "SkillKey",
+   "SkillNameKey",
+   "SkillDescriptionKey",
+   "ACTIVATIONTYPE",
+   "ActivationValue",
+   "SLOTTYPE",
+   "SkillBuffType",
+   "BuffGroupKey",
+   "Param1",
+   "Param2",
+   "Param3",
+   "Param4",
+   "Param5",
+   "Range",
+   "Order",
+   "DamageType",
+   "DamageDeliveryType",
+   "Value",
+   "SkillLevelKey",
+   "AnimClipPath1",
+   "AnimClipPath2",
+   "AnimClipPath3",
+   "AttributeKey",
+   "SoundKey",
+   "levels"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": "/skills"
+ },
+ {
+  "name": "passive_skills",
+  "label": "Passive Skills",
+  "group": "Heroes & Combat",
+  "rows": 108,
+  "columns": [
+   "PassiveSkillKey",
+   "SkillNameKey",
+   "SkillNameKey_i18n",
+   "STATTYPE",
+   "MODTYPE",
+   "Value"
+  ],
+  "i18nFields": [
+   "SkillNameKey_i18n"
+  ],
+  "hasIcon": false,
+  "route": "/passive-skills"
+ },
+ {
+  "name": "attributes",
+  "label": "Attributes",
+  "group": "Heroes & Combat",
+  "rows": 132,
+  "columns": [
+   "AttributeKey",
+   "HeroKey",
+   "GroupKey",
+   "ATTRIBUTETYPE",
+   "Value",
+   "RequiredPoint",
+   "MaxLevel",
+   "AvailableDemo"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "attribute_groups",
+  "label": "Attribute Groups",
+  "group": "Heroes & Combat",
+  "rows": 8,
+  "columns": [
+   "AttributeGroupKey",
+   "RequiredAllocatedPoint"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "buffs",
+  "label": "Buffs",
+  "group": "Heroes & Combat",
+  "rows": 29,
+  "columns": [
+   "BuffKey",
+   "BuffType",
+   "STATTYPE",
+   "MODTYPE",
+   "Value"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": "/buffs"
+ },
+ {
+  "name": "buff_groups",
+  "label": "Buff Groups",
+  "group": "Heroes & Combat",
+  "rows": 16,
+  "columns": [
+   "BuffGroupKey",
+   "BuffKeys"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "status_effects",
+  "label": "Status Effects",
+  "group": "Heroes & Combat",
+  "rows": 6,
+  "columns": [
+   "StatusEffectKey",
+   "StatusEffectType",
+   "Duration",
+   "BuffKeys",
+   "OverrideType",
+   "Param0",
+   "Param1",
+   "Param2",
+   "Param3",
+   "buffs"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": "/status-effects"
+ },
+ {
+  "name": "items",
+  "label": "Items",
+  "group": "Items & Gear",
+  "rows": 5944,
+  "columns": [
+   "ItemKey",
+   "ITEMTYPE",
+   "GRADE",
+   "PARTS",
+   "GEARTYPE",
+   "GearGroup",
+   "ItemSynthesisType",
+   "NameKey",
+   "DescriptionKey",
+   "GearKey",
+   "DropKey",
+   "DropCooldown",
+   "Level",
+   "IsSteamItem",
+   "IconPath",
+   "IsDeletedInServer",
+   "IsCanExchangeMarketable",
+   "icon",
+   "grade_info"
+  ],
+  "i18nFields": [],
+  "hasIcon": true,
+  "route": "/items"
+ },
+ {
+  "name": "gear",
+  "label": "Gear",
+  "group": "Items & Gear",
+  "rows": 5760,
+  "columns": [
+   "GearKey",
+   "BaseStat1_Value",
+   "BaseStat2_Value",
+   "InherentStat1_STATTYPE",
+   "InherentStat1_MODTYPE",
+   "InherentStat1_Value",
+   "InherentStat2_STATTYPE",
+   "InherentStat2_MODTYPE",
+   "InherentStat2_Value",
+   "InherentStat3_STATTYPE",
+   "InherentStat3_MODTYPE",
+   "InherentStat3_Value",
+   "UniqueModKey"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "gear_types",
+  "label": "Gear Types",
+  "group": "Items & Gear",
+  "rows": 16,
+  "columns": [
+   "GearType",
+   "BaseStat1_STATTYPE",
+   "BaseStat1_MODTYPE",
+   "BaseStat2_STATTYPE",
+   "BaseStat2_MODTYPE"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "materials",
+  "label": "Materials",
+  "group": "Items & Gear",
+  "rows": 125,
+  "columns": [
+   "ItemKey",
+   "MATERIALTYPE",
+   "StatModGroupKey"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": "/materials"
+ },
+ {
+  "name": "grades",
+  "label": "Grades",
+  "group": "Items & Gear",
+  "rows": 10,
+  "columns": [
+   "GRADE",
+   "Lower2GradeWeight",
+   "Lower1GradeWeight",
+   "SameGradeWeight",
+   "Higher1GradeWeight",
+   "Higher2GradeWeight",
+   "InherentSlotAmount",
+   "ExtraSlotAmount_Decoration",
+   "ExtraSlotAmount_Engraving",
+   "ExtraSlotAmount_Inscription",
+   "BaseAlchemyGold",
+   "BaseCubeExp"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": "/grades"
+ },
+ {
+  "name": "unique_mods",
+  "label": "Unique Mods",
+  "group": "Items & Gear",
+  "rows": 36,
+  "columns": [
+   "UniqueModKey",
+   "UniqueMod",
+   "Param1ExchangeType",
+   "Param1",
+   "Param2ExchangeType",
+   "Param2",
+   "Param3ExchangeType",
+   "Param3",
+   "Param4ExchangeType",
+   "Param4",
+   "Param5ExchangeType",
+   "Param5"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "stat_mods",
+  "label": "Stat Mods",
+  "group": "Items & Gear",
+  "rows": 620,
+  "columns": [
+   "StatModKey",
+   "Tier",
+   "STATTYPE",
+   "MODTYPE",
+   "MinValue",
+   "MaxValue",
+   "Interval"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "stat_mod_groups",
+  "label": "Stat Mod Groups",
+  "group": "Items & Gear",
+  "rows": 474,
+  "columns": [
+   "StatModGroupKey",
+   "GearGroup",
+   "StatModKey",
+   "MinTier",
+   "MaxTier"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "item_groups",
+  "label": "Item Groups",
+  "group": "Items & Gear",
+  "rows": 2275,
+  "columns": [
+   "ItemGroupKey",
+   "GroupName",
+   "ItemKey"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "item_level_scales",
+  "label": "Item Level Scaling",
+  "group": "Items & Gear",
+  "rows": 19,
+  "columns": [
+   "Level",
+   "AlchemyGoldScale",
+   "CubeExpScale"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "item_type_scales",
+  "label": "Item Type Scaling",
+  "group": "Items & Gear",
+  "rows": 2,
+  "columns": [
+   "ItemType",
+   "AlchemyGoldScale",
+   "CubeExpScale"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "gear_type_scales",
+  "label": "Gear Type Scaling",
+  "group": "Items & Gear",
+  "rows": 20,
+  "columns": [
+   "GearType",
+   "AlchemyGoldScale",
+   "CubeExpScale"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "runes",
+  "label": "Runes",
+  "group": "Progression",
+  "rows": 197,
+  "columns": [
+   "RuneKey",
+   "NameKey",
+   "NameKey_i18n",
+   "MaxLevel",
+   "PrevNodeRequiredLevel",
+   "NextRuneKey",
+   "PreviewRuneKey",
+   "LevelDataKey",
+   "IconPath",
+   "icon",
+   "next_runes"
+  ],
+  "i18nFields": [
+   "NameKey_i18n"
+  ],
+  "hasIcon": true,
+  "route": "/runes"
+ },
+ {
+  "name": "rune_levels",
+  "label": "Rune Levels",
+  "group": "Progression",
+  "rows": 663,
+  "columns": [
+   "LevelKey",
+   "Level",
+   "CostItemKey",
+   "CostValue",
+   "STATTYPE",
+   "Value"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "skill_levels",
+  "label": "Skill Levels",
+  "group": "Progression",
+  "rows": 360,
+  "columns": [
+   "SkillLevelKey",
+   "Level",
+   "Value"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "stages",
+  "label": "Stages",
+  "group": "Progression",
+  "rows": 120,
+  "columns": [
+   "StageKey",
+   "StageNameKey",
+   "StageNameKey_i18n",
+   "STAGETYPE",
+   "STAGEDIFFICULITY",
+   "Act",
+   "StageNo",
+   "StageLevel",
+   "NextStageKey",
+   "WaveAmount",
+   "WaveMonsterAmount",
+   "Monsters",
+   "MonsterDropItemKey",
+   "MonsterDropItemRate",
+   "BossDropItemKey",
+   "BossDropItemRate",
+   "FirstClearDropKey",
+   "BossMonsterKey",
+   "BossDamageMultiplier",
+   "BossHpMultiplier",
+   "BossGoldMultiplier",
+   "BossExpMultiplier",
+   "BossScale",
+   "SoulstoneItemKey",
+   "SoulstoneAmount",
+   "IsDemo",
+   "BGMSoundKey"
+  ],
+  "i18nFields": [
+   "StageNameKey_i18n"
+  ],
+  "hasIcon": false,
+  "route": "/stages"
+ },
+ {
+  "name": "stage_levels",
+  "label": "Stage Scaling",
+  "group": "Progression",
+  "rows": 170,
+  "columns": [
+   "StageLevel",
+   "MonsterAtkDmgMultiplier",
+   "MonsterHpMultiplier",
+   "MonsterGoldMultiplier",
+   "MonsterExpMultiplier"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "levels",
+  "label": "Levels",
+  "group": "Progression",
+  "rows": 100,
+  "columns": [
+   "Level",
+   "ExpForLevelUp"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "offline_rewards",
+  "label": "Offline Rewards",
+  "group": "Progression",
+  "rows": 116,
+  "columns": [
+   "StageLevel",
+   "BaseGold",
+   "BaseExp",
+   "KillCount",
+   "ClearCount"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "synthesis_recipes",
+  "label": "Synthesis Recipes",
+  "group": "Crafting & Economy",
+  "rows": 533,
+  "columns": [
+   "SynthesisRecipeKey",
+   "RecipeTier",
+   "MinMaterialTier",
+   "MinResultLevel",
+   "MaxResultLevel",
+   "ItemSynthesisType",
+   "GRADE",
+   "MaterialAmount",
+   "MinMaterialAverageLevel",
+   "LevelWeight1",
+   "LevelWeight2",
+   "LevelWeight3",
+   "LevelWeight4"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "synthesis_drops",
+  "label": "Synthesis Drops",
+  "group": "Crafting & Economy",
+  "rows": 203,
+  "columns": [
+   "SynthesisDropKey",
+   "ItemLevel",
+   "RecipeTier",
+   "ItemSynthesisType",
+   "GRADE",
+   "DropKey"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "crafting_recipes",
+  "label": "Crafting Recipes",
+  "group": "Crafting & Economy",
+  "rows": 56,
+  "columns": [
+   "CraftingRecipeKey",
+   "ItemCraftingType",
+   "RecipeTier",
+   "Material",
+   "MaterialIndex",
+   "DropKey"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "cube_recipes",
+  "label": "Cube Recipes",
+  "group": "Crafting & Economy",
+  "rows": 8,
+  "columns": [
+   "CubeKey",
+   "RECIPETYPE",
+   "Index",
+   "IsDefaultUnlocked",
+   "TooltipStringKey",
+   "TooltipStringKey_i18n"
+  ],
+  "i18nFields": [
+   "TooltipStringKey_i18n"
+  ],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "cube_sub_recipes",
+  "label": "Cube Sub-Recipes",
+  "group": "Crafting & Economy",
+  "rows": 31,
+  "columns": [
+   "CubeSubRecipeKey",
+   "RECIPETYPE",
+   "RecipeTier",
+   "DefaultUnlockWhenMainRecipeOpen",
+   "UnlockCubeLevel",
+   "UnlockCost",
+   "Material",
+   "TriggerGoldCost",
+   "DropKey",
+   "SubRecipeNameStringKey",
+   "SubRecipeNameStringKey_i18n"
+  ],
+  "i18nFields": [
+   "SubRecipeNameStringKey_i18n"
+  ],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "cube_levels",
+  "label": "Cube Levels",
+  "group": "Crafting & Economy",
+  "rows": 100,
+  "columns": [
+   "Level",
+   "ExpForLevelUp"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "extraction_costs",
+  "label": "Extraction Costs",
+  "group": "Crafting & Economy",
+  "rows": 90,
+  "columns": [
+   "ExtractionKey",
+   "GearGroup",
+   "MATERIALTYPE",
+   "Tier",
+   "Cost"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "currencies",
+  "label": "Currencies",
+  "group": "Crafting & Economy",
+  "rows": 1,
+  "columns": [
+   "CurrencyKey",
+   "CurrencyNameStringKey",
+   "CurrencyNameStringKey_i18n",
+   "Description",
+   "InitialAmount",
+   "IconPath"
+  ],
+  "i18nFields": [
+   "CurrencyNameStringKey_i18n"
+  ],
+  "hasIcon": true,
+  "route": null
+ },
+ {
+  "name": "pets",
+  "label": "Pets",
+  "group": "Collection & Storage",
+  "rows": 8,
+  "columns": [
+   "PetKey",
+   "NameKey",
+   "NameKey_i18n",
+   "DescriptionKey",
+   "DescriptionKey_i18n",
+   "StatDataKey",
+   "UnlockCondition",
+   "Param1",
+   "Param2"
+  ],
+  "i18nFields": [
+   "NameKey_i18n",
+   "DescriptionKey_i18n"
+  ],
+  "hasIcon": false,
+  "route": "/pets"
+ },
+ {
+  "name": "pet_stats",
+  "label": "Pet Stats",
+  "group": "Collection & Storage",
+  "rows": 11,
+  "columns": [
+   "PetStatKey",
+   "STATTYPE",
+   "MODTYPE",
+   "Value"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "skins",
+  "label": "Skins",
+  "group": "Collection & Storage",
+  "rows": 100,
+  "columns": [
+   "PcSkinKey",
+   "PartsCategory",
+   "DecorableType",
+   "GroupKeys",
+   "Cost",
+   "HasUpperLayer",
+   "IsDefaultUnlocked",
+   "IconPath"
+  ],
+  "i18nFields": [],
+  "hasIcon": true,
+  "route": "/skins"
+ },
+ {
+  "name": "inventory",
+  "label": "Inventory",
+  "group": "Collection & Storage",
+  "rows": 260,
+  "columns": [
+   "Index",
+   "CostForUnlock"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "storage",
+  "label": "Storage",
+  "group": "Collection & Storage",
+  "rows": 101,
+  "columns": [
+   "Index",
+   "CostForUnlock"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "stash",
+  "label": "Stash",
+  "group": "Collection & Storage",
+  "rows": 131,
+  "columns": [
+   "Index",
+   "CostForUnlock"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "trading_stash",
+  "label": "Trading Stash",
+  "group": "Collection & Storage",
+  "rows": 10,
+  "columns": [
+   "Index",
+   "CostForUnlock"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "sounds",
+  "label": "Sounds",
+  "group": "Misc",
+  "rows": 312,
+  "columns": [
+   "SoundKey",
+   "SoundType",
+   "Volume",
+   "AudioClipPath"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ },
+ {
+  "name": "drops",
+  "label": "Drops",
+  "group": "Misc",
+  "rows": 6212,
+  "columns": [
+   "DropKey",
+   "DropType",
+   "REWARDTYPE",
+   "RewardKey",
+   "HeroKeyCondition",
+   "Weight"
+  ],
+  "i18nFields": [],
+  "hasIcon": false,
+  "route": null
+ }
+]

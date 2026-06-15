@@ -1,0 +1,235 @@
+{
+  "window_title_contains": [
+    "TaskBarHero",
+    "Task Bar Hero",
+    "Таск Бар",
+    "Хиро",
+    "TBH"
+  ],
+  "dry_run": false,
+  "cube_mode": "craft",
+  "max_iterations": 3,
+  "kill_key": "f12",
+  "chest_key": "space",
+  "idle_start_seconds": 90,
+  "cursor_grab_tol_px": 90,
+  "focus_click_rx": 0.4,
+  "focus_click_ry": 0.93,
+  "cube_fill_threshold": 35.0,
+  "slot_fill_threshold": 48.0,
+  "synth_icon_threshold": 0.62,
+  "confirm_threshold": 0.7,
+  "panel_match_threshold": 0.72,
+  "merge": {
+    "max_per_type": 5
+  },
+  "stash_tabs": 6,
+  "count_settle": 0.15,
+  "hud": {
+    "x": 700,
+    "y": 860,
+    "scale": 42,
+    "color_top": "#ffffff",
+    "color_bottom": "#ffd95e"
+  },
+  "cycles": {
+    "chest_every_sec": 5,
+    "mail_every_sec": 330,
+    "scan_every_sec": 15,
+    "log_every_sec": 2,
+    "observe_every_sec": 2,
+    "count_min_lines": 4
+  },
+  "merge_grades": [
+    "обычный",
+    "необычный",
+    "редкий",
+    "легендарный"
+  ],
+  "grid_cell_capture_size": 44,
+  "empty_cell_margin": 25,
+  "delays": {
+    "after_autofill_min": 0.4,
+    "after_autofill_max": 0.9,
+    "after_confirm_min": 2.5,
+    "after_confirm_max": 4.5,
+    "between_loops_min": 0.6,
+    "between_loops_max": 1.4
+  },
+  "humanize": {
+    "target_jitter_px": 6,
+    "jitter_frac": 0.3,
+    "jitter_max_px": 18,
+    "move_duration_min": 0.18,
+    "move_duration_max": 0.75,
+    "overshoot_chance": 0.12,
+    "overshoot_px": 18,
+    "press_min": 0.03,
+    "press_max": 0.1,
+    "between_clicks_min": 0.8,
+    "between_clicks_max": 3.5,
+    "long_pause_chance": 0.06,
+    "long_pause_min": 3.0,
+    "long_pause_max": 10.0,
+    "fast_mode": true,
+    "fast_move_min": 0.04,
+    "fast_move_max": 0.12,
+    "fast_between_min": 0.07,
+    "fast_between_max": 0.2,
+    "long_pause_chance_fast": 0.0,
+    "twitch_chance": 0.05,
+    "loiter_chance": 0.0,
+    "loiter_keys": [
+      "m",
+      "k"
+    ]
+  },
+  "state": {
+    "save_inv_threshold": 34,
+    "merge_inv_min": 9,
+    "chest_every_cycles": 3,
+    "save_every_cycles": 2,
+    "merge_dry_cooldown": 6,
+    "mail_enabled": true,
+    "mail_refresh_wait": 10
+  },
+  "policy": {
+    "legendary_tier": 3,
+    "hoard_names": [],
+    "lock_accessory": true,
+    "merge_materials": true,
+    "prelock_enabled": false,
+    "ocr_drops": true,
+    "ocr_drops_max": 6,
+    "prescan_ocr": true,
+    "log_prelock": true,
+    "lock_from_tier": 4,
+    "prescan_stash": false,
+    "merge_enabled": false,
+    "disable_chest_autoopen": false,
+    "records_autoopen": false,
+    "records_autoexpand": true,
+    "chest_color_kind": false
+  },
+  "tooltip": {
+    "hover_settle": 1.1,
+    "upscale": 2.0,
+    "anchor": "cursor",
+    "nudge": 14,
+    "nudge_settle": 0.03,
+    "default_flip": "right",
+    "boxes": {
+      "right": {
+        "dx": 25,
+        "dy": -135,
+        "w": 285,
+        "h": 490
+      },
+      "left": {
+        "dx": -360,
+        "dy": -72,
+        "w": 285,
+        "h": 490
+      }
+    },
+    "_note": "Бокс тултипа относительно курсора (anchor=cursor, курсор после move_abs стоит на слоте). Тултип флипается: СТЭШ (левая панель) -> right (справа-вверх от курсора, заголовок ~cy-110); HERO (правая панель) -> left (слева от курсора, правый край ~cx). flip передаётся вызывающим (recon_items=right). Требует окно-инфо ВКЛ (клавиша Z). Измерено на окне 1455x1338, virtual desktop 3440x1440.",
+    "scan_hover_settle": 0.35,
+    "rank_strip_y": 24,
+    "rank_strip_h": 140,
+    "rank_upscale": 2.0
+  },
+  "ocr": {
+    "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.exe",
+    "lang": "rus+eng"
+  },
+  "inventory": {
+    "cols": 7,
+    "rows": 6,
+    "hero_inv_rows": 3,
+    "border_sat_min": 70,
+    "border_val_min": 55,
+    "min_color_pixels": 25,
+    "lock_ranks": [
+      "epic",
+      "legendary",
+      "red"
+    ],
+    "merge_grades": [
+      "common",
+      "uncommon",
+      "rare"
+    ],
+    "scroll_rows_per_notch": 0.0,
+    "max_scroll_pages": 6
+  },
+  "forbidden_cube_modes": [
+    "alchemy",
+    "delete",
+    "tribute"
+  ],
+  "auto": {
+    "save_every_min": 40,
+    "save_every_max": 85,
+    "chest_every_min": 7,
+    "chest_every_max": 18,
+    "chest_clicks_min": 2,
+    "chest_clicks_max": 4,
+    "chest_spread_px": 75,
+    "tab_rotate_after": 12,
+    "lock_each_cycle": false
+  },
+  "chest": {
+    "scan_full_screen": true,
+    "search_region": {
+      "rx0": 0.0,
+      "ry0": 0.0,
+      "rx1": 1.0,
+      "ry1": 1.0
+    },
+    "match_threshold": 0.85,
+    "template_capture_size": 64,
+    "watch_interval_min": 0.6,
+    "watch_interval_max": 1.3,
+    "click_cooldown_min": 1.2,
+    "click_cooldown_max": 2.2,
+    "taps": 1,
+    "open_delay_min": 2.0,
+    "open_delay_max": 5.0
+  },
+  "_comment": "cube_mode: 'synthesis' (9/9 одной редкости -> мерж, <9 вернуть+стоп), 'craft' (выбери тип+Lv в игре, 1 крафт/итерацию за материал, max_iterations=число крафтов), 'alchemy' (мусор -> золото, ТОЛЬКО вручную). dry_run=true -> лог без кликов. Режим/тип/Lv выбираешь В ИГРЕ. chest.scan_full_screen=true сканит весь экран; ловит ложно -> false + сузь search_region. Любой PNG в templates/chests/ ищется как сундук.",
+  "lang_main": "en-US",
+  "translate_enabled": true,
+  "lang_translate": "ru-RU",
+  "resume_idle_seconds": 10,
+  "panel_geom": "425x1000+80+24",
+  "update": {
+    "auto": false,
+    "must_update_grace_h": 72,
+    "api": "https://raw.githubusercontent.com/iPipen666/GoodNightBot/main"
+  },
+  "links": {
+    "telegram": "https://t.me/+vHGjyYJt1JM0NzNi",
+    "telegram_bot": "https://t.me/taskbar_herobot"
+  },
+  "donate": {
+    "amounts": [
+      99,
+      499,
+      999
+    ],
+    "urls": {
+      "99": "https://gnb.shann.store/donate?amount=99",
+      "499": "https://gnb.shann.store/donate?amount=499",
+      "999": "https://gnb.shann.store/donate?amount=999"
+    },
+    "custom_url": "https://gnb.shann.store/donate",
+    "stars_url": "https://t.me/taskbar_herobot?start=donate",
+    "stars_tiers": [
+      100,
+      300,
+      600
+    ]
+  },
+  "autostart_on_ready": true,
+  "autostart_mode": "auto"
+}

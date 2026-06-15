@@ -1,0 +1,12 @@
+﻿PetStatKey,STATTYPE,MODTYPE,Value
+1001,DropChanceNormalChestPercent,FLAT,100
+1001,IncreaseExpAmount,FLAT,150
+1002,IncreaseGoldAmount,FLAT,150
+1003,DropChanceStageBossChestPercent,FLAT,100
+1004,DropChanceNormalChestPercent,FLAT,150
+1005,DropChanceStageBossChestPercent,FLAT,150
+6001,IncreaseExpAmount,FLAT,150
+6002,IncreaseGoldAmount,FLAT,100
+6003,DropChanceNormalChestPercent,FLAT,200
+6003,IncreaseGoldAmount,FLAT,150
+6003,IncreaseExpAmount,FLAT,200

@@ -1,0 +1,9 @@
+﻿PetKey,NameKey,DescriptionKey,StatDataKey,UnlockCondition,Param1,Param2
+1001,PetName_1001,PetDescription_1001,1001,KillMonster,10031,5000
+1002,PetName_1002,PetDescription_1002,1002,KillMonster,20051,5000
+1003,PetName_1003,PetDescription_1003,1003,KillMonster,20091,5000
+1004,PetName_1004,PetDescription_1004,1004,KillMonster,30091,5000
+1005,PetName_1005,PetDescription_1005,1005,KillMonster,30051,5000
+6001,PetName_6001,PetDescription_6001,6001,DLC,4427390,
+6002,PetName_6002,PetDescription_6002,6002,DLC,4427390,
+6003,PetName_6003,PetDescription_6003,6003,DLC,4427390,

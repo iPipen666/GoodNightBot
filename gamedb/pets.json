@@ -1,0 +1,444 @@
+[
+  {
+    "PetKey": 1001,
+    "NameKey": "PetName_1001",
+    "NameKey_i18n": {
+      "zh-Hans": "蝙蝠",
+      "zh-Hant": "蝙蝠",
+      "en-US": "Bat",
+      "fr-FR": "Chauve-souris",
+      "de-DE": "Fledermaus",
+      "id-ID": "Kelelawar",
+      "ja-JP": "コウモリ",
+      "ko-KR": "박쥐",
+      "pl-PL": "Nietoperz",
+      "pt-BR": "Morcego",
+      "ru-RU": "Летучая мышь",
+      "es-ES": "Murciélago",
+      "th-TH": "ค้างคาว",
+      "tr-TR": "Yarasa",
+      "uk-UA": "Кажан",
+      "vi-VN": "Dơi"
+    },
+    "DescriptionKey": "PetDescription_1001",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "击败蝙蝠",
+      "zh-Hant": "擊敗蝙蝠",
+      "en-US": "Defeat Bat",
+      "fr-FR": "Vaincre une chauve-souris",
+      "de-DE": "Fledermaus besiegen",
+      "id-ID": "Kalahkan Kelelawar",
+      "ja-JP": "コウモリを撃破",
+      "ko-KR": "박쥐 처치",
+      "pl-PL": "Pokonaj nietoperza",
+      "pt-BR": "Derrote um morcego",
+      "ru-RU": "Победите летучую мышь",
+      "es-ES": "Derrota a un Murciélago",
+      "th-TH": "เอาชนะค้างคาว",
+      "tr-TR": "Yarasa'yı yen",
+      "uk-UA": "Перемогти кажана",
+      "vi-VN": "Đánh bại Dơi"
+    },
+    "StatDataKey": 1001,
+    "UnlockCondition": "KillMonster",
+    "Param1": 10031,
+    "Param2": 5000,
+    "stats": [
+      {
+        "PetStatKey": 1001,
+        "STATTYPE": "DropChanceNormalChestPercent",
+        "MODTYPE": "FLAT",
+        "Value": 100
+      },
+      {
+        "PetStatKey": 1001,
+        "STATTYPE": "IncreaseExpAmount",
+        "MODTYPE": "FLAT",
+        "Value": 150
+      }
+    ]
+  },
+  {
+    "PetKey": 1002,
+    "NameKey": "PetName_1002",
+    "NameKey_i18n": {
+      "zh-Hans": "监视者",
+      "zh-Hant": "監視者",
+      "en-US": "Watcher",
+      "fr-FR": "Veilleur",
+      "de-DE": "Wächter",
+      "id-ID": "Pengawas",
+      "ja-JP": "監視者",
+      "ko-KR": "감시자",
+      "pl-PL": "Strażnik",
+      "pt-BR": "Vigia",
+      "ru-RU": "Наблюдатель",
+      "es-ES": "Vigilante",
+      "th-TH": "ผู้เฝ้าดู",
+      "tr-TR": "Gözcü",
+      "uk-UA": "Спостерігач",
+      "vi-VN": "Kẻ Canh Gác"
+    },
+    "DescriptionKey": "PetDescription_1002",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "击败巨型苍蝇",
+      "zh-Hant": "擊敗巨型蒼蠅",
+      "en-US": "Defeat Giant Fly",
+      "fr-FR": "Vaincre une mouche géante",
+      "de-DE": "Riesenfliege besiegen",
+      "id-ID": "Kalahkan Lalat Raksasa",
+      "ja-JP": "巨大ハエを撃破",
+      "ko-KR": "거대 파리 처치",
+      "pl-PL": "Pokonaj olbrzymią muchę",
+      "pt-BR": "Derrote uma mosca gigante",
+      "ru-RU": "Победите гигантскую муху",
+      "es-ES": "Derrota a una Mosca Gigante",
+      "th-TH": "เอาชนะแมลงวันยักษ์",
+      "tr-TR": "Dev sineği yen",
+      "uk-UA": "Перемогти гігантську муху",
+      "vi-VN": "Đánh bại Ruồi Khổng Lồ"
+    },
+    "StatDataKey": 1002,
+    "UnlockCondition": "KillMonster",
+    "Param1": 20051,
+    "Param2": 5000,
+    "stats": [
+      {
+        "PetStatKey": 1002,
+        "STATTYPE": "IncreaseGoldAmount",
+        "MODTYPE": "FLAT",
+        "Value": 150
+      }
+    ]
+  },
+  {
+    "PetKey": 1003,
+    "NameKey": "PetName_1003",
+    "NameKey_i18n": {
+      "zh-Hans": "燃烧骷髅",
+      "zh-Hant": "燃燒骷髏",
+      "en-US": "Burning Skeleton",
+      "fr-FR": "Squelette Brûlant",
+      "de-DE": "Brennendes Skelett",
+      "id-ID": "Tengkorak Membara",
+      "ja-JP": "燃える骸骨",
+      "ko-KR": "불타는 해골",
+      "pl-PL": "Płonący Szkielet",
+      "pt-BR": "Esqueleto Ardente",
+      "ru-RU": "Горящий скелет",
+      "es-ES": "Esqueleto Ardiente",
+      "th-TH": "โครงกระดูกเพลิง",
+      "tr-TR": "Yanan İskelet",
+      "uk-UA": "Палаючий скелет",
+      "vi-VN": "Bộ Xương Cháy"
+    },
+    "DescriptionKey": "PetDescription_1003",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "击败火焰精灵",
+      "zh-Hant": "擊敗火焰精靈",
+      "en-US": "Defeat Fire Spirit",
+      "fr-FR": "Vaincre un esprit de feu",
+      "de-DE": "Feuergeist besiegen",
+      "id-ID": "Kalahkan Roh Api",
+      "ja-JP": "炎の精霊を撃破",
+      "ko-KR": "불의 정령 처치",
+      "pl-PL": "Pokonaj ognistego ducha",
+      "pt-BR": "Derrote um espírito de fogo",
+      "ru-RU": "Победите духа огня",
+      "es-ES": "Derrota a un Espíritu de Fuego",
+      "th-TH": "เอาชนะวิญญาณเพลิง",
+      "tr-TR": "Ateş ruhunu yen",
+      "uk-UA": "Перемогти духа вогню",
+      "vi-VN": "Đánh bại Linh Hồn Lửa"
+    },
+    "StatDataKey": 1003,
+    "UnlockCondition": "KillMonster",
+    "Param1": 20091,
+    "Param2": 5000,
+    "stats": [
+      {
+        "PetStatKey": 1003,
+        "STATTYPE": "DropChanceStageBossChestPercent",
+        "MODTYPE": "FLAT",
+        "Value": 100
+      }
+    ]
+  },
+  {
+    "PetKey": 1004,
+    "NameKey": "PetName_1004",
+    "NameKey_i18n": {
+      "zh-Hans": "蓝色魔像",
+      "zh-Hant": "藍色魔像",
+      "en-US": "Blue Golem",
+      "fr-FR": "Golem Bleu",
+      "de-DE": "Blauer Golem",
+      "id-ID": "Golem Biru",
+      "ja-JP": "ブルー\nゴーレム",
+      "ko-KR": "파란 골렘",
+      "pl-PL": "Niebieski Golem",
+      "pt-BR": "Golem Azul",
+      "ru-RU": "Синий голем",
+      "es-ES": "Gólem Azul",
+      "th-TH": "โกเล็มสีน้ำเงิน",
+      "tr-TR": "Mavi Golem",
+      "uk-UA": "Синій голем",
+      "vi-VN": "Golem Lam"
+    },
+    "DescriptionKey": "PetDescription_1004",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "击败地狱魔像",
+      "zh-Hant": "擊敗地獄魔像",
+      "en-US": "Defeat Hell Golem",
+      "fr-FR": "Vaincre un golem infernal",
+      "de-DE": "Höllengolem besiegen",
+      "id-ID": "Kalahkan Golem Neraka",
+      "ja-JP": "地獄のゴーレムを撃破",
+      "ko-KR": "지옥의 골렘 처치",
+      "pl-PL": "Pokonaj piekielnego golema",
+      "pt-BR": "Derrote um gólem infernal",
+      "ru-RU": "Победите адского голема",
+      "es-ES": "Derrota a un Gólem Infernal",
+      "th-TH": "เอาชนะโกเล็มนรก",
+      "tr-TR": "Cehennem golemini yen",
+      "uk-UA": "Перемогти пекельного голема",
+      "vi-VN": "Đánh bại Golem Địa Ngục"
+    },
+    "StatDataKey": 1004,
+    "UnlockCondition": "KillMonster",
+    "Param1": 30091,
+    "Param2": 5000,
+    "stats": [
+      {
+        "PetStatKey": 1004,
+        "STATTYPE": "DropChanceNormalChestPercent",
+        "MODTYPE": "FLAT",
+        "Value": 150
+      }
+    ]
+  },
+  {
+    "PetKey": 1005,
+    "NameKey": "PetName_1005",
+    "NameKey_i18n": {
+      "zh-Hans": "黑暗精灵",
+      "zh-Hant": "黑暗精靈",
+      "en-US": "Dark Spirit",
+      "fr-FR": "Esprit Sombre",
+      "de-DE": "Dunkler Geist",
+      "id-ID": "Roh Kegelapan",
+      "ja-JP": "闇の精霊",
+      "ko-KR": "검은 정령",
+      "pl-PL": "Mroczny Duch",
+      "pt-BR": "Espírito Sombrio",
+      "ru-RU": "Тёмный дух",
+      "es-ES": "Espíritu Oscuro",
+      "th-TH": "วิญญาณมืด",
+      "tr-TR": "Kara Ruh",
+      "uk-UA": "Темний дух",
+      "vi-VN": "Linh Hồn Bóng Tối"
+    },
+    "DescriptionKey": "PetDescription_1005",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "击败幽灵",
+      "zh-Hant": "擊敗幽靈",
+      "en-US": "Defeat Ghost",
+      "fr-FR": "Vaincre un fantôme",
+      "de-DE": "Geist besiegen",
+      "id-ID": "Kalahkan Hantu",
+      "ja-JP": "幽霊を撃破",
+      "ko-KR": "유령 처치",
+      "pl-PL": "Pokonaj ducha",
+      "pt-BR": "Derrote um fantasma",
+      "ru-RU": "Победите призрака",
+      "es-ES": "Derrota a un Fantasma",
+      "th-TH": "เอาชนะวิญญาณ",
+      "tr-TR": "Hayaleti yen",
+      "uk-UA": "Перемогти привида",
+      "vi-VN": "Đánh bại Hồn Ma"
+    },
+    "StatDataKey": 1005,
+    "UnlockCondition": "KillMonster",
+    "Param1": 30051,
+    "Param2": 5000,
+    "stats": [
+      {
+        "PetStatKey": 1005,
+        "STATTYPE": "DropChanceStageBossChestPercent",
+        "MODTYPE": "FLAT",
+        "Value": 150
+      }
+    ]
+  },
+  {
+    "PetKey": 6001,
+    "NameKey": "PetName_6001",
+    "NameKey_i18n": {
+      "zh-Hans": "剑",
+      "zh-Hant": "劍",
+      "en-US": "Sword",
+      "fr-FR": "Épée",
+      "de-DE": "Schwert",
+      "id-ID": "Pedang",
+      "ja-JP": "剣",
+      "ko-KR": "검",
+      "pl-PL": "Miecz",
+      "pt-BR": "Espada",
+      "ru-RU": "Меч",
+      "es-ES": "Espada",
+      "th-TH": "ดาบ",
+      "tr-TR": "Kılıç",
+      "uk-UA": "Меч",
+      "vi-VN": "Kiếm"
+    },
+    "DescriptionKey": "PetDescription_6001",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "購買支持者包",
+      "zh-Hant": "购买支持者包",
+      "en-US": "Purchase the Supporter Pack",
+      "fr-FR": "Acquérir le Pack Supporter",
+      "de-DE": "Supporter-Paket erwerben",
+      "id-ID": "Beli Paket Supporter",
+      "ja-JP": "サポーターパックを購入",
+      "ko-KR": "서포터 팩 구매",
+      "pl-PL": "Zakup Paczki Wspierającej",
+      "pt-BR": "Adquirir o Pacote Apoiador",
+      "ru-RU": "Приобрести Пакет сторонника",
+      "es-ES": "Adquirir el Paquete de Supporter",
+      "th-TH": "ซื้อแพ็กเกจ Supporter",
+      "tr-TR": "Destekçi Paketini Edin",
+      "uk-UA": "Придбайте Пакет прихильника",
+      "vi-VN": "Mua Gói Người Ủng Hộ"
+    },
+    "StatDataKey": 6001,
+    "UnlockCondition": "DLC",
+    "Param1": 4427390,
+    "Param2": null,
+    "stats": [
+      {
+        "PetStatKey": 6001,
+        "STATTYPE": "IncreaseExpAmount",
+        "MODTYPE": "FLAT",
+        "Value": 150
+      }
+    ]
+  },
+  {
+    "PetKey": 6002,
+    "NameKey": "PetName_6002",
+    "NameKey_i18n": {
+      "zh-Hans": "蝴蝶",
+      "zh-Hant": "蝴蝶",
+      "en-US": "Butterfly",
+      "fr-FR": "Papillon",
+      "de-DE": "Schmetterling",
+      "id-ID": "Kupu-kupu",
+      "ja-JP": "蝶",
+      "ko-KR": "나비",
+      "pl-PL": "Motyl",
+      "pt-BR": "Borboleta",
+      "ru-RU": "Бабочка",
+      "es-ES": "Mariposa",
+      "th-TH": "ผีเสื้อ",
+      "tr-TR": "Kelebek",
+      "uk-UA": "Метелик",
+      "vi-VN": "Bướm"
+    },
+    "DescriptionKey": "PetDescription_6002",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "購買支持者包",
+      "zh-Hant": "购买支持者包",
+      "en-US": "Purchase the Supporter Pack",
+      "fr-FR": "Acquérir le Pack Supporter",
+      "de-DE": "Supporter-Paket erwerben",
+      "id-ID": "Beli Paket Supporter",
+      "ja-JP": "サポーターパックを購入",
+      "ko-KR": "서포터 팩 구매",
+      "pl-PL": "Zakup Paczki Wspierającej",
+      "pt-BR": "Adquirir o Pacote Apoiador",
+      "ru-RU": "Приобрести Пакет сторонника",
+      "es-ES": "Adquirir el Paquete de Supporter",
+      "th-TH": "ซื้อแพ็กเกจ Supporter",
+      "tr-TR": "Destekçi Paketini Edin",
+      "uk-UA": "Придбайте Пакет прихильника",
+      "vi-VN": "Mua Gói Người Ủng Hộ"
+    },
+    "StatDataKey": 6002,
+    "UnlockCondition": "DLC",
+    "Param1": 4427390,
+    "Param2": null,
+    "stats": [
+      {
+        "PetStatKey": 6002,
+        "STATTYPE": "IncreaseGoldAmount",
+        "MODTYPE": "FLAT",
+        "Value": 100
+      }
+    ]
+  },
+  {
+    "PetKey": 6003,
+    "NameKey": "PetName_6003",
+    "NameKey_i18n": {
+      "zh-Hans": "龙",
+      "zh-Hant": "龍",
+      "en-US": "Dragon",
+      "fr-FR": "Dragon",
+      "de-DE": "Drache",
+      "id-ID": "Naga",
+      "ja-JP": "ドラゴン",
+      "ko-KR": "드래곤",
+      "pl-PL": "Smok",
+      "pt-BR": "Dragão",
+      "ru-RU": "Дракон",
+      "es-ES": "Dragón",
+      "th-TH": "มังกร",
+      "tr-TR": "Ejderha",
+      "uk-UA": "Дракон",
+      "vi-VN": "Rồng"
+    },
+    "DescriptionKey": "PetDescription_6003",
+    "DescriptionKey_i18n": {
+      "zh-Hans": "購買支持者包",
+      "zh-Hant": "购买支持者包",
+      "en-US": "Purchase the Supporter Pack",
+      "fr-FR": "Acquérir le Pack Supporter",
+      "de-DE": "Supporter-Paket erwerben",
+      "id-ID": "Beli Paket Supporter",
+      "ja-JP": "サポーターパックを購入",
+      "ko-KR": "서포터 팩 구매",
+      "pl-PL": "Zakup Paczki Wspierającej",
+      "pt-BR": "Adquirir o Pacote Apoiador",
+      "ru-RU": "Приобрести Пакет сторонника",
+      "es-ES": "Adquirir el Paquete de Supporter",
+      "th-TH": "ซื้อแพ็กเกจ Supporter",
+      "tr-TR": "Destekçi Paketini Edin",
+      "uk-UA": "Придбайте Пакет прихильника",
+      "vi-VN": "Mua Gói Người Ủng Hộ"
+    },
+    "StatDataKey": 6003,
+    "UnlockCondition": "DLC",
+    "Param1": 4427390,
+    "Param2": null,
+    "stats": [
+      {
+        "PetStatKey": 6003,
+        "STATTYPE": "DropChanceNormalChestPercent",
+        "MODTYPE": "FLAT",
+        "Value": 200
+      },
+      {
+        "PetStatKey": 6003,
+        "STATTYPE": "IncreaseGoldAmount",
+        "MODTYPE": "FLAT",
+        "Value": 150
+      },
+      {
+        "PetStatKey": 6003,
+        "STATTYPE": "IncreaseExpAmount",
+        "MODTYPE": "FLAT",
+        "Value": 200
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+﻿SkillKey,SkillNameKey,SkillDescriptionKey,ACTIVATIONTYPE,ActivationValue,SLOTTYPE,SkillBuffType,BuffGroupKey,Param1,Param2,Param3,Param4,Param5,Range,Order,DamageType,DamageDeliveryType,Value,SkillLevelKey,AnimClipPath1,AnimClipPath2,AnimClipPath3,AttributeKey,SoundKey
+10001,,,BASEATTACK,0,BASEATTACK,Normal,,600,200,200,,,140,999,Physical,Melee,1000,,Animation/Skill/Skill_10001,Animation/Skill/Skill_10001_2,Animation/Skill/Skill_10001_3,,1100011
+10101,SkillName_10101,SkillDescription_10101,BASEATTACK_COUNT,6,SKILL,Normal,,700,,,,,200,400,Physical,"Melee, AOE",,10101,Animation/Skill/Skill_10101,,,101003,1101011
+10201,SkillName_10201,SkillDescription_10201,COOLDOWN,4,SKILL,Normal,,3500,150,,,,900,500,Physical,Melee,,10201,Animation/Skill/Skill_10201,,,101004,1102011
+10301,SkillName_10301,SkillDescription_10301,BASEATTACK_COUNT,5,SKILL,Normal,,2,500,3,8,235,150,600,Physical,Melee,,10301,Animation/Skill/Skill_10301,,,101013,1103011
+10401,SkillName_10401,SkillDescription_10401,COOLDOWN,20,SKILL,Normal,,,,,,,150,600,Physical,AOE,,10401,Animation/Skill/Skill_10401,,,101023,1104011
+10501,SkillName_10501,SkillDescription_10501,COOLDOWN,17,SKILL,Buff,10501,800,,,,,150,600,Physical,,,10501,Animation/Skill/Skill_10501,,,101033,1105011
+10601,SkillName_10601,SkillDescription_10601,COOLDOWN,50,SKILL,Normal,,,,,,,150,600,Physical,,,10601,Animation/Skill/Skill_10601,,,101043,1103011
+20001,,,BASEATTACK,0,BASEATTACK,Normal,,650,150,200,,,1100,999,Physical,Projectile,1000,,Animation/Skill/Skill_20001,Animation/Skill/Skill_20001_2,Animation/Skill/Skill_20001_3,,1200011
+20101,SkillName_20101,SkillDescription_20101,BASEATTACK_COUNT,5,SKILL,Normal,,3,,,,,1150,400,Physical,Projectile,,20101,Animation/Skill/Skill_20101,,,201003,1201011
+20201,SkillName_20201,SkillDescription_20201,COOLDOWN,7,SKILL,Normal,,3,40,,,,1650,500,Physical,Projectile,,20201,Animation/Skill/Skill_20201,,,201004,1201021
+20301,SkillName_20301,SkillDescription_20301,COOLDOWN,10,SKILL,Normal,,,,,,,1300,200,Physical,AOE,,20301,Animation/Skill/Skill_20301,,,201013,1201031
+20401,SkillName_20401,SkillDescription_20401,COOLDOWN,21,SKILL,Buff,20401,700,,,,,1200,700,Physical,,,20401,Animation/Skill/Skill_20401,,,201023,1201041
+20501,SkillName_20501,SkillDescription_20501,BASEATTACK_COUNT,13,SKILL,Normal,,,,,,,1200,800,Physical,Projectile,,20501,Animation/Skill/Skill_20501,,,201033,1201051
+20601,SkillName_20601,SkillDescription_20601,BASEATTACK_COUNT,8,SKILL,Buff,20601,3000,4,,,,1200,900,Physical,Projectile,,20601,Animation/Skill/Skill_20601,,,201043,1201061
+30001,,,BASEATTACK,0,BASEATTACK,Normal,,700,300,,,,900,999,Fire,Projectile,1000,,Animation/Skill/Skill_30001,Animation/Skill/Skill_30001_2,Animation/Skill/Skill_30001_3,,1300011
+30101,SkillName_30101,SkillDescription_30101,COOLDOWN,6,SKILL,Normal,,600,,,,,950,400,Fire,"Projectile, AOE",,30101,Animation/Skill/Skill_30101,,,301003,1301011
+30201,SkillName_30201,SkillDescription_30201,COOLDOWN,8,SKILL,Normal,,,,,,,950,500,Cold,"Projectile, AOE",,30201,Animation/Skill/Skill_30201,,,301004,1302011
+30301,SkillName_30301,SkillDescription_30301,COOLDOWN,15,SKILL,Normal,,,,,,,1050,600,Lightning,AOE,,30301,Animation/Skill/Skill_30301,,,301013,1303011
+30401,SkillName_30401,SkillDescription_30401,COOLDOWN,13,SKILL,Normal,,,,,,,1100,700,Fire,"Projectile, Summon",,30401,Animation/Skill/Skill_30401,,,301023,1304011
+30501,SkillName_30501,SkillDescription_30501,COOLDOWN,22,SKILL,Normal,,,,,,,1100,800,Cold,AOE,,30501,Animation/Skill/Skill_30501,,,301033,1305011
+30601,SkillName_30601,SkillDescription_30601,COOLDOWN,18,SKILL,Normal,,,,,,,1100,900,Fire,AOE,,30601,Animation/Skill/Skill_30601,,,301043,1306011
+40001,,,BASEATTACK,0,BASEATTACK,Normal,,600,200,200,,,170,999,Physical,Melee,1000,,Animation/Skill/Skill_40001,Animation/Skill/Skill_40001_2,Animation/Skill/Skill_40001_3,,1400011
+40101,SkillName_40101,SkillDescription_40101,COOLDOWN,8,SKILL,Normal,,,,,,,950,400,Physical,,,40101,Animation/Skill/Skill_40101,,,401003,
+40201,SkillName_40201,SkillDescription_40201,CONTINUOUS,,SKILL,Buff,40201,1200,,,,,950,500,Physical,AOE,,40201,Animation/Skill/Skill_40201,,,401004,1402011
+40301,SkillName_40301,SkillDescription_40301,COOLDOWN,20,SKILL,Buff,40301,650,,,,,1050,600,Lightning,AOE,,40301,Animation/Skill/Skill_40301,,,401013,1403011
+40401,SkillName_40401,SkillDescription_40401,COOLDOWN,17,SKILL,Normal,,750,,,,,1100,700,Physical,AOE,,40401,Animation/Skill/Skill_40401,,,401023,1404011
+40501,SkillName_40501,SkillDescription_40501,CONTINUOUS,,SKILL,Buff,40501,1200,,,,,1100,800,Physical,AOE,,40501,Animation/Skill/Skill_40501,,,401033,1405011
+40601,SkillName_40601,SkillDescription_40601,COOLDOWN,45,SKILL,Normal,,,,,,,1100,900,Physical,,,40601,Animation/Skill/Skill_40601,,,401043,
+50001,,,BASEATTACK,0,BASEATTACK,Normal,,600,200,200,,,1000,999,Physical,Projectile,1000,,Animation/Skill/Skill_50001,Animation/Skill/Skill_50001_2,Animation/Skill/Skill_50001_3,,1500011
+50101,SkillName_50101,SkillDescription_50101,BASEATTACK_COUNT,6,SKILL,Normal,,,,,,,1100,400,Fire,Projectile,,50101,Animation/Skill/Skill_50101,,,501003,1501011
+50201,SkillName_50201,SkillDescription_50201,COOLDOWN,8,SKILL,Normal,,,,,,,1100,500,Cold,Projectile,,50201,Animation/Skill/Skill_50201,,,501004,1502011
+50301,SkillName_50301,SkillDescription_50301,COOLDOWN,14,SKILL,Buff,50301,,,,,,1050,600,Physical,,,50301,Animation/Skill/Skill_50301,,,501013,1503011
+50401,SkillName_50401,SkillDescription_50401,COOLDOWN,5,SKILL,Normal,,,,,,,1150,700,Physical,Trap,,50401,Animation/Skill/Skill_50401,,,501023,1504011
+50501,SkillName_50501,SkillDescription_50501,COOLDOWN,12,SKILL,Normal,,,,,,,1100,800,Physical,"Projectile, Summon",,50501,Animation/Skill/Skill_50501,,,501033,1505011
+50601,SkillName_50601,SkillDescription_50601,BASEATTACK_COUNT,11,SKILL,Buff,50601,400,,,,,1100,900,Lightning,Projectile,,50601,Animation/Skill/Skill_50601,,,501043,1506011
+60001,,,BASEATTACK,0,BASEATTACK,Normal,,600,200,200,,,120,999,Physical,Melee,1000,,Animation/Skill/Skill_60001,Animation/Skill/Skill_60001_2,Animation/Skill/Skill_60001_3,,1600011
+60101,SkillName_60101,SkillDescription_60101,COOLDOWN,6,SKILL,Normal,,35,100,,,,850,400,Physical,"Melee, AOE",,60101,Animation/Skill/Skill_60101,,,601003,1601011
+60201,SkillName_60201,SkillDescription_60201,BASEATTACK_COUNT,5,SKILL,Normal,,,,,,,200,500,Physical,Melee,,60201,Animation/Skill/Skill_60201,,,601004,1602011
+60301,SkillName_60301,SkillDescription_60301,COOLDOWN,12,SKILL,Buff,60301,700,,,,,150,600,Physical,AOE,,60301,Animation/Skill/Skill_60301,,,601013,1603011
+60401,SkillName_60401,SkillDescription_60401,BASEATTACK_COUNT,9,SKILL,Normal,,,,,,,300,700,Physical,"Melee, AOE",,60401,Animation/Skill/Skill_60401,,,601023,1604011
+60501,SkillName_60501,SkillDescription_60501,COOLDOWN,18,SKILL,Buff,60501,500,500,,,,150,800,Physical,"Melee, AOE",,60501,Animation/Skill/Skill_60501,,,601033,1303011
+60601,SkillName_60601,SkillDescription_60601,COOLDOWN,25,SKILL,Buff,60601,800,,,,,900,900,Physical,,,60601,Animation/Skill/Skill_60601,,,601043,1303011
+100111,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,200,999,Physical,,1000,,Animation/Skill/Skill_100111,,,,11001111
+100211,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,130,999,Physical,,1000,,Animation/Skill/Skill_100211,,,,11002111
+100221,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999,Physical,,1000,,Animation/Skill/Skill_100221,,,,11002211
+100231,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999,Fire,,1000,,Animation/Skill/Skill_100231,,,,11002311
+100311,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,200,999,Physical,,1000,,Animation/Skill/Skill_100311,,,,11003111
+100411,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999,Physical,,1000,,Animation/Skill/Skill_100411,,,,11004111
+100421,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999,Physical,,1000,,Animation/Skill/Skill_100421,,,,11004211
+100431,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,250,999,Physical,,1000,,Animation/Skill/Skill_100431,,,,11004311
+100511,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999,Physical,,1000,,Animation/Skill/Skill_100511,,,,11005111
+100521,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,900,999,Physical,,1000,,Animation/Skill/Skill_100521,,,,11005211
+100531,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,300,999,Physical,,1000,,Animation/Skill/Skill_100531,,,,11005311
+109011,,,BASEATTACK,0,BASEATTACK,Normal,,750,250,,,,300,999,Physical,,1000,,Animation/Skill/Skill_109011,Animation/Skill/Skill_109011_2,,,11090111
+109021,,,BASEATTACK_COUNT,4,SKILL,Normal,,,,,,,450,999,Physical,,1500,,Animation/Skill/Skill_109021,,,,11090211
+109031,,,COOLDOWN,10,SKILL,Normal,,,,,,,700,999,Physical,,1500,,Animation/Skill/Skill_109031,,,,11090311
+109041,,,COOLDOWN,12,SKILL,Normal,,,,,,,300,999,Physical,,1500,,Animation/Skill/Skill_109041,,,,11090411
+109051,,,COOLDOWN,8,SKILL,Normal,,,,,,,700,999,Physical,,1500,,Animation/Skill/Skill_109051,,,,11090511
+209011,,,BASEATTACK,0,BASEATTACK,Normal,,750,250,,,,230,999,Physical,,1000,,Animation/Skill/Skill_209011,Animation/Skill/Skill_209011_2,,,12090111
+209021,,,COOLDOWN,8,SKILL,Buff,209021,500,,,,,250,999,Physical,,1800,,Animation/Skill/Skill_209021,,,,12090211
+209031,,,BASEATTACK_COUNT,6,SKILL,Normal,,,,,,,600,999,Physical,,1350,,Animation/Skill/Skill_209031,,,,12090311
+209041,,,COOLDOWN,16,SKILL,Normal,,,,,,,270,999,Physical,,2300,,Animation/Skill/Skill_209041,,,,12090411
+209051,,,COOLDOWN,10,SKILL,Normal,,,,,,,600,999,Physical,,2000,,Animation/Skill/Skill_209051,,,,12090511
+309011,,,BASEATTACK,0,BASEATTACK,Normal,,750,250,,,,700,999,Chaos,,1000,,Animation/Skill/Skill_309011,Animation/Skill/Skill_309011_2,,,13090111
+309021,,,COOLDOWN,5,SKILL,Normal,,,,,,,700,999,Chaos,,800,,Animation/Skill/Skill_309021,,,,13090211
+309031,,,COOLDOWN,11,SKILL,Normal,,500,300,,,,800,999,Physical,,1500,,Animation/Skill/Skill_309031,,,,13090311
+309041,,,COOLDOWN,9,SKILL,Normal,,,,,,,700,999,Chaos,,1700,,Animation/Skill/Skill_309041,,,,13090411
+309051,,,COOLDOWN,18,SKILL,Normal,,,,,,,600,999,Chaos,,2300,,Animation/Skill/Skill_309051,,,,13090511
+200111 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_200111,,,,12001111
+200211 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,130,999 ,Physical,,1000 ,,Animation/Skill/Skill_200211,,,,12002111
+200221 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,900,999 ,Physical,,1000 ,,Animation/Skill/Skill_200221,,,,12002211
+200231 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_200231,,,,12002311
+200241 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999 ,Physical,,1000 ,,Animation/Skill/Skill_200241,,,,12002411
+200311 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,200,999 ,Physical,,1000 ,,Animation/Skill/Skill_200311,,,,12003111
+200411 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Chaos,,1000 ,,Animation/Skill/Skill_200411,,,,12004111
+200421 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Chaos,,1000 ,,Animation/Skill/Skill_200421,,,,12004211
+200511 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,200,999 ,Physical,,1000 ,,Animation/Skill/Skill_200511,,,,12005111
+200611 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999 ,Physical,,1000 ,,Animation/Skill/Skill_200611,,,,12006111
+200621 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,900,999 ,Physical,,1000 ,,Animation/Skill/Skill_200621,,,,12006211
+200711 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_200711,,,,12007111
+200811 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_200811,,,,12008111
+200911 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Fire,,1000 ,,Animation/Skill/Skill_200911,,,,12009111
+201111 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999 ,Physical,,1000 ,,Animation/Skill/Skill_201111,,,,12011111
+201211,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,130,999 ,Physical,,1000 ,,Animation/Skill/Skill_201211,,,,12010111
+300111 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,130,999 ,Physical,,1000 ,,Animation/Skill/Skill_300111,,,,13001111
+300121 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_300121,,,,13001211
+300131 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999 ,Physical,,1000 ,,Animation/Skill/Skill_300131,,,,13001311
+300211 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,250,999 ,Physical,,1000 ,,Animation/Skill/Skill_300211,,,,13002111
+300311 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Fire,,1000 ,,Animation/Skill/Skill_300311,,,,13003111
+300411 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999 ,Physical,,1000 ,,Animation/Skill/Skill_300411,,,,13004111
+300421 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,900,999 ,Physical,,1000 ,,Animation/Skill/Skill_300421,,,,13004211
+300431 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,200,999 ,Physical,,1000 ,,Animation/Skill/Skill_300431,,,,13004311
+300441 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Cold,,1000 ,,Animation/Skill/Skill_300441,,,,13004411
+300511 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,200,999 ,Physical,,1000 ,,Animation/Skill/Skill_300511,,,,13005111
+300611 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,170,999 ,Fire,,1000 ,,Animation/Skill/Skill_300611,,,,13006111
+300711 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Chaos,,1000 ,,Animation/Skill/Skill_300711,,,,13007111
+300811 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_300811,,,,13008111
+300821 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Fire,,1000 ,,Animation/Skill/Skill_300821,,,,13008211
+300831 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,250,999 ,Physical,,1000 ,,Animation/Skill/Skill_300831,,,,13008311
+300841 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,130,999 ,Physical,,1000 ,,Animation/Skill/Skill_300841,,,,13008411
+300911 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,300,999 ,Fire,,1000 ,,Animation/Skill/Skill_300911,,,,13009111
+301015,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Fire,,1000 ,,Animation/Skill/Skill_301015,,,,13010111
+301025,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Cold,,1000 ,,Animation/Skill/Skill_301025,,,,13010211
+301035,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Lightning,,1000 ,,Animation/Skill/Skill_301035,,,,13010311
+301045,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,800,999 ,Chaos,,1000 ,,Animation/Skill/Skill_301045,,,,13010411
+301111 ,,,BASEATTACK,0,BASEATTACK,Normal,,,,,,,150,999 ,Physical,,1000 ,,Animation/Skill/Skill_301111,,,,13011111

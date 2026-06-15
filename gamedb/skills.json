@@ -1,0 +1,5742 @@
+[
+  {
+    "SkillKey": 10001,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 600,
+    "Param2": 200,
+    "Param3": 200,
+    "Param4": null,
+    "Param5": null,
+    "Range": 140,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee",
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_10001",
+    "AnimClipPath2": "Animation/Skill/Skill_10001_2",
+    "AnimClipPath3": "Animation/Skill/Skill_10001_3",
+    "AttributeKey": null,
+    "SoundKey": 1100011,
+    "levels": [],
+    "slug": "id-10001"
+  },
+  {
+    "SkillKey": 10101,
+    "SkillNameKey": "SkillName_10101",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "穿透突刺",
+      "zh-Hant": "穿透突刺",
+      "en-US": "Piercing Thrust",
+      "fr-FR": "Estoc Perçant",
+      "de-DE": "Durchstoß",
+      "id-ID": "Tusukan Tembus",
+      "ja-JP": "貫通突き",
+      "ko-KR": "관통 찌르기",
+      "pl-PL": "Przebijające Pchnięcie",
+      "pt-BR": "Estocada Perfurante",
+      "ru-RU": "Пронзающий удар",
+      "es-ES": "Estocada Perforante",
+      "th-TH": "แทงทะลุ",
+      "tr-TR": "Delici İtme",
+      "uk-UA": "Пронизуючий удар",
+      "vi-VN": "Đâm Xuyên"
+    },
+    "SkillDescriptionKey": "SkillDescription_10101",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "向前深深刺出剑，对范围内的敌人造成{0}%物理伤害。",
+      "zh-Hant": "向前深深刺出劍，對範圍內的敵人造成{0}%物理傷害。",
+      "en-US": "Thrust your sword deeply forward, dealing {0}% physical damage to enemies in range.",
+      "fr-FR": "Enfoncez votre épée profondément, infligeant {0}% de dégâts physiques aux ennemis à portée.",
+      "de-DE": "Stoße dein Schwert tief nach vorn und füge Feinden im Bereich {0}% physischen Schaden zu.",
+      "id-ID": "Tusukkan pedang ke depan dengan dalam, memberi {0}% kerusakan fisik kepada musuh dalam jangkauan.",
+      "ja-JP": "剣を前方に深く突き刺し、範囲内の敵に{0}%の物理ダメージを与える。",
+      "ko-KR": "검을 앞으로 깊게 찔러 범위 내 적에게 {0}%의 물리피해를 준다.",
+      "pl-PL": "Wbij miecz głęboko przed siebie, zadając {0}% obrażeń fizycznych wrogom w zasięgu.",
+      "pt-BR": "Crave a espada profundamente à frente, causando {0}% de dano físico aos inimigos em alcance.",
+      "ru-RU": "Глубоко проткните мечом вперёд, нанося {0}% физического урона врагам в радиусе.",
+      "es-ES": "Clava tu espada profundamente hacia adelante, infligiendo {0}% de daño físico a enemigos en rango.",
+      "th-TH": "พุ่งดาบไปข้างหน้าอย่างลึก สร้างความเสียหายกายภาพ {0}% ให้ศัตรูในระยะ",
+      "tr-TR": "Kılıcını derinlemesine ileri sapla, menzildeki düşmanlara %{0} fiziksel hasar ver.",
+      "uk-UA": "Глибоко проштовхніть меч уперед, завдаючи {0}% фізичної шкоди ворогам у зоні.",
+      "vi-VN": "Đâm kiếm về phía trước thật sâu, gây {0}% sát thương vật lý cho kẻ địch trong tầm."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 6,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 700,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": 400,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee, AOE",
+    "Value": null,
+    "SkillLevelKey": 10101,
+    "AnimClipPath1": "Animation/Skill/Skill_10101",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 101003,
+    "SoundKey": 1101011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2500
+      },
+      {
+        "level": 2,
+        "value": 2700
+      },
+      {
+        "level": 3,
+        "value": 2900
+      },
+      {
+        "level": 4,
+        "value": 3100
+      },
+      {
+        "level": 5,
+        "value": 3300
+      },
+      {
+        "level": 6,
+        "value": 3500
+      },
+      {
+        "level": 7,
+        "value": 3700
+      },
+      {
+        "level": 8,
+        "value": 3900
+      },
+      {
+        "level": 9,
+        "value": 4100
+      },
+      {
+        "level": 10,
+        "value": 4300
+      }
+    ],
+    "slug": "piercing-thrust"
+  },
+  {
+    "SkillKey": 10201,
+    "SkillNameKey": "SkillName_10201",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "盾牌冲锋",
+      "zh-Hant": "盾牌衝鋒",
+      "en-US": "Shield Charge",
+      "fr-FR": "Charge du Bouclier",
+      "de-DE": "Schildansturm",
+      "id-ID": "Serangan Perisai",
+      "ja-JP": "シールドチャージ",
+      "ko-KR": "방패 돌격",
+      "pl-PL": "Szarża Tarczą",
+      "pt-BR": "Investida do Escudo",
+      "ru-RU": "Натиск щитом",
+      "es-ES": "Carga con Escudo",
+      "th-TH": "พุ่งชนด้วยโล่",
+      "tr-TR": "Kalkan Hücumu",
+      "uk-UA": "Атака щитом",
+      "vi-VN": "Lao Khiên"
+    },
+    "SkillDescriptionKey": "SkillDescription_10201",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "举起盾牌向前冲锋。对撞到的敌人造成{0}%物理伤害。",
+      "zh-Hant": "舉起盾牌向前衝鋒。對撞到的敵人造成{0}%物理傷害。",
+      "en-US": "Raise your shield and charge forward. Deal {0}% physical damage to enemies you collide with.",
+      "fr-FR": "Levez votre bouclier et chargez. Infligez {0}% de dégâts physiques aux ennemis percutés.",
+      "de-DE": "Hebe deinen Schild und stürme nach vorn. Kollidierten Feinden {0}% physischen Schaden zufügen.",
+      "id-ID": "Angkat perisai dan menerjang ke depan. Memberi {0}% kerusakan fisik kepada musuh yang ditabrak.",
+      "ja-JP": "盾を構えて前方に突進する。衝突した敵に{0}%の物理ダメージを与える。",
+      "ko-KR": "방패를 세워 앞으로 돌진한다. 부딪히는 적에게 {0}%의 물리피해를 준다.",
+      "pl-PL": "Podnieś tarczę i ruszaj naprzód. Zadaj {0}% obrażeń fizycznych wrogom, z którymi się zderzysz.",
+      "pt-BR": "Erga o escudo e avance. Cause {0}% de dano físico aos inimigos com quem colidir.",
+      "ru-RU": "Поднимите щит и ринитесь вперёд. Наносите {0}% физического урона врагам, с которыми столкнётесь.",
+      "es-ES": "Alza el escudo y embiste hacia adelante. Inflige {0}% de daño físico a los enemigos con los que colisionas.",
+      "th-TH": "ยกโล่และพุ่งไปข้างหน้า สร้างความเสียหายกายภาพ {0}% ให้ศัตรูที่ชน",
+      "tr-TR": "Kalkanını kaldır ve ileri atıl. Çarptığın düşmanlara %{0} fiziksel hasar ver.",
+      "uk-UA": "Підніміть щит і ринетесь уперед. Завдавайте {0}% фізичної шкоди ворогам, з якими зіштовхнетеся.",
+      "vi-VN": "Giơ khiên và lao về phía trước. Gây {0}% sát thương vật lý cho kẻ địch va chạm."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 4,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 3500,
+    "Param2": 150,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": 500,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee",
+    "Value": null,
+    "SkillLevelKey": 10201,
+    "AnimClipPath1": "Animation/Skill/Skill_10201",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 101004,
+    "SoundKey": 1102011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 3000
+      },
+      {
+        "level": 2,
+        "value": 3300
+      },
+      {
+        "level": 3,
+        "value": 3600
+      },
+      {
+        "level": 4,
+        "value": 3900
+      },
+      {
+        "level": 5,
+        "value": 4200
+      },
+      {
+        "level": 6,
+        "value": 4500
+      },
+      {
+        "level": 7,
+        "value": 4800
+      },
+      {
+        "level": 8,
+        "value": 5100
+      },
+      {
+        "level": 9,
+        "value": 5400
+      },
+      {
+        "level": 10,
+        "value": 5700
+      }
+    ],
+    "slug": "shield-charge"
+  },
+  {
+    "SkillKey": 10301,
+    "SkillNameKey": "SkillName_10301",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "报应打击",
+      "zh-Hant": "報應打擊",
+      "en-US": "Retribution Strike",
+      "fr-FR": "Frappe de Rétribution",
+      "de-DE": "Vergeltungsschlag",
+      "id-ID": "Serangan Pembalasan",
+      "ja-JP": "応報の打撃",
+      "ko-KR": "응징 타격",
+      "pl-PL": "Uderzenie Odwetu",
+      "pt-BR": "Golpe de Retribuição",
+      "ru-RU": "Удар возмездия",
+      "es-ES": "Golpe de Retribución",
+      "th-TH": "การลงทัณฑ์",
+      "tr-TR": "Karşılık Darbesi",
+      "uk-UA": "Удар відплати",
+      "vi-VN": "Đòn Trừng Phạt"
+    },
+    "SkillDescriptionKey": "SkillDescription_10301",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "多次攻击敌人，每次造成{0}%物理伤害。英雄生命越低，打击次数越多。",
+      "zh-Hant": "多次攻擊敵人，每次造成{0}%物理傷害。英雄生命越低，打擊次數越多。",
+      "en-US": "Strike enemies multiple times, dealing {0}% physical damage per hit. The lower the hero's HP, the more strikes.",
+      "fr-FR": "Frappez les ennemis plusieurs fois, infligeant {0}% de dégâts physiques par coup. Plus les PV du héros sont bas, plus il frappe.",
+      "de-DE": "Schlage Feinde mehrfach und füge pro Treffer {0}% physischen Schaden zu. Je niedriger die LP des Helden, desto mehr Treffer.",
+      "id-ID": "Pukul musuh berkali-kali, memberi {0}% kerusakan fisik per pukulan. Semakin rendah HP hero, semakin banyak pukulan.",
+      "ja-JP": "敵を複数回攻撃し、1打撃ごとに{0}%の物理ダメージを与える。ヒーローのHPが低いほど打撃回数が増える。",
+      "ko-KR": "적을 여러 번 타격하여 타격당 {0}%의 물리피해를 입힌다. 영웅의 체력이 낮을수록 여러 번 타격한다.",
+      "pl-PL": "Uderz wrogów wielokrotnie, zadając {0}% obrażeń fizycznych za trafienie. Im niższe PŻ bohatera, tym więcej uderzeń.",
+      "pt-BR": "Atinge inimigos várias vezes, causando {0}% de dano físico por golpe. Quanto menor o PV do herói, mais golpes.",
+      "ru-RU": "Ударьте врагов несколько раз, нанося {0}% физического урона за удар. Чем ниже HP героя, тем больше ударов.",
+      "es-ES": "Golpea enemigos varias veces, infligiendo {0}% de daño físico por golpe. Cuanto menor el PV del héroe, más golpes.",
+      "th-TH": "โจมตีศัตรูหลายครั้ง สร้างความเสียหายกายภาพ {0}% ต่อการโจมตี ยิ่ง HP ฮีโร่ต่ำ ยิ่งโจมตีหลายครั้ง",
+      "tr-TR": "Düşmanlara birden fazla vur, vuruş başına %{0} fiziksel hasar ver. Kahramanın canı düştükçe daha çok vurur.",
+      "uk-UA": "Ударте ворогів кілька разів, завдаючи {0}% фізичної шкоди за удар. Чим нижче HP героя, тим більше ударів.",
+      "vi-VN": "Đánh kẻ địch nhiều lần, gây {0}% sát thương vật lý mỗi đòn. HP của hùng càng thấp, số đòn đánh càng nhiều."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 5,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 2,
+    "Param2": 500,
+    "Param3": 3,
+    "Param4": 8,
+    "Param5": 235,
+    "Range": 150,
+    "Order": 600,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee",
+    "Value": null,
+    "SkillLevelKey": 10301,
+    "AnimClipPath1": "Animation/Skill/Skill_10301",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 101013,
+    "SoundKey": 1103011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1500
+      },
+      {
+        "level": 2,
+        "value": 1700
+      },
+      {
+        "level": 3,
+        "value": 1900
+      },
+      {
+        "level": 4,
+        "value": 2100
+      },
+      {
+        "level": 5,
+        "value": 2300
+      },
+      {
+        "level": 6,
+        "value": 2500
+      },
+      {
+        "level": 7,
+        "value": 2700
+      },
+      {
+        "level": 8,
+        "value": 2900
+      },
+      {
+        "level": 9,
+        "value": 3100
+      },
+      {
+        "level": 10,
+        "value": 3300
+      }
+    ],
+    "slug": "retribution-strike"
+  },
+  {
+    "SkillKey": 10401,
+    "SkillNameKey": "SkillName_10401",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "神盾领域",
+      "zh-Hant": "神盾領域",
+      "en-US": "Aegis Field",
+      "fr-FR": "Champ d'Égide",
+      "de-DE": "Ägisfeld",
+      "id-ID": "Medan Aegis",
+      "ja-JP": "イージスフィールド",
+      "ko-KR": "수호 영역",
+      "pl-PL": "Pole Egidy",
+      "pt-BR": "Campo de Égide",
+      "ru-RU": "Поле Эгиды",
+      "es-ES": "Campo de Égida",
+      "th-TH": "สนามอีจิส",
+      "tr-TR": "Aegis Alanı",
+      "uk-UA": "Поле Егіди",
+      "vi-VN": "Trường Hộ Vệ"
+    },
+    "SkillDescriptionKey": "SkillDescription_10401",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "展开守护领域，为领域内的友军阻挡{0}伤害。",
+      "zh-Hant": "展開守護領域，為領域內的友軍阻擋{0}傷害。",
+      "en-US": "Deploy a protective aura that blocks {0} damage for allies within the area.",
+      "fr-FR": "Déployez une aura protectrice qui bloque {0} de dégâts pour les alliés dans la zone.",
+      "de-DE": "Eine schützende Aura entfalten, die {0} Schaden für Verbündete im Bereich abwehrt.",
+      "id-ID": "Buka aura pelindung yang memblokir {0} kerusakan untuk sekutu di area.",
+      "ja-JP": "守護の領域を展開し、領域内の味方が受けるダメージを{0}分阻止します。",
+      "ko-KR": "수호의 영역을 펼쳐 영역 안에 있는 아군이 받는 피해를 {0}만큼 막아준다.",
+      "pl-PL": "Rozłóż ochronną aurę blokującą {0} obrażeń sojusznikom w obszarze.",
+      "pt-BR": "Projete uma aura protetora que bloqueia {0} de dano aos aliados na área.",
+      "ru-RU": "Разверните защитную ауру, блокирующую {0} урона союзникам в зоне.",
+      "es-ES": "Despliega un aura protectora que bloquea {0} de daño a aliados en el área.",
+      "th-TH": "กาง aura ป้องกันที่บล็อกความเสียหาย {0} ให้พันธมิตรในพื้นที่",
+      "tr-TR": "Koruyucu bir aura yay, alan içindeki müttefiklere %{0} hasar engelle.",
+      "uk-UA": "Розгорніть захисну ауру, що блокує {0} шкоди союзникам у зоні.",
+      "vi-VN": "Triển khai aura bảo vệ chặn {0} sát thương cho đồng minh trong khu vực."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 20,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 600,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 10401,
+    "AnimClipPath1": "Animation/Skill/Skill_10401",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 101023,
+    "SoundKey": 1104011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 500
+      },
+      {
+        "level": 2,
+        "value": 650
+      },
+      {
+        "level": 3,
+        "value": 800
+      },
+      {
+        "level": 4,
+        "value": 950
+      },
+      {
+        "level": 5,
+        "value": 1100
+      },
+      {
+        "level": 6,
+        "value": 1250
+      },
+      {
+        "level": 7,
+        "value": 1400
+      },
+      {
+        "level": 8,
+        "value": 1550
+      },
+      {
+        "level": 9,
+        "value": 1700
+      },
+      {
+        "level": 10,
+        "value": 1850
+      }
+    ],
+    "slug": "aegis-field"
+  },
+  {
+    "SkillKey": 10501,
+    "SkillNameKey": "SkillName_10501",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "神圣之刃",
+      "zh-Hant": "神聖之刃",
+      "en-US": "Sacred Blade",
+      "fr-FR": "Lame Sacrée",
+      "de-DE": "Heilige Klinge",
+      "id-ID": "Pedang Suci",
+      "ja-JP": "セイクリッドブレード",
+      "ko-KR": "성스러운 검",
+      "pl-PL": "Święte Ostrze",
+      "pt-BR": "Lâmina Sagrada",
+      "ru-RU": "Священный Клинок",
+      "es-ES": "Hoja Sagrada",
+      "th-TH": "ดาบศักดิ์สิทธิ์",
+      "tr-TR": "Kutsal Kılıç",
+      "uk-UA": "Священний Клинок",
+      "vi-VN": "Thánh Kiếm"
+    },
+    "SkillDescriptionKey": "SkillDescription_10501",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "为剑注入神圣之力。Buff期间攻击力+50%，攻击时回复{0}生命。",
+      "zh-Hant": "為劍注入神聖之力。Buff期間攻擊力+50%，攻擊時回復{0}生命。",
+      "en-US": "Imbue your sword with holy power. While buffed, attack damage increases by 50% and attacks restore {0} HP.",
+      "fr-FR": "Imprégnez votre épée de pouvoir sacré. Pendant le buff, +50% de dégâts ; les attaques restaurent {0} PV.",
+      "de-DE": "Imprägniere dein Schwert mit heiliger Kraft. Während des Buffs +50% Schaden, Angriffe stellen {0} LP wieder her.",
+      "id-ID": "Selimuti pedang dengan kekuatan suci. Saat di-buff, kerusakan serangan naik 50% dan serangan memulihkan {0} HP.",
+      "ja-JP": "剣に聖なる力を宿す。バフ中は攻撃力+50%、攻撃時に{0}のHPを回復する。",
+      "ko-KR": "검에 성스러운 힘이 깃든다. 버프가 걸린 동안 공격력이 50% 증가하고, 공격 시 {0}의 체력을 회복한다.",
+      "pl-PL": "Napełnij miecz świętą mocą. Podczas buffa +50% obrażeń, ataki przywracają {0} PŻ.",
+      "pt-BR": "Imbua sua espada com poder sagrado. Durante o buff, +50% de dano; ataques restauram {0} PV.",
+      "ru-RU": "Наделите меч святой силой. Во время баффа +50% урона; атаки восстанавливают {0} HP.",
+      "es-ES": "Imbuye tu espada de poder sagrado. Mientras dura el buff, +50% daño; los ataques restauran {0} PV.",
+      "th-TH": "เสริมพลังศักดิ์สิทธิ์ให้ดาบ ระหว่างที่บัฟอยู่ ความเสียหายโจมตีเพิ่ม 50% และการโจมตีฟื้นฟู HP {0}",
+      "tr-TR": "Kılıcına kutsal güç işle. Buff süresince hasar +%50; saldırılar {0} can yeniler.",
+      "uk-UA": "Наповніть меч святою силою. Під час баффа +50% шкоди; атаки відновлюють {0} HP.",
+      "vi-VN": "Truyền sức mạnh thần thánh vào kiếm. Khi được buff, sát thương tấn công tăng 50% và đòn đánh hồi {0} HP."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 17,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 10501,
+    "Param1": 800,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 600,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 10501,
+    "AnimClipPath1": "Animation/Skill/Skill_10501",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 101033,
+    "SoundKey": 1105011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 20
+      },
+      {
+        "level": 2,
+        "value": 40
+      },
+      {
+        "level": 3,
+        "value": 60
+      },
+      {
+        "level": 4,
+        "value": 80
+      },
+      {
+        "level": 5,
+        "value": 100
+      },
+      {
+        "level": 6,
+        "value": 120
+      },
+      {
+        "level": 7,
+        "value": 140
+      },
+      {
+        "level": 8,
+        "value": 160
+      },
+      {
+        "level": 9,
+        "value": 180
+      },
+      {
+        "level": 10,
+        "value": 200
+      }
+    ],
+    "slug": "sacred-blade"
+  },
+  {
+    "SkillKey": 10601,
+    "SkillNameKey": "SkillName_10601",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "不屈意志",
+      "zh-Hant": "不屈意志",
+      "en-US": "Unyielding Will",
+      "fr-FR": "Volonté Inébranlable",
+      "de-DE": "Unbeugsamer Wille",
+      "id-ID": "Tekad Pantang Menyerah",
+      "ja-JP": "不屈の意志",
+      "ko-KR": "불굴의 의지",
+      "pl-PL": "Niezłomna Wola",
+      "pt-BR": "Vontade Inabalável",
+      "ru-RU": "Несгибаемая Воля",
+      "es-ES": "Voluntad Inquebrantable",
+      "th-TH": "เจตจำนงไม่สั่นคลอน",
+      "tr-TR": "Yılmaz İrade",
+      "uk-UA": "Непохитна Воля",
+      "vi-VN": "Ý Chí Bất Khuất"
+    },
+    "SkillDescriptionKey": "SkillDescription_10601",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "每关一次濒死时凝聚精神以{0}%生命重新站起。",
+      "zh-Hant": "每關一次瀕死時凝聚精神以{0}%生命重新站起。",
+      "en-US": "Once per stage, when near-death, focus your mind to rise again with {0}% HP.",
+      "fr-FR": "Une fois par étape en état d'agonie : concentrez-vous et relevez-vous avec {0}% de PV.",
+      "de-DE": "Einmal pro Stage im Todeszustand: konzentriere dich und stehe mit {0}% LP wieder auf.",
+      "id-ID": "Sekali per tahap, saat hampir mati, fokuskan pikiran untuk bangkit kembali dengan {0}% HP.",
+      "ja-JP": "ステージにつき1回、瀕死時に精神を集中し{0}%のHPで再び起き上がります。",
+      "ko-KR": "스테이지당 1번 빈사상태가 되었을 때 정신을 집중하여 {0}%의 체력으로 다시 일어나 싸운다.",
+      "pl-PL": "Raz na etap w stanie agonii: skup umysł i wstań z {0}% PŻ.",
+      "pt-BR": "Uma vez por fase em estado agonizante: concentre-se e levante-se com {0}% de PV.",
+      "ru-RU": "Раз за стадию при смертельном состоянии: сосредоточьтесь и встаньте с {0}% HP.",
+      "es-ES": "Una vez por etapa en estado moribundo: concéntrate y levántate con {0}% de PV.",
+      "th-TH": "หนึ่งครั้งต่อด่าน เมื่อใกล้ตาย รวบรวมจิตใจลุกขึ้นมาด้วย HP {0}%",
+      "tr-TR": "Aşama başına bir kez ölüm sınırında: zihnini odakla, %{0} canla yeniden kalk.",
+      "uk-UA": "Раз на етап у стані агонії: зосередьтеся й підведіться з {0}% HP.",
+      "vi-VN": "Một lần mỗi tầng, khi cận kề cái chết, tập trung tinh thần đứng dậy với {0}% HP."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 50,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 600,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 10601,
+    "AnimClipPath1": "Animation/Skill/Skill_10601",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 101043,
+    "SoundKey": 1103011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 300
+      },
+      {
+        "level": 2,
+        "value": 400
+      },
+      {
+        "level": 3,
+        "value": 500
+      },
+      {
+        "level": 4,
+        "value": 600
+      },
+      {
+        "level": 5,
+        "value": 700
+      },
+      {
+        "level": 6,
+        "value": 800
+      },
+      {
+        "level": 7,
+        "value": 900
+      },
+      {
+        "level": 8,
+        "value": 1000
+      },
+      {
+        "level": 9,
+        "value": 1100
+      },
+      {
+        "level": 10,
+        "value": 1200
+      }
+    ],
+    "slug": "unyielding-will"
+  },
+  {
+    "SkillKey": 20001,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 650,
+    "Param2": 150,
+    "Param3": 200,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile",
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_20001",
+    "AnimClipPath2": "Animation/Skill/Skill_20001_2",
+    "AnimClipPath3": "Animation/Skill/Skill_20001_3",
+    "AttributeKey": null,
+    "SoundKey": 1200011,
+    "levels": [],
+    "slug": "id-20001"
+  },
+  {
+    "SkillKey": 20101,
+    "SkillNameKey": "SkillName_20101",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "快速射击",
+      "zh-Hant": "快速射擊",
+      "en-US": "Rapid Fire",
+      "fr-FR": "Tir Rapide",
+      "de-DE": "Schnellfeuer",
+      "id-ID": "Tembakan Cepat",
+      "ja-JP": "連射",
+      "ko-KR": "화살 연발",
+      "pl-PL": "Szybkie Strzelanie",
+      "pt-BR": "Tiro Rápido",
+      "ru-RU": "Скорострельность",
+      "es-ES": "Fuego Rápido",
+      "th-TH": "ยิงเร็ว",
+      "tr-TR": "Hızlı Ateş",
+      "uk-UA": "Швидкий вогонь",
+      "vi-VN": "Bắn Liên Thanh"
+    },
+    "SkillDescriptionKey": "SkillDescription_20101",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "连续射出多支箭矢，每支造成{0}%物理伤害。",
+      "zh-Hant": "連續射出多支箭矢，每支造成{0}%物理傷害。",
+      "en-US": "Fire multiple arrows in succession, dealing {0}% physical damage per arrow.",
+      "fr-FR": "Tirez plusieurs flèches successivement, infligeant {0}% de dégâts physiques par flèche.",
+      "de-DE": "Schieße mehrere Pfeile in Folge und füge pro Pfeil {0}% physischen Schaden zu.",
+      "id-ID": "Tembakkan beberapa anak panah berturut-turut, memberi {0}% kerusakan fisik per panah.",
+      "ja-JP": "矢を連続して複数発射し、1本ごとに{0}%の物理ダメージを与える。",
+      "ko-KR": "연속으로 화살을 여러 번 발사하여 화살당 {0}%의 물리피해를 입힌다.",
+      "pl-PL": "Wystrzel wiele strzał w krótkim czasie, zadając {0}% obrażeń fizycznych za strzałę.",
+      "pt-BR": "Dispara várias flechas em sequência, causando {0}% de dano físico por flecha.",
+      "ru-RU": "Выпустите подряд несколько стрел, нанося по {0}% физического урона за стрелу.",
+      "es-ES": "Dispara varias flechas en sucesión, infligiendo {0}% de daño físico por flecha.",
+      "th-TH": "ยิงธนูหลายลูกติดต่อกัน สร้างความเสียหายกายภาพ {0}% ต่อลูก",
+      "tr-TR": "Art arda birçok ok at, ok başına %{0} fiziksel hasar ver.",
+      "uk-UA": "Випустіть підряд кілька стріл, завдаючи по {0}% фізичної шкоди за стрілу.",
+      "vi-VN": "Bắn liên tiếp nhiều mũi tên, gây {0}% sát thương vật lý mỗi mũi."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 5,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 3,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1150,
+    "Order": 400,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 20101,
+    "AnimClipPath1": "Animation/Skill/Skill_20101",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 201003,
+    "SoundKey": 1201011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1320
+      },
+      {
+        "level": 2,
+        "value": 1440
+      },
+      {
+        "level": 3,
+        "value": 1560
+      },
+      {
+        "level": 4,
+        "value": 1680
+      },
+      {
+        "level": 5,
+        "value": 1800
+      },
+      {
+        "level": 6,
+        "value": 1920
+      },
+      {
+        "level": 7,
+        "value": 2040
+      },
+      {
+        "level": 8,
+        "value": 2160
+      },
+      {
+        "level": 9,
+        "value": 2280
+      },
+      {
+        "level": 10,
+        "value": 2400
+      }
+    ],
+    "slug": "rapid-fire"
+  },
+  {
+    "SkillKey": 20201,
+    "SkillNameKey": "SkillName_20201",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "散弹射击",
+      "zh-Hant": "散彈射擊",
+      "en-US": "Scatter Shot",
+      "fr-FR": "Tir Dispersé",
+      "de-DE": "Streuschuss",
+      "id-ID": "Tembakan Sebar",
+      "ja-JP": "散弾射撃",
+      "ko-KR": "분산 사격",
+      "pl-PL": "Strzał Rozpryskowy",
+      "pt-BR": "Tiro Disperso",
+      "ru-RU": "Разрывной выстрел",
+      "es-ES": "Tiro Disperso",
+      "th-TH": "ยิงกระจาย",
+      "tr-TR": "Saçma Atışı",
+      "uk-UA": "Розсіяний постріл",
+      "vi-VN": "Bắn Phân Tán"
+    },
+    "SkillDescriptionKey": "SkillDescription_20201",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "发射多支追踪敌人的箭矢。每支造成{0}%物理伤害。",
+      "zh-Hant": "發射多支追蹤敵人的箭矢。每支造成{0}%物理傷害。",
+      "en-US": "Fire multiple homing arrows. Deal {0}% physical damage per arrow.",
+      "fr-FR": "Tirez plusieurs flèches à tête chercheuse. Infligez {0}% de dégâts physiques par flèche.",
+      "de-DE": "Schieße mehrere zielsuchende Pfeile. Füge {0}% physischen Schaden pro Pfeil zu.",
+      "id-ID": "Tembakkan beberapa anak panah pengejar. Memberi {0}% kerusakan fisik per panah.",
+      "ja-JP": "敵を追尾する矢を複数発射する。1本ごとに{0}%の物理ダメージを与える。",
+      "ko-KR": "적을 추적하는 화살 여러 발을 발사한다. 화살당 {0}%의 물리피해를 입힌다.",
+      "pl-PL": "Wystrzel wiele naprowadzanych strzał. Zadaj {0}% obrażeń fizycznych za strzałę.",
+      "pt-BR": "Dispara várias flechas teleguiadas. Cause {0}% de dano físico por flecha.",
+      "ru-RU": "Выпустите несколько самонаводящихся стрел. Наносит {0}% физического урона за стрелу.",
+      "es-ES": "Dispara varias flechas teledirigidas. Inflige {0}% de daño físico por flecha.",
+      "th-TH": "ยิงธนูตามเป้าหมายหลายลูก สร้างความเสียหายกายภาพ {0}% ต่อลูก",
+      "tr-TR": "Birden fazla güdümlü ok at. Ok başına %{0} fiziksel hasar.",
+      "uk-UA": "Випустіть кілька самонавідних стріл. Завдає {0}% фізичної шкоди за стрілу.",
+      "vi-VN": "Bắn nhiều mũi tên dẫn đường. Gây {0}% sát thương vật lý mỗi mũi."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 7,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 3,
+    "Param2": 40,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1650,
+    "Order": 500,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 20201,
+    "AnimClipPath1": "Animation/Skill/Skill_20201",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 201004,
+    "SoundKey": 1201021,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1620
+      },
+      {
+        "level": 2,
+        "value": 1780
+      },
+      {
+        "level": 3,
+        "value": 1940
+      },
+      {
+        "level": 4,
+        "value": 2100
+      },
+      {
+        "level": 5,
+        "value": 2260
+      },
+      {
+        "level": 6,
+        "value": 2420
+      },
+      {
+        "level": 7,
+        "value": 2580
+      },
+      {
+        "level": 8,
+        "value": 2740
+      },
+      {
+        "level": 9,
+        "value": 2900
+      },
+      {
+        "level": 10,
+        "value": 3060
+      }
+    ],
+    "slug": "scatter-shot"
+  },
+  {
+    "SkillKey": 20301,
+    "SkillNameKey": "SkillName_20301",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "箭雨",
+      "zh-Hant": "箭雨",
+      "en-US": "Arrow Rain",
+      "fr-FR": "Pluie de Flèches",
+      "de-DE": "Pfeilregen",
+      "id-ID": "Hujan Panah",
+      "ja-JP": "矢の雨",
+      "ko-KR": "화살비",
+      "pl-PL": "Deszcz Strzał",
+      "pt-BR": "Chuva de Flechas",
+      "ru-RU": "Дождь стрел",
+      "es-ES": "Lluvia de Flechas",
+      "th-TH": "ฝนธนู",
+      "tr-TR": "Ok Yağmuru",
+      "uk-UA": "Дощ стріл",
+      "vi-VN": "Mưa Tên"
+    },
+    "SkillDescriptionKey": "SkillDescription_20301",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "向天空射出多支箭矢，对广范围敌人造成{0}%物理伤害。",
+      "zh-Hant": "向天空射出多支箭矢，對廣範圍敵人造成{0}%物理傷害。",
+      "en-US": "Fire multiple arrows into the sky, dealing {0}% physical damage to enemies in a wide area.",
+      "fr-FR": "Tirez plusieurs flèches vers le ciel, infligeant {0}% de dégâts physiques aux ennemis dans une large zone.",
+      "de-DE": "Schieße mehrere Pfeile in den Himmel und füge Feinden in einem weiten Gebiet {0}% physischen Schaden zu.",
+      "id-ID": "Tembakkan beberapa anak panah ke langit, memberi {0}% kerusakan fisik kepada musuh di area luas.",
+      "ja-JP": "空に向けて複数の矢を放ち、広範囲の敵に{0}%の物理ダメージを与える。",
+      "ko-KR": "화살 여러 발을 하늘 위로 쏘아올려 넓은 범위의 적에게 {0}%의 물리피해를 입힌다.",
+      "pl-PL": "Wystrzel wiele strzał w niebo, zadając {0}% obrażeń fizycznych wrogom w szerokim obszarze.",
+      "pt-BR": "Dispara várias flechas ao céu, causando {0}% de dano físico aos inimigos em uma área ampla.",
+      "ru-RU": "Выпустите в небо множество стрел, нанося {0}% физического урона врагам в широкой области.",
+      "es-ES": "Dispara varias flechas al cielo, infligiendo {0}% de daño físico a enemigos en un área amplia.",
+      "th-TH": "ยิงธนูหลายลูกขึ้นฟ้า สร้างความเสียหายกายภาพ {0}% ให้ศัตรูในพื้นที่กว้าง",
+      "tr-TR": "Gökyüzüne birden fazla ok fırlat, geniş alandaki düşmanlara %{0} fiziksel hasar ver.",
+      "uk-UA": "Випустіть у небо безліч стріл, завдаючи {0}% фізичної шкоди ворогам у широкій зоні.",
+      "vi-VN": "Bắn nhiều mũi tên lên trời, gây {0}% sát thương vật lý cho kẻ địch trong vùng rộng."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 10,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1300,
+    "Order": 200,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 20301,
+    "AnimClipPath1": "Animation/Skill/Skill_20301",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 201013,
+    "SoundKey": 1201031,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2150
+      },
+      {
+        "level": 2,
+        "value": 2410
+      },
+      {
+        "level": 3,
+        "value": 2670
+      },
+      {
+        "level": 4,
+        "value": 2930
+      },
+      {
+        "level": 5,
+        "value": 3190
+      },
+      {
+        "level": 6,
+        "value": 3450
+      },
+      {
+        "level": 7,
+        "value": 3710
+      },
+      {
+        "level": 8,
+        "value": 3970
+      },
+      {
+        "level": 9,
+        "value": 4230
+      },
+      {
+        "level": 10,
+        "value": 4490
+      }
+    ],
+    "slug": "arrow-rain"
+  },
+  {
+    "SkillKey": 20401,
+    "SkillNameKey": "SkillName_20401",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "迅捷觉醒",
+      "zh-Hant": "迅捷覺醒",
+      "en-US": "Swift Surge",
+      "fr-FR": "Élan Rapide",
+      "de-DE": "Schneller Ansturm",
+      "id-ID": "Lonjakan Kecepatan",
+      "ja-JP": "スウィフトサージ",
+      "ko-KR": "신속 각성",
+      "pl-PL": "Błyskawiczny Zryw",
+      "pt-BR": "Surto Veloz",
+      "ru-RU": "Стремительный Рывок",
+      "es-ES": "Impulso Veloz",
+      "th-TH": "พลังความรวดเร็ว",
+      "tr-TR": "Hızlı Atılım",
+      "uk-UA": "Стрімкий Ривок",
+      "vi-VN": "Bùng Phát Tốc Độ"
+    },
+    "SkillDescriptionKey": "SkillDescription_20401",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "暂时加速新陈代谢。持续时间内攻击速度+{0}%。",
+      "zh-Hant": "暫時加速新陳代謝。持續時間內攻擊速度+{0}%。",
+      "en-US": "Temporarily accelerate your metabolism. Attack speed increases by {0}% for the duration.",
+      "fr-FR": "Accélérez temporairement votre métabolisme. Vit. d'attaque +{0}% pendant la durée.",
+      "de-DE": "Beschleunige vorübergehend deinen Stoffwechsel. Angriffsgeschw. +{0}% für die Dauer.",
+      "id-ID": "Percepat metabolisme sementara. Kecepatan serangan naik {0}% selama durasi.",
+      "ja-JP": "身体の代謝を一時的に加速。持続時間中、攻撃速度が+{0}%増加する。",
+      "ko-KR": "몸의 신진대사를 일시적으로 빠르게 한다. 지속시간 동안 공격속도가 {0}% 증가한다.",
+      "pl-PL": "Tymczasowo przyspiesz metabolizm. Szybk. ataku +{0}% na czas trwania.",
+      "pt-BR": "Acelera temporariamente seu metabolismo. Vel. de ataque +{0}% durante a duração.",
+      "ru-RU": "Временно ускорьте метаболизм. Скорость атаки +{0}% на время действия.",
+      "es-ES": "Acelera temporalmente tu metabolismo. Vel. de ataque +{0}% durante la duración.",
+      "th-TH": "เร่งการเผาผลาญชั่วคราว ความเร็วการโจมตีเพิ่ม {0}% ตลอดระยะเวลา",
+      "tr-TR": "Metabolizmanı kısa süreliğine hızlandır. Süre boyunca saldırı hızı +%{0}.",
+      "uk-UA": "Тимчасово прискорте обмін речовин. Швид. атаки +{0}% на час дії.",
+      "vi-VN": "Tạm thời tăng tốc trao đổi chất. Tốc độ tấn công tăng {0}% trong thời gian hiệu lực."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 21,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 20401,
+    "Param1": 700,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1200,
+    "Order": 700,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 20401,
+    "AnimClipPath1": "Animation/Skill/Skill_20401",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 201023,
+    "SoundKey": 1201041,
+    "levels": [
+      {
+        "level": 1,
+        "value": 500
+      },
+      {
+        "level": 2,
+        "value": 600
+      },
+      {
+        "level": 3,
+        "value": 700
+      },
+      {
+        "level": 4,
+        "value": 800
+      },
+      {
+        "level": 5,
+        "value": 900
+      },
+      {
+        "level": 6,
+        "value": 1000
+      },
+      {
+        "level": 7,
+        "value": 1100
+      },
+      {
+        "level": 8,
+        "value": 1200
+      },
+      {
+        "level": 9,
+        "value": 1300
+      },
+      {
+        "level": 10,
+        "value": 1400
+      }
+    ],
+    "slug": "swift-surge"
+  },
+  {
+    "SkillKey": 20501,
+    "SkillNameKey": "SkillName_20501",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "穿透之箭",
+      "zh-Hant": "穿透之箭",
+      "en-US": "Piercing Arrow",
+      "fr-FR": "Flèche Perçante",
+      "de-DE": "Durchbohrungspfeil",
+      "id-ID": "Panah Tembus",
+      "ja-JP": "ピアシングアロー",
+      "ko-KR": "꿰뚫는 화살",
+      "pl-PL": "Przeszywająca Strzała",
+      "pt-BR": "Flecha Perfurante",
+      "ru-RU": "Пронзающая Стрела",
+      "es-ES": "Flecha Perforadora",
+      "th-TH": "ลูกศรเจาะทะลุ",
+      "tr-TR": "Delici Ok",
+      "uk-UA": "Пронизлива Стріла",
+      "vi-VN": "Mũi Tên Xuyên Thấu"
+    },
+    "SkillDescriptionKey": "SkillDescription_20501",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "射出贯穿箭矢，对命中的敌人造成{0}%物理伤害。",
+      "zh-Hant": "射出貫穿箭矢，對命中的敵人造成{0}%物理傷害。",
+      "en-US": "Fire a piercing arrow that deals {0}% physical damage to enemies hit.",
+      "fr-FR": "Tirez une flèche perçante infligeant {0}% de dégâts physiques aux ennemis touchés.",
+      "de-DE": "Schieße einen durchschlagenden Pfeil, der Feinden {0}% physischen Schaden zufügt.",
+      "id-ID": "Tembakkan anak panah penembus yang memberi {0}% kerusakan fisik kepada musuh yang terkena.",
+      "ja-JP": "貫通する矢を放ち、命中した敵に{0}%の物理ダメージを与える。",
+      "ko-KR": "관통하는 화살을 쏘아 맞은 적들에게 {0}%의 물리피해를 입힌다.",
+      "pl-PL": "Wystrzel przebijającą strzałę zadającą {0}% obrażeń fizycznych trafionym wrogom.",
+      "pt-BR": "Atira uma flecha perfurante que causa {0}% de dano físico aos inimigos atingidos.",
+      "ru-RU": "Выпустите пронзающую стрелу, наносящую {0}% физического урона пораженным врагам.",
+      "es-ES": "Dispara una flecha perforadora que inflige {0}% de daño físico a los enemigos alcanzados.",
+      "th-TH": "ยิงธนูทะลุที่สร้างความเสียหายกายภาพ {0}% ให้ศัตรูที่โดน",
+      "tr-TR": "Delici bir ok at, isabet eden düşmanlara %{0} fiziksel hasar ver.",
+      "uk-UA": "Випустіть пробиваючу стрілу, що завдає {0}% фізичної шкоди вражених ворогам.",
+      "vi-VN": "Bắn mũi tên xuyên gây {0}% sát thương vật lý cho kẻ địch trúng đòn."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 13,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1200,
+    "Order": 800,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 20501,
+    "AnimClipPath1": "Animation/Skill/Skill_20501",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 201033,
+    "SoundKey": 1201051,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2440
+      },
+      {
+        "level": 2,
+        "value": 2600
+      },
+      {
+        "level": 3,
+        "value": 2760
+      },
+      {
+        "level": 4,
+        "value": 2920
+      },
+      {
+        "level": 5,
+        "value": 3080
+      },
+      {
+        "level": 6,
+        "value": 3240
+      },
+      {
+        "level": 7,
+        "value": 3400
+      },
+      {
+        "level": 8,
+        "value": 3560
+      },
+      {
+        "level": 9,
+        "value": 3720
+      },
+      {
+        "level": 10,
+        "value": 3880
+      }
+    ],
+    "slug": "piercing-arrow"
+  },
+  {
+    "SkillKey": 20601,
+    "SkillNameKey": "SkillName_20601",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "穿刺射击",
+      "zh-Hant": "穿刺射擊",
+      "en-US": "Skewer Shot",
+      "fr-FR": "Tir Embrocheur",
+      "de-DE": "Spießschuss",
+      "id-ID": "Tembakan Tusuk",
+      "ja-JP": "スキュワーショット",
+      "ko-KR": "꼬챙이 사격",
+      "pl-PL": "Strzał na Rożen",
+      "pt-BR": "Disparo Espetador",
+      "ru-RU": "Пронзающий Выстрел",
+      "es-ES": "Disparo Empalador",
+      "th-TH": "ยิงเสียบ",
+      "tr-TR": "Şiş Atışı",
+      "uk-UA": "Прошивний Постріл",
+      "vi-VN": "Phát Bắn Xiên"
+    },
+    "SkillDescriptionKey": "SkillDescription_20601",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "射出深深扎入的箭矢。每支扎入的箭矢使伤害+{0}%，3支以上引发出血。",
+      "zh-Hant": "射出深深扎入的箭矢。每支扎入的箭矢使傷害+{0}%，3支以上引發出血。",
+      "en-US": "Fire a deep-wounding arrow. Damage increases by {0}% per lodged arrow; 3+ arrows cause bleeding.",
+      "fr-FR": "Tirez une flèche infligeant de profondes blessures. Dégâts +{0}% par flèche plantée ; 3+ provoquent un saignement.",
+      "de-DE": "Schieße einen tief verwundenden Pfeil. Schaden +{0}% pro steckendem Pfeil; ab 3 löst Bluten aus.",
+      "id-ID": "Tembakkan anak panah luka dalam. Kerusakan naik {0}% per panah tertancap; 3+ tertancap memicu luka besar.",
+      "ja-JP": "深く刺さる矢を放つ。刺さった矢ごとにダメージ+{0}%、3本以上で出血を発生させる。",
+      "ko-KR": "깊숙히 꽂혀 상처를 헤집는 화살을 발사한다. 꽂힌 화살마다 데미지가 {0}% 증가하며 3개 이상이 꽂히면 대상에게 출혈을 일으킨다.",
+      "pl-PL": "Wystrzel strzałę głęboko raniąca. Obrażenia +{0}% za każdą wbitą strzałę; 3+ powodują krwawienie.",
+      "pt-BR": "Atira uma flecha que causa ferimento profundo. Dano +{0}% por flecha cravada; 3+ causam sangramento.",
+      "ru-RU": "Выпустите стрелу, наносящую глубокие раны. Урон +{0}% за каждую застрявшую стрелу; 3+ вызывают кровотечение.",
+      "es-ES": "Dispara una flecha que abre heridas profundas. Daño +{0}% por flecha clavada; 3+ causan sangrado.",
+      "th-TH": "ยิงธนูที่ฝังลึก ความเสียหายเพิ่ม {0}% ต่อธนูที่ฝัง เมื่อฝัง 3 ลูกขึ้นไปจะทำให้บาดแผลใหญ่",
+      "tr-TR": "Derin yara açan bir ok at. Saplanan her ok başına %{0} hasar artışı; 3+ ok kanama başlatır.",
+      "uk-UA": "Випустіть стрілу, що ранить глибоко. Шкода +{0}% за кожну застряглу стрілу; 3+ викликає кровотечу.",
+      "vi-VN": "Bắn mũi tên gây vết thương sâu. Sát thương tăng {0}% cho mỗi mũi tên cắm vào; cắm 3 mũi trở lên kích hoạt vết thương lớn."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 8,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 20601,
+    "Param1": 3000,
+    "Param2": 4,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1200,
+    "Order": 900,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 20601,
+    "AnimClipPath1": "Animation/Skill/Skill_20601",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 201043,
+    "SoundKey": 1201061,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1000
+      },
+      {
+        "level": 2,
+        "value": 1300
+      },
+      {
+        "level": 3,
+        "value": 1600
+      },
+      {
+        "level": 4,
+        "value": 1900
+      },
+      {
+        "level": 5,
+        "value": 2200
+      },
+      {
+        "level": 6,
+        "value": 2500
+      },
+      {
+        "level": 7,
+        "value": 2800
+      },
+      {
+        "level": 8,
+        "value": 3100
+      },
+      {
+        "level": 9,
+        "value": 3400
+      },
+      {
+        "level": 10,
+        "value": 3700
+      }
+    ],
+    "slug": "skewer-shot"
+  },
+  {
+    "SkillKey": 30001,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 700,
+    "Param2": 300,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": 999,
+    "DamageType": "Fire",
+    "DamageDeliveryType": "Projectile",
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_30001",
+    "AnimClipPath2": "Animation/Skill/Skill_30001_2",
+    "AnimClipPath3": "Animation/Skill/Skill_30001_3",
+    "AttributeKey": null,
+    "SoundKey": 1300011,
+    "levels": [],
+    "slug": "id-30001"
+  },
+  {
+    "SkillKey": 30101,
+    "SkillNameKey": "SkillName_30101",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "火球术",
+      "zh-Hant": "火球術",
+      "en-US": "Fireball",
+      "fr-FR": "Boule de Feu",
+      "de-DE": "Feuerball",
+      "id-ID": "Bola Api",
+      "ja-JP": "ファイアボール",
+      "ko-KR": "파이어볼",
+      "pl-PL": "Kula Ognia",
+      "pt-BR": "Bola de Fogo",
+      "ru-RU": "Огненный шар",
+      "es-ES": "Bola de Fuego",
+      "th-TH": "ลูกไฟ",
+      "tr-TR": "Ateş Topu",
+      "uk-UA": "Вогняна куля",
+      "vi-VN": "Cầu Lửa"
+    },
+    "SkillDescriptionKey": "SkillDescription_30101",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "接触敌人时爆炸的火球，造成{0}%范围火焰伤害。",
+      "zh-Hant": "接觸敵人時爆炸的火球，造成{0}%範圍火焰傷害。",
+      "en-US": "A fireball that explodes on impact, dealing {0}% AoE fire damage.",
+      "fr-FR": "Une boule de feu qui explose au contact, infligeant {0}% de dégâts de feu en zone.",
+      "de-DE": "Ein Feuerball, der bei Kontakt explodiert und {0}% Feuer-Flächenschaden verursacht.",
+      "id-ID": "Bola api yang meledak saat kontak, memberi {0}% kerusakan api area.",
+      "ja-JP": "敵に触れると爆発し、{0}%の範囲火炎ダメージを与える火球。",
+      "ko-KR": "적에게 닿으면 폭발하여 {0}%의 범위 화염피해를 입히는 화염구.",
+      "pl-PL": "Kula ognia, która eksploduje przy kontakcie, zadając {0}% obszarowych obrażeń od ognia.",
+      "pt-BR": "Uma bola de fogo que explode ao contato, causando {0}% de dano de fogo em área.",
+      "ru-RU": "Огненный шар, взрывающийся при контакте и наносящий {0}% урона огнём по области.",
+      "es-ES": "Una bola de fuego que explota al contacto, infligiendo {0}% de daño de fuego en área.",
+      "th-TH": "ลูกไฟที่ระเบิดเมื่อสัมผัส สร้างความเสียหายไฟแบบพื้นที่ {0}%",
+      "tr-TR": "Çarpma anında patlayan, %{0} AoE ateş hasarı veren bir ateş topu.",
+      "uk-UA": "Вогняна куля, що вибухає при контакті й завдає {0}% шкоди вогнем по зоні.",
+      "vi-VN": "Quả cầu lửa nổ khi tiếp xúc, gây {0}% sát thương lửa diện rộng."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 6,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 600,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 950,
+    "Order": 400,
+    "DamageType": "Fire",
+    "DamageDeliveryType": "Projectile, AOE",
+    "Value": null,
+    "SkillLevelKey": 30101,
+    "AnimClipPath1": "Animation/Skill/Skill_30101",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 301003,
+    "SoundKey": 1301011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2700
+      },
+      {
+        "level": 2,
+        "value": 2950
+      },
+      {
+        "level": 3,
+        "value": 3200
+      },
+      {
+        "level": 4,
+        "value": 3450
+      },
+      {
+        "level": 5,
+        "value": 3700
+      },
+      {
+        "level": 6,
+        "value": 3950
+      },
+      {
+        "level": 7,
+        "value": 4200
+      },
+      {
+        "level": 8,
+        "value": 4450
+      },
+      {
+        "level": 9,
+        "value": 4700
+      },
+      {
+        "level": 10,
+        "value": 4950
+      }
+    ],
+    "slug": "fireball"
+  },
+  {
+    "SkillKey": 30201,
+    "SkillNameKey": "SkillName_30201",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "冰球术",
+      "zh-Hant": "冰球術",
+      "en-US": "Ice Orb",
+      "fr-FR": "Orbe de Glace",
+      "de-DE": "Eiskugel",
+      "id-ID": "Bola Es",
+      "ja-JP": "アイスオーブ",
+      "ko-KR": "아이스 오브",
+      "pl-PL": "Lodowa Kula",
+      "pt-BR": "Orbe de Gelo",
+      "ru-RU": "Ледяная сфера",
+      "es-ES": "Orbe de Hielo",
+      "th-TH": "ลูกน้ำแข็ง",
+      "tr-TR": "Buz Küresi",
+      "uk-UA": "Крижана сфера",
+      "vi-VN": "Cầu Băng"
+    },
+    "SkillDescriptionKey": "SkillDescription_30201",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "召唤冰球向敌人扔出。减速碰到的敌人，并造成{0}%多段冰冷伤害。",
+      "zh-Hant": "召喚冰球向敵人扔出。減速碰到的敵人，並造成{0}%多段冰冷傷害。",
+      "en-US": "Summon an ice orb and hurl it at enemies. Slows enemies hit and deals {0}% multi-hit cold damage.",
+      "fr-FR": "Invoquez une orbe de glace et lancez-la sur les ennemis. Ralentit les ennemis touchés et inflige {0}% de dégâts de froid à impacts multiples.",
+      "de-DE": "Beschwöre eine Eiskugel und werfe sie auf Feinde. Verlangsamt getroffene Feinde und verursacht {0}% Kälte-Mehrfachschaden.",
+      "id-ID": "Panggil bola es dan lemparkan ke musuh. Memperlambat musuh terkena dan memberi {0}% kerusakan dingin multi-hit.",
+      "ja-JP": "氷の球体を召喚して敵に投げつける。衝突した敵の速度を低下させ、{0}%の多段冷気ダメージを与える。",
+      "ko-KR": "얼음 구체를 소환하여 적에게 던진다. 부딪히는 적들의 속도를 감소시키고 {0}%의 다단히트 냉기피해를 입힌다.",
+      "pl-PL": "Przywołaj lodową kulę i rzuć w wrogów. Spowalnia trafionych i zadaje {0}% wielokrotnych obrażeń od zimna.",
+      "pt-BR": "Invoca uma esfera de gelo e lança-a nos inimigos. Lentifica inimigos atingidos e causa {0}% de dano de frio multi-impacto.",
+      "ru-RU": "Призовите ледяной шар и бросьте его во врагов. Замедляет задетых врагов и наносит {0}% урона холодом за несколько попаданий.",
+      "es-ES": "Invoca una esfera de hielo y la lanza contra los enemigos. Ralentiza a los enemigos alcanzados e inflige {0}% de daño de frío multi-impacto.",
+      "th-TH": "เรียกลูกแก้วน้ำแข็งและขว้างใส่ศัตรู ทำให้ศัตรูช้าลงและสร้างความเสียหายเย็นหลายครั้ง {0}%",
+      "tr-TR": "Bir buz küresi çağır ve düşmanlara fırlat. İsabet eden düşmanları yavaşlatır ve %{0} çok vuruşlu soğuk hasar verir.",
+      "uk-UA": "Викличте крижану сферу й кидайте її у ворогів. Уповільнює вражених ворогів і завдає {0}% шкоди холодом багаторазовими ударами.",
+      "vi-VN": "Triệu hồi viên cầu băng và ném vào kẻ địch. Làm chậm kẻ địch trúng đòn và gây {0}% sát thương băng đa đòn."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 8,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 950,
+    "Order": 500,
+    "DamageType": "Cold",
+    "DamageDeliveryType": "Projectile, AOE",
+    "Value": null,
+    "SkillLevelKey": 30201,
+    "AnimClipPath1": "Animation/Skill/Skill_30201",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 301004,
+    "SoundKey": 1302011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1500
+      },
+      {
+        "level": 2,
+        "value": 1620
+      },
+      {
+        "level": 3,
+        "value": 1740
+      },
+      {
+        "level": 4,
+        "value": 1860
+      },
+      {
+        "level": 5,
+        "value": 1980
+      },
+      {
+        "level": 6,
+        "value": 2100
+      },
+      {
+        "level": 7,
+        "value": 2220
+      },
+      {
+        "level": 8,
+        "value": 2340
+      },
+      {
+        "level": 9,
+        "value": 2460
+      },
+      {
+        "level": 10,
+        "value": 2580
+      }
+    ],
+    "slug": "ice-orb"
+  },
+  {
+    "SkillKey": 30301,
+    "SkillNameKey": "SkillName_30301",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "闪电术",
+      "zh-Hant": "閃電術",
+      "en-US": "Lightning",
+      "fr-FR": "Éclair",
+      "de-DE": "Blitz",
+      "id-ID": "Petir",
+      "ja-JP": "ライトニング",
+      "ko-KR": "라이트닝",
+      "pl-PL": "Błyskawica",
+      "pt-BR": "Raio",
+      "ru-RU": "Молния",
+      "es-ES": "Rayo",
+      "th-TH": "สายฟ้า",
+      "tr-TR": "Şimşek",
+      "uk-UA": "Блискавка",
+      "vi-VN": "Sấm Sét"
+    },
+    "SkillDescriptionKey": "SkillDescription_30301",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "向前射出电流，对敌人造成{0}%闪电伤害。",
+      "zh-Hant": "向前射出電流，對敵人造成{0}%閃電傷害。",
+      "en-US": "Unleash electricity forward, dealing {0}% lightning damage to enemies.",
+      "fr-FR": "Déchaînez l'électricité vers l'avant, infligeant {0}% de dégâts de foudre aux ennemis.",
+      "de-DE": "Entfessle Elektrizität nach vorne und füge Feinden {0}% Blitzschaden zu.",
+      "id-ID": "Lepaskan listrik ke depan, memberi {0}% kerusakan petir kepada musuh.",
+      "ja-JP": "前方に電撃を放ち、敵に{0}%の雷ダメージを与える。",
+      "ko-KR": "앞으로 전기를 쏘아보내 적들에게 {0}%의 전기피해를 입힌다.",
+      "pl-PL": "Uwolnij prąd przed siebie, zadając {0}% obrażeń od pioruna wrogom.",
+      "pt-BR": "Libera eletricidade à frente, causando {0}% de dano de raio aos inimigos.",
+      "ru-RU": "Выпустите электричество вперёд, нанося врагам {0}% урона молнией.",
+      "es-ES": "Desata electricidad hacia adelante, infligiendo {0}% de daño de rayo a los enemigos.",
+      "th-TH": "ปลดปล่อยไฟฟ้าไปข้างหน้า สร้างความเสียหายฟ้าผ่า {0}% ให้ศัตรู",
+      "tr-TR": "Öne elektrik sal, düşmanlara %{0} şimşek hasarı ver.",
+      "uk-UA": "Випустіть електрику вперед, завдаючи ворогам {0}% шкоди блискавкою.",
+      "vi-VN": "Giải phóng dòng điện về phía trước, gây {0}% sát thương sét cho kẻ địch."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 15,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1050,
+    "Order": 600,
+    "DamageType": "Lightning",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 30301,
+    "AnimClipPath1": "Animation/Skill/Skill_30301",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 301013,
+    "SoundKey": 1303011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2550
+      },
+      {
+        "level": 2,
+        "value": 2820
+      },
+      {
+        "level": 3,
+        "value": 3090
+      },
+      {
+        "level": 4,
+        "value": 3360
+      },
+      {
+        "level": 5,
+        "value": 3630
+      },
+      {
+        "level": 6,
+        "value": 3900
+      },
+      {
+        "level": 7,
+        "value": 4170
+      },
+      {
+        "level": 8,
+        "value": 4440
+      },
+      {
+        "level": 9,
+        "value": 4710
+      },
+      {
+        "level": 10,
+        "value": 4980
+      }
+    ],
+    "slug": "lightning"
+  },
+  {
+    "SkillKey": 30401,
+    "SkillNameKey": "SkillName_30401",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "烈焰九头蛇",
+      "zh-Hant": "烈焰九頭蛇",
+      "en-US": "Flame Hydra",
+      "fr-FR": "Hydre de Flammes",
+      "de-DE": "Flammenhydra",
+      "id-ID": "Flame Hydra",
+      "ja-JP": "フレイムヒュドラ",
+      "ko-KR": "플레임 히드라",
+      "pl-PL": "Ognista Hydra",
+      "pt-BR": "Hidra de Chamas",
+      "ru-RU": "Огненная Гидра",
+      "es-ES": "Hidra de Llamas",
+      "th-TH": "ไฮดราเพลิง",
+      "tr-TR": "Alev Hidrası",
+      "uk-UA": "Вогняна Гідра",
+      "vi-VN": "Rồng Lửa Hydra"
+    },
+    "SkillDescriptionKey": "SkillDescription_30401",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "召唤海德拉，发射造成{0}%伤害的火球。",
+      "zh-Hant": "召喚海德拉，發射造成{0}%傷害的火球。",
+      "en-US": "Summon a hydra that fires fireballs dealing {0}% damage.",
+      "fr-FR": "Invoquez une hydre qui tire des boules de feu infligeant {0}% de dégâts.",
+      "de-DE": "Beschwöre eine Hydra, die Feuerbälle für {0}% Schaden abfeuert.",
+      "id-ID": "Panggil hydra yang menembakkan bola api dengan {0}% kerusakan.",
+      "ja-JP": "ヒドラを召喚する。ヒドラは{0}%のダメージの火球を発射する。",
+      "ko-KR": "히드라를 소환한다. 히드라는 {0}%의 데미지를 입히는 화염구를 발사한다.",
+      "pl-PL": "Przywołaj hydrę wystrzeliwującą kule ognia za {0}% obrażeń.",
+      "pt-BR": "Invoca uma hidra que dispara bolas de fogo causando {0}% de dano.",
+      "ru-RU": "Призовите гидру, стреляющую огненными шарами за {0}% урона.",
+      "es-ES": "Invoca una hidra que dispara bolas de fuego causando {0}% de daño.",
+      "th-TH": "เรียกไฮดราที่ยิงลูกไฟสร้างความเสียหาย {0}%",
+      "tr-TR": "%{0} hasar veren ateş topları atan bir hydra çağır.",
+      "uk-UA": "Викличте гідру, що стріляє вогняними кулями на {0}% шкоди.",
+      "vi-VN": "Triệu hồi hydra bắn cầu lửa gây {0}% sát thương."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 13,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 700,
+    "DamageType": "Fire",
+    "DamageDeliveryType": "Projectile, Summon",
+    "Value": null,
+    "SkillLevelKey": 30401,
+    "AnimClipPath1": "Animation/Skill/Skill_30401",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 301023,
+    "SoundKey": 1304011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2300
+      },
+      {
+        "level": 2,
+        "value": 2450
+      },
+      {
+        "level": 3,
+        "value": 2600
+      },
+      {
+        "level": 4,
+        "value": 2750
+      },
+      {
+        "level": 5,
+        "value": 2900
+      },
+      {
+        "level": 6,
+        "value": 3050
+      },
+      {
+        "level": 7,
+        "value": 3200
+      },
+      {
+        "level": 8,
+        "value": 3350
+      },
+      {
+        "level": 9,
+        "value": 3500
+      },
+      {
+        "level": 10,
+        "value": 3650
+      }
+    ],
+    "slug": "flame-hydra"
+  },
+  {
+    "SkillKey": 30501,
+    "SkillNameKey": "SkillName_30501",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "暴风雪",
+      "zh-Hant": "暴風雪",
+      "en-US": "Snowstorm",
+      "fr-FR": "Tempête de Neige",
+      "de-DE": "Schneesturm",
+      "id-ID": "Badai Salju",
+      "ja-JP": "スノーストーム",
+      "ko-KR": "눈폭풍",
+      "pl-PL": "Śnieżyca",
+      "pt-BR": "Nevasca",
+      "ru-RU": "Снежная Буря",
+      "es-ES": "Tormenta de Nieve",
+      "th-TH": "พายุหิมะ",
+      "tr-TR": "Kar Fırtınası",
+      "uk-UA": "Снігова Буря",
+      "vi-VN": "Bão Tuyết"
+    },
+    "SkillDescriptionKey": "SkillDescription_30501",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "召唤大量冰块砸向敌人。范围内每秒造成{0}%冰冷伤害并冷却敌人。",
+      "zh-Hant": "召喚大量冰塊砸向敵人。範圍內每秒造成{0}%冰冷傷害並冷卻敵人。",
+      "en-US": "Summon a mass of ice shards raining on enemies. Deals {0}% cold damage per second and chills enemies in the area.",
+      "fr-FR": "Invoquez une masse de fragments de glace qui tombe sur les ennemis. {0}% de dégâts de froid par seconde et les refroidit.",
+      "de-DE": "Beschwöre eine Masse Eisscherben über Feinden. {0}% Kälteschaden pro Sekunde; kühlt Feinde.",
+      "id-ID": "Panggil tumpukan pecahan es menghujani musuh. Memberi {0}% kerusakan dingin per detik kepada musuh di area dan memperlambat mereka.",
+      "ja-JP": "大量の氷塊を召喚して敵に降り注ぐ。範囲内の敵に毎秒{0}%の冷気ダメージを与え、冷却状態にする。",
+      "ko-KR": "대량의 얼음 덩어리를 소환하여 적들에게 퍼붓는다. 범위 안에 있는 적들에게 매초 {0}%의 냉기피해를 입히고, 냉각을 건다.",
+      "pl-PL": "Przywołaj masę lodowych odłamków na wrogów. {0}% obrażeń od zimna na sekundę; chłodzi wrogów.",
+      "pt-BR": "Invoca uma massa de fragmentos de gelo sobre os inimigos. {0}% de dano de frio por segundo e os esfria.",
+      "ru-RU": "Призовите массу ледяных осколков на врагов. {0}% урона холодом в секунду; охлаждает врагов.",
+      "es-ES": "Invoca una masa de fragmentos de hielo sobre los enemigos. {0}% de daño de frío por segundo y los enfría.",
+      "th-TH": "เรียกก้อนน้ำแข็งจำนวนมากตกใส่ศัตรู สร้างความเสียหายเย็น {0}% ต่อวินาทีให้ศัตรูในพื้นที่และทำให้ช้าลง",
+      "tr-TR": "Düşmanların üzerine buz parçaları yağdır. Saniyede %{0} soğuk hasarı ve onları soğutur.",
+      "uk-UA": "Викличте масу крижаних уламків на ворогів. {0}% шкоди холодом на секунду; охолоджує ворогів.",
+      "vi-VN": "Triệu hồi khối băng vụn rơi xuống kẻ địch. Gây {0}% sát thương băng mỗi giây cho kẻ địch trong khu vực và làm chậm chúng."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 22,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 800,
+    "DamageType": "Cold",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 30501,
+    "AnimClipPath1": "Animation/Skill/Skill_30501",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 301033,
+    "SoundKey": 1305011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 500
+      },
+      {
+        "level": 2,
+        "value": 660
+      },
+      {
+        "level": 3,
+        "value": 820
+      },
+      {
+        "level": 4,
+        "value": 980
+      },
+      {
+        "level": 5,
+        "value": 1140
+      },
+      {
+        "level": 6,
+        "value": 1300
+      },
+      {
+        "level": 7,
+        "value": 1460
+      },
+      {
+        "level": 8,
+        "value": 1620
+      },
+      {
+        "level": 9,
+        "value": 1780
+      },
+      {
+        "level": 10,
+        "value": 1940
+      }
+    ],
+    "slug": "snowstorm"
+  },
+  {
+    "SkillKey": 30601,
+    "SkillNameKey": "SkillName_30601",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "陨石打击",
+      "zh-Hant": "隕石打擊",
+      "en-US": "Meteor Strike",
+      "fr-FR": "Frappe Météore",
+      "de-DE": "Meteoreinschlag",
+      "id-ID": "Serangan Meteor",
+      "ja-JP": "メテオストライク",
+      "ko-KR": "유성 강타",
+      "pl-PL": "Uderzenie Meteoru",
+      "pt-BR": "Golpe Meteórico",
+      "ru-RU": "Удар Метеора",
+      "es-ES": "Golpe Meteórico",
+      "th-TH": "อุกกาบาต",
+      "tr-TR": "Meteor Darbesi",
+      "uk-UA": "Удар Метеора",
+      "vi-VN": "Thiên Thạch"
+    },
+    "SkillDescriptionKey": "SkillDescription_30601",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "召唤陨石，对广范围敌人造成{0}%伤害。",
+      "zh-Hant": "召喚隕石，對廣範圍敵人造成{0}%傷害。",
+      "en-US": "Summon a meteor, dealing {0}% damage to enemies in a wide area.",
+      "fr-FR": "Invoquez un météore infligeant {0}% de dégâts sur une large zone.",
+      "de-DE": "Beschwöre einen Meteor, der weiträumig {0}% Schaden verursacht.",
+      "id-ID": "Panggil meteor, memberi {0}% kerusakan kepada musuh di area luas.",
+      "ja-JP": "隕石を召喚し、広範囲の敵に{0}%のダメージを与える。",
+      "ko-KR": "운석을 소환하여 넓은 범위의 적들에게 {0}%의 피해를 입힌다.",
+      "pl-PL": "Przywołaj meteor, który zadaje {0}% obrażeń w szerokim obszarze.",
+      "pt-BR": "Invoca um meteoro causando {0}% de dano em uma área ampla.",
+      "ru-RU": "Призовите метеор, наносящий {0}% урона в широкой области.",
+      "es-ES": "Invoca un meteoro que causa {0}% de daño en un área amplia.",
+      "th-TH": "เรียกอุกกาบาต สร้างความเสียหาย {0}% ให้ศัตรูในพื้นที่กว้าง",
+      "tr-TR": "Geniş bir alana %{0} hasar veren bir meteor çağır.",
+      "uk-UA": "Викличте метеор, що завдає {0}% шкоди в широкій зоні.",
+      "vi-VN": "Triệu hồi thiên thạch, gây {0}% sát thương cho kẻ địch trong vùng rộng."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 18,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 900,
+    "DamageType": "Fire",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 30601,
+    "AnimClipPath1": "Animation/Skill/Skill_30601",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 301043,
+    "SoundKey": 1306011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 5500
+      },
+      {
+        "level": 2,
+        "value": 5950
+      },
+      {
+        "level": 3,
+        "value": 6400
+      },
+      {
+        "level": 4,
+        "value": 6850
+      },
+      {
+        "level": 5,
+        "value": 7300
+      },
+      {
+        "level": 6,
+        "value": 7750
+      },
+      {
+        "level": 7,
+        "value": 8200
+      },
+      {
+        "level": 8,
+        "value": 8650
+      },
+      {
+        "level": 9,
+        "value": 9100
+      },
+      {
+        "level": 10,
+        "value": 9550
+      }
+    ],
+    "slug": "meteor-strike"
+  },
+  {
+    "SkillKey": 40001,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 600,
+    "Param2": 200,
+    "Param3": 200,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee",
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_40001",
+    "AnimClipPath2": "Animation/Skill/Skill_40001_2",
+    "AnimClipPath3": "Animation/Skill/Skill_40001_3",
+    "AttributeKey": null,
+    "SoundKey": 1400011,
+    "levels": [],
+    "slug": "id-40001"
+  },
+  {
+    "SkillKey": 40101,
+    "SkillNameKey": "SkillName_40101",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "治愈",
+      "zh-Hant": "治癒",
+      "en-US": "Heal",
+      "fr-FR": "Soin",
+      "de-DE": "Heilung",
+      "id-ID": "Penyembuhan",
+      "ja-JP": "ヒール",
+      "ko-KR": "힐",
+      "pl-PL": "Leczenie",
+      "pt-BR": "Cura",
+      "ru-RU": "Исцеление",
+      "es-ES": "Curar",
+      "th-TH": "รักษา",
+      "tr-TR": "İyileştirme",
+      "uk-UA": "Зцілення",
+      "vi-VN": "Hồi Máu"
+    },
+    "SkillDescriptionKey": "SkillDescription_40101",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "为1名友军恢复{0}%最大生命。",
+      "zh-Hant": "為1名友軍回復{0}%最大生命。",
+      "en-US": "Restore one ally's HP by an amount equal to {0}% of their maximum HP.",
+      "fr-FR": "Restaurez les PV d'un allié de {0}% de ses PV max.",
+      "de-DE": "Stelle die LP eines Verbündeten um {0}% seiner max. LP wieder her.",
+      "id-ID": "Pulihkan HP satu sekutu sebesar {0}% dari HP maksimum mereka.",
+      "ja-JP": "味方1人の体力を最大HPの{0}%分回復する。",
+      "ko-KR": "아군 1명의 체력을 최대 체력의 {0}%만큼 회복시켜준다.",
+      "pl-PL": "Przywróć PŻ sojusznika o {0}% jego maks. PŻ.",
+      "pt-BR": "Restaura a vida de um aliado em {0}% do PV máximo.",
+      "ru-RU": "Восстановите HP одного союзника на {0}% от его максимального HP.",
+      "es-ES": "Restaura la vida de un aliado en {0}% de su PV máximo.",
+      "th-TH": "ฟื้นฟู HP พันธมิตร 1 คน {0}% ของ HP สูงสุด.",
+      "tr-TR": "Bir müttefikin canını maks. canın %{0}'i kadar yenile.",
+      "uk-UA": "Відновіть HP одного союзника на {0}% його макс. HP.",
+      "vi-VN": "Hồi {0}% HP tối đa cho một đồng minh."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 8,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 950,
+    "Order": 400,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 40101,
+    "AnimClipPath1": "Animation/Skill/Skill_40101",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 401003,
+    "SoundKey": null,
+    "levels": [
+      {
+        "level": 1,
+        "value": 100
+      },
+      {
+        "level": 2,
+        "value": 120
+      },
+      {
+        "level": 3,
+        "value": 140
+      },
+      {
+        "level": 4,
+        "value": 160
+      },
+      {
+        "level": 5,
+        "value": 180
+      },
+      {
+        "level": 6,
+        "value": 200
+      },
+      {
+        "level": 7,
+        "value": 220
+      },
+      {
+        "level": 8,
+        "value": 240
+      },
+      {
+        "level": 9,
+        "value": 260
+      },
+      {
+        "level": 10,
+        "value": 280
+      }
+    ],
+    "slug": "heal"
+  },
+  {
+    "SkillKey": 40201,
+    "SkillNameKey": "SkillName_40201",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "力量祝福",
+      "zh-Hant": "力量祝福",
+      "en-US": "Blessing Of Might",
+      "fr-FR": "Bénédiction de Force",
+      "de-DE": "Segen der Stärke",
+      "id-ID": "Berkah Kekuatan",
+      "ja-JP": "力の祝福",
+      "ko-KR": "힘의 축복",
+      "pl-PL": "Błogosławieństwo Mocy",
+      "pt-BR": "Bênção do Poder",
+      "ru-RU": "Благословение Силы",
+      "es-ES": "Bendición del Poder",
+      "th-TH": "พรแห่งพลัง",
+      "tr-TR": "Güç Kutsanması",
+      "uk-UA": "Благословення Сили",
+      "vi-VN": "Phước Lành Sức Mạnh"
+    },
+    "SkillDescriptionKey": "SkillDescription_40201",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "装备时激活的祝福。自身和附近队友攻击力+{0}%。",
+      "zh-Hant": "裝備時激活的祝福。自身和附近隊友攻擊力+{0}%。",
+      "en-US": "A blessing active while equipped. Increases attack damage of self and nearby party members by {0}%.",
+      "fr-FR": "Une bénédiction active une fois équipée. +{0}% de dégâts pour vous et les membres proches.",
+      "de-DE": "Ein Segen, der beim Anlegen aktiv ist. +{0}% Angriffsschaden für Selbst und nahe Gruppenmitglieder.",
+      "id-ID": "Berkah aktif saat dilengkapi. Menambah {0}% kerusakan serangan diri dan anggota party di sekitar.",
+      "ja-JP": "装着時に発動する祝福。自身と周囲の味方の攻撃力+{0}%。",
+      "ko-KR": "장착 시 활성화되는 축복. 자신을 포함한 주변 파티원들의 공격력을 {0}% 증가시켜 준다.",
+      "pl-PL": "Błogosławieństwo aktywne podczas noszenia. +{0}% obrażeń dla siebie i pobliskich członków.",
+      "pt-BR": "Uma bênção ativa quando equipada. +{0}% de dano para você e membros próximos.",
+      "ru-RU": "Благословение, активное при ношении. +{0}% урона вам и ближним членам группы.",
+      "es-ES": "Una bendición activa mientras está equipada. +{0}% de daño para ti y miembros cercanos.",
+      "th-TH": "พรที่ทำงานเมื่อสวมใส่ เพิ่มความเสียหายโจมตีของตนเองและสมาชิกปาร์ตี้ใกล้เคียง {0}%",
+      "tr-TR": "Takıldığında aktif olan bir kutsama. Kendine ve yakındaki grup üyelerine +%{0} hasar.",
+      "uk-UA": "Благословення, активне при носінні. +{0}% шкоди собі й ближнім членам групи.",
+      "vi-VN": "Phước lành kích hoạt khi trang bị. Tăng {0}% sát thương tấn công của bản thân và đồng đội gần đó."
+    },
+    "ACTIVATIONTYPE": "CONTINUOUS",
+    "ActivationValue": null,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 40201,
+    "Param1": 1200,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 950,
+    "Order": 500,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 40201,
+    "AnimClipPath1": "Animation/Skill/Skill_40201",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 401004,
+    "SoundKey": 1402011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 500
+      },
+      {
+        "level": 2,
+        "value": 600
+      },
+      {
+        "level": 3,
+        "value": 700
+      },
+      {
+        "level": 4,
+        "value": 800
+      },
+      {
+        "level": 5,
+        "value": 900
+      },
+      {
+        "level": 6,
+        "value": 1000
+      },
+      {
+        "level": 7,
+        "value": 1100
+      },
+      {
+        "level": 8,
+        "value": 1200
+      },
+      {
+        "level": 9,
+        "value": 1300
+      },
+      {
+        "level": 10,
+        "value": 1400
+      }
+    ],
+    "slug": "blessing-of-might"
+  },
+  {
+    "SkillKey": 40301,
+    "SkillNameKey": "SkillName_40301",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "天堂之怒",
+      "zh-Hant": "天堂之怒",
+      "en-US": "Wrath of Heaven",
+      "fr-FR": "Courroux Céleste",
+      "de-DE": "Zorn des Himmels",
+      "id-ID": "Murka Surga",
+      "ja-JP": "天上の怒り",
+      "ko-KR": "천상의 분노",
+      "pl-PL": "Gniew Niebios",
+      "pt-BR": "Ira dos Céus",
+      "ru-RU": "Небесный Гнев",
+      "es-ES": "Ira del Cielo",
+      "th-TH": "พิโรธแห่งสวรรค์",
+      "tr-TR": "Cennetin Gazabı",
+      "uk-UA": "Гнів Небес",
+      "vi-VN": "Thịnh Nộ Thiên Đường"
+    },
+    "SkillDescriptionKey": "SkillDescription_40301",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "为权杖注入神圣雷霆。持续期间攻击造成{0}%闪电范围伤害。",
+      "zh-Hant": "為權杖注入神聖雷霆。持續期間攻擊造成{0}%閃電範圍傷害。",
+      "en-US": "Imbue your scepter with divine lightning. For the duration, attacks deal {0}% lightning area damage.",
+      "fr-FR": "Imprégnez votre sceptre de foudre divine. Les attaques infligent {0}% de dégâts de foudre en zone.",
+      "de-DE": "Durchdringe dein Zepter mit göttlichem Blitz. Angriffe verursachen {0}% Blitz-Flächenschaden.",
+      "id-ID": "Selimuti tongkat dengan petir suci. Selama durasi, serangan memberi {0}% kerusakan petir area.",
+      "ja-JP": "セプターに聖なる雷の力を宿す。持続時間中、攻撃時に{0}%の雷広域ダメージを与える。",
+      "ko-KR": "셉터에 신성을 담은 번개의 힘을 부여한다. 지속시간 동안 공격 시 {0}%의 번개 광역 피해를 입힌다.",
+      "pl-PL": "Napełnij berło boską błyskawicą. Ataki zadają {0}% obszarowych obrażeń od pioruna.",
+      "pt-BR": "Imbua seu cetro com raio divino. Os ataques causam {0}% de dano de raio em área.",
+      "ru-RU": "Наделите скипетр божественной молнией. Атаки наносят {0}% урона молнией по области.",
+      "es-ES": "Imbuye tu cetro con rayo divino. Los ataques causan {0}% de daño de rayo en área.",
+      "th-TH": "เสริมพลังฟ้าผ่าศักดิ์สิทธิ์ให้คทา ระหว่างระยะเวลา การโจมตีสร้างความเสียหายฟ้าผ่าแบบพื้นที่ {0}%",
+      "tr-TR": "Asana ilahi şimşek güç işle. Saldırılar %{0} alan şimşek hasarı verir.",
+      "uk-UA": "Наповніть скіпетр божественною блискавкою. Атаки завдають {0}% шкоди блискавкою по зоні.",
+      "vi-VN": "Truyền sức mạnh sét thần thánh vào trượng. Trong thời gian hiệu lực, đòn đánh gây {0}% sát thương sét diện rộng."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 20,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 40301,
+    "Param1": 650,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1050,
+    "Order": 600,
+    "DamageType": "Lightning",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 40301,
+    "AnimClipPath1": "Animation/Skill/Skill_40301",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 401013,
+    "SoundKey": 1403011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 4300
+      },
+      {
+        "level": 2,
+        "value": 4700
+      },
+      {
+        "level": 3,
+        "value": 5100
+      },
+      {
+        "level": 4,
+        "value": 5500
+      },
+      {
+        "level": 5,
+        "value": 5900
+      },
+      {
+        "level": 6,
+        "value": 6300
+      },
+      {
+        "level": 7,
+        "value": 6700
+      },
+      {
+        "level": 8,
+        "value": 7100
+      },
+      {
+        "level": 9,
+        "value": 7500
+      },
+      {
+        "level": 10,
+        "value": 7900
+      }
+    ],
+    "slug": "wrath-of-heaven"
+  },
+  {
+    "SkillKey": 40401,
+    "SkillNameKey": "SkillName_40401",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "圣域",
+      "zh-Hant": "聖域",
+      "en-US": "Sanctuary",
+      "fr-FR": "Sanctuaire",
+      "de-DE": "Heiligtum",
+      "id-ID": "Sanctuary",
+      "ja-JP": "サンクチュアリ",
+      "ko-KR": "성역",
+      "pl-PL": "Sanktuarium",
+      "pt-BR": "Santuário",
+      "ru-RU": "Святилище",
+      "es-ES": "Santuario",
+      "th-TH": "สถานศักดิ์สิทธิ์",
+      "tr-TR": "Kutsal Alan",
+      "uk-UA": "Святилище",
+      "vi-VN": "Thánh Địa"
+    },
+    "SkillDescriptionKey": "SkillDescription_40401",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "展开覆盖战场的神圣领域。持续时间内领域内友军每秒恢复{0}生命。",
+      "zh-Hant": "展開覆蓋戰場的神聖領域。持續時間內領域內友軍每秒回復{0}生命。",
+      "en-US": "Deploy a holy sanctuary across the battlefield. For the duration, all allies inside regenerate {0} HP per second.",
+      "fr-FR": "Déployez un sanctuaire sacré. Tous les alliés à l'intérieur régénèrent {0} PV/s.",
+      "de-DE": "Entfalte ein heiliges Heiligtum. Alle Verbündeten darin regenerieren {0} LP/Sek.",
+      "id-ID": "Buka tempat suci di seluruh medan tempur. Selama durasi, semua sekutu di dalamnya memulihkan {0} HP per detik.",
+      "ja-JP": "戦場を覆う神聖な領域を展開する。持続時間中、領域内の全味方は毎秒{0}のHPを回復する。",
+      "ko-KR": "전장을 뒤덮는 신성한 영역을 전개한다. 지속시간 동안 영역 안에 있는 모든 아군은 초당 {0} 체력을 회복한다.",
+      "pl-PL": "Rozłóż świętą pustelnię. Wszyscy sojusznicy regenerują {0} PŻ/s.",
+      "pt-BR": "Projete um santuário sagrado. Todos os aliados dentro regeneram {0} PV/s.",
+      "ru-RU": "Разверните святое святилище. Все союзники внутри восстанавливают {0} HP/сек.",
+      "es-ES": "Despliega un santuario sagrado. Todos los aliados dentro regeneran {0} PV/s.",
+      "th-TH": "กางอภัยภูมิศักดิ์สิทธิ์ทั่วสนามรบ ระหว่างระยะเวลา พันธมิตรทั้งหมดในพื้นที่ฟื้นฟู HP {0} ต่อวินาที",
+      "tr-TR": "Kutsal bir sığınak yay. İçerideki tüm müttefikler saniyede {0} can yeniler.",
+      "uk-UA": "Розгорніть святе святилище. Всі союзники всередині відновлюють {0} HP/с.",
+      "vi-VN": "Triển khai khu vực thánh khắp chiến trường. Trong thời gian hiệu lực, mọi đồng minh trong vùng hồi {0} HP mỗi giây."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 17,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 750,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 700,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 40401,
+    "AnimClipPath1": "Animation/Skill/Skill_40401",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 401023,
+    "SoundKey": 1404011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 300
+      },
+      {
+        "level": 2,
+        "value": 400
+      },
+      {
+        "level": 3,
+        "value": 520
+      },
+      {
+        "level": 4,
+        "value": 660
+      },
+      {
+        "level": 5,
+        "value": 820
+      },
+      {
+        "level": 6,
+        "value": 1000
+      },
+      {
+        "level": 7,
+        "value": 1200
+      },
+      {
+        "level": 8,
+        "value": 1420
+      },
+      {
+        "level": 9,
+        "value": 1660
+      },
+      {
+        "level": 10,
+        "value": 1920
+      }
+    ],
+    "slug": "sanctuary"
+  },
+  {
+    "SkillKey": 40501,
+    "SkillNameKey": "SkillName_40501",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "守护祝福",
+      "zh-Hant": "守護祝福",
+      "en-US": "Blessing of Warding",
+      "fr-FR": "Bénédiction de Protection",
+      "de-DE": "Schutzsegen",
+      "id-ID": "Berkah Perlindungan",
+      "ja-JP": "守護の祝福",
+      "ko-KR": "방어의 축복",
+      "pl-PL": "Błogosławieństwo Ochrony",
+      "pt-BR": "Bênção de Proteção",
+      "ru-RU": "Благословение Защиты",
+      "es-ES": "Bendición de Guardia",
+      "th-TH": "พรแห่งการปกป้อง",
+      "tr-TR": "Koruma Kutsanması",
+      "uk-UA": "Благословення Захисту",
+      "vi-VN": "Phước Lành Phòng Hộ"
+    },
+    "SkillDescriptionKey": "SkillDescription_40501",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "装备时激活的祝福。自身和附近队友元素抗性+{0}。",
+      "zh-Hant": "裝備時激活的祝福。自身和附近隊友元素抗性+{0}。",
+      "en-US": "A blessing active while equipped. Increases elemental resistance of self and nearby party members by {0}.",
+      "fr-FR": "Une bénédiction active une fois équipée. Résistance élémentaire +{0} pour vous et membres proches.",
+      "de-DE": "Ein Segen, der beim Anlegen aktiv ist. Elementarresistenz für Selbst und nahe Gruppenmitglieder +{0}.",
+      "id-ID": "Berkah aktif saat dilengkapi. Menambah {0} resistansi elemen diri dan anggota party di sekitar.",
+      "ja-JP": "装着時に発動する祝福。自身と周囲の味方の属性耐性+{0}。",
+      "ko-KR": "장착 시 활성화되는 축복. 자신을 포함한 주변 파티원들의 원소 저항을 {0} 증가시켜 준다.",
+      "pl-PL": "Błogosławieństwo aktywne podczas noszenia. Odporność żywiołowa +{0} dla siebie i pobliskich członków.",
+      "pt-BR": "Uma bênção ativa quando equipada. Resistência elemental +{0} para você e membros próximos.",
+      "ru-RU": "Благословение, активное при ношении. Элементальное сопротивление +{0} вам и ближним членам.",
+      "es-ES": "Una bendición activa mientras está equipada. Resistencia elemental +{0} para ti y miembros cercanos.",
+      "th-TH": "พรที่ทำงานเมื่อสวมใส่ เพิ่มความต้านทานธาตุของตนเองและสมาชิกปาร์ตี้ใกล้เคียง {0}",
+      "tr-TR": "Takıldığında aktif olan bir kutsama. Kendine ve yakındaki grup üyelerine element direnci +{0}.",
+      "uk-UA": "Благословення, активне при носінні. Елементальний опір +{0} собі й ближнім членам.",
+      "vi-VN": "Phước lành kích hoạt khi trang bị. Tăng {0} kháng nguyên tố cho bản thân và đồng đội gần đó."
+    },
+    "ACTIVATIONTYPE": "CONTINUOUS",
+    "ActivationValue": null,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 40501,
+    "Param1": 1200,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 800,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 40501,
+    "AnimClipPath1": "Animation/Skill/Skill_40501",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 401033,
+    "SoundKey": 1405011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 10
+      },
+      {
+        "level": 2,
+        "value": 15
+      },
+      {
+        "level": 3,
+        "value": 20
+      },
+      {
+        "level": 4,
+        "value": 25
+      },
+      {
+        "level": 5,
+        "value": 30
+      },
+      {
+        "level": 6,
+        "value": 35
+      },
+      {
+        "level": 7,
+        "value": 40
+      },
+      {
+        "level": 8,
+        "value": 45
+      },
+      {
+        "level": 9,
+        "value": 50
+      },
+      {
+        "level": 10,
+        "value": 55
+      }
+    ],
+    "slug": "blessing-of-warding"
+  },
+  {
+    "SkillKey": 40601,
+    "SkillNameKey": "SkillName_40601",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "复活",
+      "zh-Hant": "復活",
+      "en-US": "Resurrection",
+      "fr-FR": "Résurrection",
+      "de-DE": "Auferstehung",
+      "id-ID": "Kebangkitan",
+      "ja-JP": "リザレクション",
+      "ko-KR": "부활",
+      "pl-PL": "Wskrzeszenie",
+      "pt-BR": "Ressurreição",
+      "ru-RU": "Воскрешение",
+      "es-ES": "Resurrección",
+      "th-TH": "คืนชีพ",
+      "tr-TR": "Diriliş",
+      "uk-UA": "Воскресіння",
+      "vi-VN": "Hồi Sinh"
+    },
+    "SkillDescriptionKey": "SkillDescription_40601",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "复活1名倒下的队友，使其拥有最大生命的{0}%。",
+      "zh-Hant": "復活1名倒下的隊友，使其擁有最大生命的{0}%。",
+      "en-US": "Revive a fallen party member with {0}% of their max HP.",
+      "fr-FR": "Ressuscitez un membre du groupe tombé avec {0}% de ses PV max.",
+      "de-DE": "Wiederbelebe einen gefallenen Gruppenmitglied mit {0}% seiner max. LP.",
+      "id-ID": "Bangkitkan satu anggota party yang tumbang dengan {0}% dari HP maksimum mereka.",
+      "ja-JP": "倒れた味方1人を最大HPの{0}%で復活させる。",
+      "ko-KR": "기절한 파티원 1명을 최대체력의 {0}%를 보유한 상태로 부활시킨다.",
+      "pl-PL": "Wskrześ upadłego członka drużyny z {0}% jego maks. PŻ.",
+      "pt-BR": "Reviva um membro do grupo caído com {0}% do PV máximo.",
+      "ru-RU": "Воскресите павшего союзника с {0}% от его максимального HP.",
+      "es-ES": "Revive a un miembro del grupo caído con {0}% de su PV máximo.",
+      "th-TH": "ชุบชีวิตสมาชิกปาร์ตี้ที่ล้มลง 1 คน ด้วย HP {0}% ของ HP สูงสุด",
+      "tr-TR": "Düşen bir grup üyesini maks. canın %{0}'iyle dirilt.",
+      "uk-UA": "Воскресіть полеглого союзника з {0}% його максимального HP.",
+      "vi-VN": "Hồi sinh một đồng đội đã ngã với {0}% HP tối đa."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 45,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 900,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 40601,
+    "AnimClipPath1": "Animation/Skill/Skill_40601",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 401043,
+    "SoundKey": null,
+    "levels": [
+      {
+        "level": 1,
+        "value": 300
+      },
+      {
+        "level": 2,
+        "value": 350
+      },
+      {
+        "level": 3,
+        "value": 400
+      },
+      {
+        "level": 4,
+        "value": 450
+      },
+      {
+        "level": 5,
+        "value": 500
+      },
+      {
+        "level": 6,
+        "value": 550
+      },
+      {
+        "level": 7,
+        "value": 600
+      },
+      {
+        "level": 8,
+        "value": 650
+      },
+      {
+        "level": 9,
+        "value": 700
+      },
+      {
+        "level": 10,
+        "value": 750
+      }
+    ],
+    "slug": "resurrection"
+  },
+  {
+    "SkillKey": 50001,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 600,
+    "Param2": 200,
+    "Param3": 200,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1000,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile",
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_50001",
+    "AnimClipPath2": "Animation/Skill/Skill_50001_2",
+    "AnimClipPath3": "Animation/Skill/Skill_50001_3",
+    "AttributeKey": null,
+    "SoundKey": 1500011,
+    "levels": [],
+    "slug": "id-50001"
+  },
+  {
+    "SkillKey": 50101,
+    "SkillNameKey": "SkillName_50101",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "爆炸弩箭",
+      "zh-Hant": "爆炸弩箭",
+      "en-US": "Explosive Bolt",
+      "fr-FR": "Carreau Explosif",
+      "de-DE": "Explosivbolzen",
+      "id-ID": "Panah Ledak",
+      "ja-JP": "エクスプロージョンボルト",
+      "ko-KR": "폭발 볼트",
+      "pl-PL": "Wybuchowy Bełt",
+      "pt-BR": "Virote Explosivo",
+      "ru-RU": "Взрывной Болт",
+      "es-ES": "Virote Explosivo",
+      "th-TH": "สลักระเบิด",
+      "tr-TR": "Patlayıcı Bolt",
+      "uk-UA": "Вибуховий Болт",
+      "vi-VN": "Mũi Tên Nổ"
+    },
+    "SkillDescriptionKey": "SkillDescription_50101",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "发射命中即爆炸的弩箭，造成{0}%范围火焰伤害。",
+      "zh-Hant": "發射命中即爆炸的弩箭，造成{0}%範圍火焰傷害。",
+      "en-US": "Fire a crossbow bolt that explodes on impact, dealing {0}% area fire damage.",
+      "fr-FR": "Tirez un carreau qui explose à l'impact, infligeant {0}% de dégâts de feu en zone.",
+      "de-DE": "Schieße einen Bolzen, der beim Einschlag explodiert und {0}% Flächen-Feuerschaden verursacht.",
+      "id-ID": "Tembakkan baut yang meledak saat berdampak, memberi {0}% kerusakan api area.",
+      "ja-JP": "命中時に爆発し、{0}%の範囲火炎ダメージを与えるクロスボウボルトを発射する。",
+      "ko-KR": "적중 시 폭발하여 {0}%의 범위 화염 피해를 주는 석궁화살을 발사한다.",
+      "pl-PL": "Wystrzel bełt eksplodujący przy trafieniu, zadając {0}% obszarowych obrażeń od ognia.",
+      "pt-BR": "Atira uma flecha que explode ao impactar, causando {0}% de dano de fogo em área.",
+      "ru-RU": "Выпустите болт, взрывающийся при попадании и наносящий {0}% урона огнём по области.",
+      "es-ES": "Dispara una flecha que explota al impactar, infligiendo {0}% de daño de fuego en área.",
+      "th-TH": "ยิงลูกธนูหน้าไม้ที่ระเบิดเมื่อกระทบ สร้างความเสียหายไฟแบบพื้นที่ {0}%",
+      "tr-TR": "İsabet anında patlayan bir ok at, %{0} alan ateş hasarı ver.",
+      "uk-UA": "Випустіть болт, що вибухає при попаданні і завдає {0}% шкоди вогнем по зоні.",
+      "vi-VN": "Bắn tên nỏ nổ khi va chạm, gây {0}% sát thương lửa diện rộng."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 6,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 400,
+    "DamageType": "Fire",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 50101,
+    "AnimClipPath1": "Animation/Skill/Skill_50101",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 501003,
+    "SoundKey": 1501011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 4840
+      },
+      {
+        "level": 2,
+        "value": 5350
+      },
+      {
+        "level": 3,
+        "value": 5860
+      },
+      {
+        "level": 4,
+        "value": 6370
+      },
+      {
+        "level": 5,
+        "value": 6880
+      },
+      {
+        "level": 6,
+        "value": 7390
+      },
+      {
+        "level": 7,
+        "value": 7900
+      },
+      {
+        "level": 8,
+        "value": 8410
+      },
+      {
+        "level": 9,
+        "value": 8920
+      },
+      {
+        "level": 10,
+        "value": 9430
+      }
+    ],
+    "slug": "explosive-bolt"
+  },
+  {
+    "SkillKey": 50201,
+    "SkillNameKey": "SkillName_50201",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "寒霜弩箭",
+      "zh-Hant": "寒霜弩箭",
+      "en-US": "Frost Bolt",
+      "fr-FR": "Carreau de Givre",
+      "de-DE": "Frostbolzen",
+      "id-ID": "Panah Es",
+      "ja-JP": "フロストボルト",
+      "ko-KR": "프로스트 볼트",
+      "pl-PL": "Lodowy Bełt",
+      "pt-BR": "Virote de Gelo",
+      "ru-RU": "Ледяной Болт",
+      "es-ES": "Virote de Escarcha",
+      "th-TH": "สลักน้ำแข็ง",
+      "tr-TR": "Buz Boltu",
+      "uk-UA": "Крижаний Болт",
+      "vi-VN": "Mũi Tên Băng"
+    },
+    "SkillDescriptionKey": "SkillDescription_50201",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "发射命中爆炸的弩箭：{0}%范围冰冷伤害并冰冻命中敌人。",
+      "zh-Hant": "發射命中爆炸的弩箭：{0}%範圍冰冷傷害並冰凍命中敵人。",
+      "en-US": "Fire a crossbow bolt that explodes on impact, dealing {0}% area cold damage and freezing enemies hit.",
+      "fr-FR": "Tirez un carreau explosif : {0}% de dégâts de froid en zone et gèle les ennemis touchés.",
+      "de-DE": "Schieße einen Bolzen, der beim Einschlag explodiert: {0}% Flächen-Kälteschaden und friert Getroffene ein.",
+      "id-ID": "Tembakkan baut yang meledak saat berdampak, memberi {0}% kerusakan dingin area dan membekukan musuh terkena.",
+      "ja-JP": "命中時に爆発し{0}%の範囲冷気ダメージを与え、当たった敵を凍結させるクロスボウボルト。",
+      "ko-KR": "적중 시 폭발하여 {0}%의 범위 냉기 피해를 주고, 맞은 적들을 빙결시키는 석궁화살을 발사한다.",
+      "pl-PL": "Wystrzel wybuchający bełt: {0}% obszarowych obrażeń od zimna i zamraża trafionych.",
+      "pt-BR": "Atira uma flecha explosiva: {0}% de dano de frio em área e congela os atingidos.",
+      "ru-RU": "Выпустите взрывающийся болт: {0}% урона холодом по области и замораживает попавших.",
+      "es-ES": "Dispara una flecha explosiva: {0}% de daño de frío en área y congela a los alcanzados.",
+      "th-TH": "ยิงลูกธนูหน้าไม้ที่ระเบิดเมื่อกระทบ สร้างความเสียหายเย็นแบบพื้นที่ {0}% และทำให้ศัตรูที่โดนแข็ง",
+      "tr-TR": "Patlayıcı bir ok at: %{0} alan soğuk hasarı ve isabet eden düşmanları dondur.",
+      "uk-UA": "Випустіть вибуховий болт: {0}% шкоди холодом по зоні і заморожує ворогів, що потрапили.",
+      "vi-VN": "Bắn tên nỏ nổ khi va chạm, gây {0}% sát thương băng diện rộng và đóng băng kẻ địch trúng đòn."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 8,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 500,
+    "DamageType": "Cold",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 50201,
+    "AnimClipPath1": "Animation/Skill/Skill_50201",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 501004,
+    "SoundKey": 1502011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2100
+      },
+      {
+        "level": 2,
+        "value": 2250
+      },
+      {
+        "level": 3,
+        "value": 2400
+      },
+      {
+        "level": 4,
+        "value": 2550
+      },
+      {
+        "level": 5,
+        "value": 2700
+      },
+      {
+        "level": 6,
+        "value": 2850
+      },
+      {
+        "level": 7,
+        "value": 3000
+      },
+      {
+        "level": 8,
+        "value": 3150
+      },
+      {
+        "level": 9,
+        "value": 3300
+      },
+      {
+        "level": 10,
+        "value": 3450
+      }
+    ],
+    "slug": "frost-bolt"
+  },
+  {
+    "SkillKey": 50301,
+    "SkillNameKey": "SkillName_50301",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "快速装填",
+      "zh-Hant": "快速裝填",
+      "en-US": "Quick Loader",
+      "fr-FR": "Rechargeur Rapide",
+      "de-DE": "Schnelllader",
+      "id-ID": "Isi Ulang Cepat",
+      "ja-JP": "クイックローダー",
+      "ko-KR": "빠른 장전",
+      "pl-PL": "Szybki Ładowacz",
+      "pt-BR": "Recarga Rápida",
+      "ru-RU": "Быстрая Перезарядка",
+      "es-ES": "Carga Rápida",
+      "th-TH": "บรรจุกระสุนเร็ว",
+      "tr-TR": "Hızlı Yükleyici",
+      "uk-UA": "Швидке Перезарядження",
+      "vi-VN": "Nạp Đạn Nhanh"
+    },
+    "SkillDescriptionKey": "SkillDescription_50301",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "快速装填弩箭。{0}次攻击期间攻击速度+50%。",
+      "zh-Hant": "快速裝填弩箭。{0}次攻擊期間攻擊速度+50%。",
+      "en-US": "Rapidly reload crossbow bolts. Attack speed increases by 50% for {0} attacks.",
+      "fr-FR": "Rechargez rapidement les carreaux. Vit. d'attaque +50% pendant {0} attaques.",
+      "de-DE": "Lade Bolzen schnell nach. Angriffsgeschw. +50% für {0} Angriffe.",
+      "id-ID": "Isi ulang baut dengan cepat. Kecepatan serangan naik 50% untuk {0} serangan.",
+      "ja-JP": "クロスボウボルトを素早く装填。{0}回の攻撃の間、攻撃速度+50%。",
+      "ko-KR": "석궁화살을 빠르게 장전한다. {0}회의 공격 동안 공격속도가 50% 증가한다.",
+      "pl-PL": "Szybko przeładuj bełty. Szybk. ataku +50% przez {0} ataków.",
+      "pt-BR": "Recarrega flechas rapidamente. Vel. de ataque +50% durante {0} ataques.",
+      "ru-RU": "Быстро перезарядите болты. Скорость атаки +50% на {0} атак.",
+      "es-ES": "Recarga flechas rápidamente. Vel. de ataque +50% durante {0} ataques.",
+      "th-TH": "บรรจุลูกธนูหน้าไม้อย่างรวดเร็ว ความเร็วการโจมตีเพิ่ม 50% เป็น {0} ครั้ง",
+      "tr-TR": "Okları hızlıca yeniden doldur. {0} saldırı boyunca saldırı hızı +%50.",
+      "uk-UA": "Швидко перезарядіть болти. Швид. атаки +50% на {0} атак.",
+      "vi-VN": "Nạp tên nỏ nhanh chóng. Tốc độ tấn công tăng 50% trong {0} đòn."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 14,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 50301,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1050,
+    "Order": 600,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 50301,
+    "AnimClipPath1": "Animation/Skill/Skill_50301",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 501013,
+    "SoundKey": 1503011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 3
+      },
+      {
+        "level": 2,
+        "value": 4
+      },
+      {
+        "level": 3,
+        "value": 5
+      },
+      {
+        "level": 4,
+        "value": 6
+      },
+      {
+        "level": 5,
+        "value": 7
+      },
+      {
+        "level": 6,
+        "value": 8
+      },
+      {
+        "level": 7,
+        "value": 9
+      },
+      {
+        "level": 8,
+        "value": 10
+      },
+      {
+        "level": 9,
+        "value": 11
+      },
+      {
+        "level": 10,
+        "value": 12
+      }
+    ],
+    "slug": "quick-loader"
+  },
+  {
+    "SkillKey": 50401,
+    "SkillNameKey": "SkillName_50401",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "充能陷阱",
+      "zh-Hant": "充能陷阱",
+      "en-US": "Charge Trap",
+      "fr-FR": "Piège à Charge",
+      "de-DE": "Ladefalle",
+      "id-ID": "Jebakan Muatan",
+      "ja-JP": "チャージトラップ",
+      "ko-KR": "충전용 덫",
+      "pl-PL": "Pułapka Ładunkowa",
+      "pt-BR": "Armadilha de Carga",
+      "ru-RU": "Зарядная Ловушка",
+      "es-ES": "Trampa de Carga",
+      "th-TH": "กับดักชาร์จ",
+      "tr-TR": "Şarj Tuzağı",
+      "uk-UA": "Зарядна Пастка",
+      "vi-VN": "Bẫy Sạc"
+    },
+    "SkillDescriptionKey": "SkillDescription_50401",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "发射 {0} 个受元素伤害时爆炸的陷阱。",
+      "zh-Hant": "發射 {0} 個受元素傷害時爆炸的陷阱。",
+      "en-US": "Launch {0} traps that explode when struck by elemental damage.",
+      "fr-FR": "Lance {0} pièges qui explosent en recevant des dégâts élémentaires.",
+      "de-DE": "Wirf {0} Fallen, die bei Elementarschaden explodieren.",
+      "id-ID": "Lemparkan {0} jebakan yang meledak saat terkena kerusakan elemen.",
+      "ja-JP": "属性ダメージを受けると爆発する罠を{0}個発射します。",
+      "ko-KR": "원소 데미지를 받으면 폭발하는 덫 {0}개를 발사한다.",
+      "pl-PL": "Wyrzuca {0} pułapek wybuchających po otrzymaniu obrażeń żywiołowych.",
+      "pt-BR": "Lança {0} armadilhas que explodem ao receber dano elemental.",
+      "ru-RU": "Выбрасывает {0} ловушек, взрывающихся от стихийного урона.",
+      "es-ES": "Lanza {0} trampas que explotan al recibir daño elemental.",
+      "th-TH": "ยิงกับดัก {0} ชิ้นที่ระเบิดเมื่อโดนความเสียหายธาตุ",
+      "tr-TR": "Elementel hasar aldığında patlayan {0} tuzak fırlatır.",
+      "uk-UA": "Викидає {0} пасток, що вибухають від стихійної шкоди.",
+      "vi-VN": "Phóng {0} bẫy nổ khi trúng sát thương nguyên tố."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 5,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1150,
+    "Order": 700,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Trap",
+    "Value": null,
+    "SkillLevelKey": 50401,
+    "AnimClipPath1": "Animation/Skill/Skill_50401",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 501023,
+    "SoundKey": 1504011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1000
+      },
+      {
+        "level": 2,
+        "value": 1500
+      },
+      {
+        "level": 3,
+        "value": 2000
+      },
+      {
+        "level": 4,
+        "value": 2500
+      },
+      {
+        "level": 5,
+        "value": 3000
+      },
+      {
+        "level": 6,
+        "value": 3500
+      },
+      {
+        "level": 7,
+        "value": 4000
+      },
+      {
+        "level": 8,
+        "value": 4500
+      },
+      {
+        "level": 9,
+        "value": 5000
+      },
+      {
+        "level": 10,
+        "value": 5500
+      }
+    ],
+    "slug": "charge-trap"
+  },
+  {
+    "SkillKey": 50501,
+    "SkillNameKey": "SkillName_50501",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "弩炮塔",
+      "zh-Hant": "弩砲塔",
+      "en-US": "Crossbow Turret",
+      "fr-FR": "Tourelle Arbalète",
+      "de-DE": "Armbrustturm",
+      "id-ID": "Menara Crossbow",
+      "ja-JP": "クロスボウタレット",
+      "ko-KR": "석궁 포탑",
+      "pl-PL": "Wieżyczka Kusznicza",
+      "pt-BR": "Torre de Besta",
+      "ru-RU": "Арбалетная Турель",
+      "es-ES": "Torreta de Ballesta",
+      "th-TH": "ป้อมธนูหน้าไม้",
+      "tr-TR": "Arbalet Kulesi",
+      "uk-UA": "Арбалетна Турель",
+      "vi-VN": "Tháp Nỏ"
+    },
+    "SkillDescriptionKey": "SkillDescription_50501",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "设置自动弩，发射造成{0}%物理伤害的弩箭。",
+      "zh-Hant": "設置自動弩，發射造成{0}%物理傷害的弩箭。",
+      "en-US": "Deploy an automated crossbow that fires bolts dealing {0}% physical damage.",
+      "fr-FR": "Déployez une arbalète automatique tirant des carreaux pour {0}% de dégâts physiques.",
+      "de-DE": "Setze eine automatische Armbrust ein, die Bolzen für {0}% physischen Schaden abfeuert.",
+      "id-ID": "Pasang nama balista otomatis yang menembakkan baut dengan {0}% kerusakan fisik.",
+      "ja-JP": "自動クロスボウを設置し、{0}%の物理ダメージを与えるボルトを発射する。",
+      "ko-KR": "{0}%의 물리피해를 입히는 석궁화살을 발사하는 자동석궁을 설치한다.",
+      "pl-PL": "Ustaw automatyczną kuszę strzelającą bełtami za {0}% obrażeń fizycznych.",
+      "pt-BR": "Implanta uma besta automática disparando flechas por {0}% de dano físico.",
+      "ru-RU": "Разверните автоматический арбалет, стреляющий болтами на {0}% физического урона.",
+      "es-ES": "Despliega una ballesta automática que dispara flechas por {0}% de daño físico.",
+      "th-TH": "ติดตั้งหน้าไม้อัตโนมัติที่ยิงลูกธนูสร้างความเสียหายกายภาพ {0}%",
+      "tr-TR": "%{0} fiziksel hasarlı ok atan otomatik bir arbalet kur.",
+      "uk-UA": "Розгорніть автоматичний арбалет, що стріляє болтами на {0}% фізичної шкоди.",
+      "vi-VN": "Đặt nỏ tự động bắn tên gây {0}% sát thương vật lý."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 12,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 800,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Projectile, Summon",
+    "Value": null,
+    "SkillLevelKey": 50501,
+    "AnimClipPath1": "Animation/Skill/Skill_50501",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 501033,
+    "SoundKey": 1505011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1750
+      },
+      {
+        "level": 2,
+        "value": 1910
+      },
+      {
+        "level": 3,
+        "value": 2070
+      },
+      {
+        "level": 4,
+        "value": 2230
+      },
+      {
+        "level": 5,
+        "value": 2390
+      },
+      {
+        "level": 6,
+        "value": 2550
+      },
+      {
+        "level": 7,
+        "value": 2710
+      },
+      {
+        "level": 8,
+        "value": 2870
+      },
+      {
+        "level": 9,
+        "value": 3030
+      },
+      {
+        "level": 10,
+        "value": 3190
+      }
+    ],
+    "slug": "crossbow-turret"
+  },
+  {
+    "SkillKey": 50601,
+    "SkillNameKey": "SkillName_50601",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "电击弩箭",
+      "zh-Hant": "電擊弩箭",
+      "en-US": "Shock Bolt",
+      "fr-FR": "Carreau de Choc",
+      "de-DE": "Schockbolzen",
+      "id-ID": "Panah Kejut",
+      "ja-JP": "ショックボルト",
+      "ko-KR": "감전 볼트",
+      "pl-PL": "Porażający Bełt",
+      "pt-BR": "Virote de Choque",
+      "ru-RU": "Шоковый Болт",
+      "es-ES": "Virote de Descarga",
+      "th-TH": "สลักช็อก",
+      "tr-TR": "Şok Boltu",
+      "uk-UA": "Шоковий Болт",
+      "vi-VN": "Mũi Tên Điện"
+    },
+    "SkillDescriptionKey": "SkillDescription_50601",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "射出一支扎入敌人并短时释放闪电的弩箭，向周围敌人释放造成{0}%闪电伤害的电流。",
+      "zh-Hant": "射出一支扎入敵人並短時釋放閃電的弩箭，向周圍敵人釋放造成{0}%閃電傷害的電流。",
+      "en-US": "Fire a crossbow bolt that lodges in an enemy and emits lightning for a time. The bolt releases currents dealing {0}% lightning damage to nearby enemies.",
+      "fr-FR": "Tirez un carreau qui se plante dans un ennemi et émet de la foudre. Il libère des courants infligeant {0}% de dégâts de foudre aux ennemis à proximité.",
+      "de-DE": "Schieße einen Bolzen in einen Feind, der kurz Blitze freisetzt. Er gibt Ströme an nahegelegene Feinde ab und verursacht {0}% Blitzschaden.",
+      "id-ID": "Tembakkan baut yang tertancap di musuh dan memancarkan petir untuk sementara. Baut melepaskan arus yang memberi {0}% kerusakan petir kepada musuh di sekitar.",
+      "ja-JP": "敵に刺さって一定時間雷を放つクロスボウボルトを発射します。刺さったボルトは周囲の敵に{0}%の電撃ダメージを与える電流を放出します。",
+      "ko-KR": "적에게 꽂혀 일정시간 동안 전기를 뿜어내는 석궁화살을 발사한다. 꽂힌 석궁화살은 {0}%의 전기피해를 입히는 전류를 주변 적들에게 방출한다.",
+      "pl-PL": "Wystrzel bełt, który utyka we wrogu i emituje błyskawice przez chwilę. Uwalnia prąd zadający {0}% obrażeń od pioruna pobliskim wrogom.",
+      "pt-BR": "Dispara uma flecha que se encrava em um inimigo e emite raios por um tempo. Libera correntes causando {0}% de dano de raio aos inimigos próximos.",
+      "ru-RU": "Выстрелите болтом, который застрянет во враге и будет испускать молнии. Он выпускает токи, наносящие {0}% урона молнией ближайшим врагам.",
+      "es-ES": "Dispara un proyectil que se clava en un enemigo y emite rayos durante un tiempo. Libera corrientes que causan {0}% de daño de rayo a los enemigos cercanos.",
+      "th-TH": "ยิงลูกธนูหน้าไม้ที่ฝังในศัตรูและปล่อยกระแสไฟฟ้าชั่วระยะเวลา ลูกธนูจะปล่อยกระแสที่สร้างความเสียหายฟ้าผ่า {0}% ให้ศัตรูใกล้เคียง",
+      "tr-TR": "Bir düşmana saplanıp bir süre şimşek yayan bir ok at. Yakındaki düşmanlara %{0} şimşek hasarı veren akımlar salar.",
+      "uk-UA": "Вистрельте болтом, що застрягає у ворогу й випромінює блискавки. Випускає струми, що завдають {0}% шкоди блискавкою найближчим ворогам.",
+      "vi-VN": "Bắn tên nỏ cắm vào kẻ địch và phát ra điện trong một thời gian. Tên cắm phóng ra dòng điện gây {0}% sát thương sét cho kẻ địch xung quanh."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 11,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 50601,
+    "Param1": 400,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 1100,
+    "Order": 900,
+    "DamageType": "Lightning",
+    "DamageDeliveryType": "Projectile",
+    "Value": null,
+    "SkillLevelKey": 50601,
+    "AnimClipPath1": "Animation/Skill/Skill_50601",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 501043,
+    "SoundKey": 1506011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 2700
+      },
+      {
+        "level": 2,
+        "value": 2900
+      },
+      {
+        "level": 3,
+        "value": 3100
+      },
+      {
+        "level": 4,
+        "value": 3300
+      },
+      {
+        "level": 5,
+        "value": 3500
+      },
+      {
+        "level": 6,
+        "value": 3700
+      },
+      {
+        "level": 7,
+        "value": 3900
+      },
+      {
+        "level": 8,
+        "value": 4100
+      },
+      {
+        "level": 9,
+        "value": 4300
+      },
+      {
+        "level": 10,
+        "value": 4500
+      }
+    ],
+    "slug": "shock-bolt"
+  },
+  {
+    "SkillKey": 60001,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 600,
+    "Param2": 200,
+    "Param3": 200,
+    "Param4": null,
+    "Param5": null,
+    "Range": 120,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee",
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_60001",
+    "AnimClipPath2": "Animation/Skill/Skill_60001_2",
+    "AnimClipPath3": "Animation/Skill/Skill_60001_3",
+    "AttributeKey": null,
+    "SoundKey": 1600011,
+    "levels": [],
+    "slug": "id-60001"
+  },
+  {
+    "SkillKey": 60101,
+    "SkillNameKey": "SkillName_60101",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "猛击跳跃",
+      "zh-Hant": "猛擊跳躍",
+      "en-US": "Slam Jump",
+      "fr-FR": "Saut Fracassant",
+      "de-DE": "Sprungschlag",
+      "id-ID": "Lompat Hantam",
+      "ja-JP": "スラムジャンプ",
+      "ko-KR": "강타 점프",
+      "pl-PL": "Skoczny Grom",
+      "pt-BR": "Salto Devastador",
+      "ru-RU": "Прыжок-Удар",
+      "es-ES": "Salto Aplastante",
+      "th-TH": "กระโดดทุบ",
+      "tr-TR": "Çarpmalı Zıplama",
+      "uk-UA": "Стрибок-Удар",
+      "vi-VN": "Nhảy Đập"
+    },
+    "SkillDescriptionKey": "SkillDescription_60101",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "跃向敌人，落地时产生冲击波，对周围敌人造成{0}%物理伤害。",
+      "zh-Hant": "躍向敵人，落地時產生衝擊波，對周圍敵人造成{0}%物理傷害。",
+      "en-US": "Gather strength and smash an enemy for {0}% physical damage. If it kills the enemy, a shockwave deals 350% damage to nearby enemies.",
+      "fr-FR": "Sautez sur un ennemi et créez une onde de choc à l'atterrissage infligeant {0}% de dégâts physiques aux ennemis proches.",
+      "de-DE": "Springe auf einen Feind und erzeuge bei der Landung eine Schockwelle, die nahen Feinden {0}% physischen Schaden zufügt.",
+      "id-ID": "Lompat ke musuh, menimbulkan gelombang kejut saat mendarat yang memberi {0}% kerusakan fisik kepada musuh di sekitar.",
+      "ja-JP": "敵に跳躍し、着地時に周囲の敵へ{0}%の物理ダメージの衝撃波を発生させます。",
+      "ko-KR": "적에게 도약하여 착지할 때 주변 적에게 {0}%의 물리피해를 입히는 충격파를 일으킨다.",
+      "pl-PL": "Skocz na wroga i wywołaj falę uderzeniową przy lądowaniu, zadając {0}% obrażeń fizycznych pobliskim wrogom.",
+      "pt-BR": "Salte em um inimigo e cause uma onda de choque ao pousar, causando {0}% de dano físico aos inimigos próximos.",
+      "ru-RU": "Прыгните на врага и вызовите ударную волну при приземлении, наносящую {0}% физического урона ближайшим врагам.",
+      "es-ES": "Salta sobre un enemigo y causa una onda de choque al aterrizar que inflige {0}% de daño físico a enemigos cercanos.",
+      "th-TH": "กระโดดใส่ศัตรู เกิดคลื่นกระแทกเมื่อลงจอดสร้างความเสียหายกายภาพ {0}% ให้ศัตรูใกล้เคียง",
+      "tr-TR": "Bir düşmanın üzerine sıçra ve indiğinde %{0} fiziksel hasar veren bir şok dalgası oluştur.",
+      "uk-UA": "Стрибніть на ворога та створіть ударну хвилю при приземленні, що завдає {0}% фізичної шкоди найближчим ворогам.",
+      "vi-VN": "Nhảy vào kẻ địch, tạo sóng xung kích khi tiếp đất gây {0}% sát thương vật lý cho kẻ địch xung quanh."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 6,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 35,
+    "Param2": 100,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 850,
+    "Order": 400,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee, AOE",
+    "Value": null,
+    "SkillLevelKey": 60101,
+    "AnimClipPath1": "Animation/Skill/Skill_60101",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 601003,
+    "SoundKey": 1601011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 3100
+      },
+      {
+        "level": 2,
+        "value": 3350
+      },
+      {
+        "level": 3,
+        "value": 3600
+      },
+      {
+        "level": 4,
+        "value": 3850
+      },
+      {
+        "level": 5,
+        "value": 4100
+      },
+      {
+        "level": 6,
+        "value": 4350
+      },
+      {
+        "level": 7,
+        "value": 4600
+      },
+      {
+        "level": 8,
+        "value": 4850
+      },
+      {
+        "level": 9,
+        "value": 5100
+      },
+      {
+        "level": 10,
+        "value": 5350
+      }
+    ],
+    "slug": "slam-jump"
+  },
+  {
+    "SkillKey": 60201,
+    "SkillNameKey": "SkillName_60201",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "粉碎强击",
+      "zh-Hant": "粉碎強擊",
+      "en-US": "Crushing Blow",
+      "fr-FR": "Coup Écrasant",
+      "de-DE": "Zermalmender Schlag",
+      "id-ID": "Pukulan Penghancur",
+      "ja-JP": "クラッシングブロー",
+      "ko-KR": "분쇄 강타",
+      "pl-PL": "Miażdżący Cios",
+      "pt-BR": "Golpe Esmagador",
+      "ru-RU": "Сокрушительный Удар",
+      "es-ES": "Golpe Devastador",
+      "th-TH": "ทุบบด",
+      "tr-TR": "Ezici Darbe",
+      "uk-UA": "Нищівний Удар",
+      "vi-VN": "Đòn Nghiền Nát"
+    },
+    "SkillDescriptionKey": "SkillDescription_60201",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "蓄力重击敌人造成{0}%物理伤害。若以此击杀敌人，冲击波对周围敌人造成350%伤害。",
+      "zh-Hant": "蓄力重擊敵人造成{0}%物理傷害。若以此擊殺敵人，衝擊波對周圍敵人造成350%傷害。",
+      "en-US": "Gather strength and smash an enemy for {0}% physical damage. If it kills the enemy, a shockwave deals 350% damage to nearby enemies.",
+      "fr-FR": "Rassemblez votre force et frappez un ennemi pour {0}% de dégâts physiques. S'il est tué, une onde de choc inflige 350% de dégâts aux ennemis proches.",
+      "de-DE": "Sammle Kraft und schmettere einen Feind für {0}% physischen Schaden. Tötet er den Feind, verursacht eine Schockwelle 350% Schaden an Nahegelegenen.",
+      "id-ID": "Kumpulkan kekuatan dan hantam musuh dengan {0}% kerusakan fisik. Jika membunuh musuh, gelombang kejut memberi 350% kerusakan kepada musuh di sekitar.",
+      "ja-JP": "力を溜めて敵を強打し{0}%の物理ダメージを与えます。このスキルで敵を倒すと衝撃波が発生し周囲に350%のダメージを与えます。",
+      "ko-KR": "힘을 모아 적을 강하게 내려찍어 {0}%의 물리피해를 입힌다. 이 스킬로 적이 죽으면 충격파가 발생하여 주변 적에게 350%의 피해를 입힌다.",
+      "pl-PL": "Zbierz siłę i uderz wroga zadając {0}% obrażeń fizycznych. Jeśli wróg zginie, fala uderzeniowa zada 350% obrażeń pobliskim.",
+      "pt-BR": "Reúna força e esmague um inimigo por {0}% de dano físico. Se o matar, uma onda de choque causa 350% de dano aos próximos.",
+      "ru-RU": "Соберите силу и сокрушите врага на {0}% физического урона. Если это убьёт врага, ударная волна нанесёт 350% урона ближайшим.",
+      "es-ES": "Reúne fuerza y golpea a un enemigo por {0}% de daño físico. Si lo mata, una onda de choque inflige 350% de daño a los cercanos.",
+      "th-TH": "รวบรวมพลังและฟาดศัตรูสร้างความเสียหายกายภาพ {0}% หากสังหารศัตรู คลื่นกระแทกจะสร้างความเสียหาย 350% ให้ศัตรูใกล้เคียง",
+      "tr-TR": "Güç topla ve düşmana %{0} fiziksel hasar ver. Düşmanı öldürürse şok dalgası yakındaki düşmanlara %350 hasar verir.",
+      "uk-UA": "Зберіть силу й потужно вдарте ворога на {0}% фізичної шкоди. Якщо ворог загине, ударна хвиля завдасть 350% шкоди найближчим.",
+      "vi-VN": "Tích sức và đập kẻ địch gây {0}% sát thương vật lý. Nếu hạ kẻ địch, sóng xung kích gây 350% sát thương cho kẻ địch xung quanh."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 5,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": 500,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee",
+    "Value": null,
+    "SkillLevelKey": 60201,
+    "AnimClipPath1": "Animation/Skill/Skill_60201",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 601004,
+    "SoundKey": 1602011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 6200
+      },
+      {
+        "level": 2,
+        "value": 6600
+      },
+      {
+        "level": 3,
+        "value": 7000
+      },
+      {
+        "level": 4,
+        "value": 7400
+      },
+      {
+        "level": 5,
+        "value": 7800
+      },
+      {
+        "level": 6,
+        "value": 8200
+      },
+      {
+        "level": 7,
+        "value": 8600
+      },
+      {
+        "level": 8,
+        "value": 9000
+      },
+      {
+        "level": 9,
+        "value": 9400
+      },
+      {
+        "level": 10,
+        "value": 9800
+      }
+    ],
+    "slug": "crushing-blow"
+  },
+  {
+    "SkillKey": 60301,
+    "SkillNameKey": "SkillName_60301",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "将军怒吼",
+      "zh-Hant": "將軍怒吼",
+      "en-US": "Commander’s Cry",
+      "fr-FR": "Cri du Commandant",
+      "de-DE": "Feldherrnschrei",
+      "id-ID": "Teriakan Komandan",
+      "ja-JP": "コマンダーズクライ",
+      "ko-KR": "장군의 함성",
+      "pl-PL": "Okrzyk Dowódcy",
+      "pt-BR": "Grito do Comandante",
+      "ru-RU": "Клич Командира",
+      "es-ES": "Grito del Comandante",
+      "th-TH": "เสียงกองทัพ",
+      "tr-TR": "Komutanın Narası",
+      "uk-UA": "Клич Командира",
+      "vi-VN": "Tiếng Hét Chỉ Huy"
+    },
+    "SkillDescriptionKey": "SkillDescription_60301",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "发出战吼，眩晕周围敌人并使队伍暴击几率系数提升{0}%。",
+      "zh-Hant": "發出戰吼，暈眩周圍敵人並使隊伍暴擊機率係數提升{0}%。",
+      "en-US": "Let out a cry that stuns nearby enemies and increases party critical chance multiplier by {0}%.",
+      "fr-FR": "Poussez un cri qui étourdit les ennemis proches et augmente le multiplicateur de chance critique du groupe de {0}%.",
+      "de-DE": "Stoße einen Schrei aus, der nahe Feinde betäubt und den Krit-Chance-Multiplikator der Gruppe um {0}% erhöht.",
+      "id-ID": "Berteriak menjadikan musuh di sekitar pingsan dan menambah pengali peluang kritis party sebesar {0}%.",
+      "ja-JP": "咆哮を上げて周囲の敵をスタンさせ、パーティの致命率係数を{0}%上昇させます。",
+      "ko-KR": "함성을 질러 주변 적을 기절시키고, 주변 파티원들의 치명타 확률 계수를 {0}% 상승시켜 준다.",
+      "pl-PL": "Wydaj okrzyk ogłuszający pobliskich wrogów i zwiększ mnożnik szansy krytycznej drużyny o {0}%.",
+      "pt-BR": "Solte um grito que atordoa inimigos próximos e aumenta o multiplicador de chance crítica do grupo em {0}%.",
+      "ru-RU": "Издайте крик, оглушающий ближайших врагов и повышающий множитель шанса крита группы на {0}%.",
+      "es-ES": "Lanza un grito que aturde a enemigos cercanos y aumenta el multiplicador de probabilidad crítica del grupo en {0}%.",
+      "th-TH": "ตะโกนทำให้ศัตรูใกล้เคียงสตันและเพิ่มตัวคูณโอกาสคริติคอลของปาร์ตี้ {0}%",
+      "tr-TR": "Yakındaki düşmanları sersemleten ve grubun kritik şans çarpanını %{0} artıran bir çığlık at.",
+      "uk-UA": "Видайте крик, що оглушує найближчих ворогів і підвищує множник шансу криту групи на {0}%.",
+      "vi-VN": "Hét lớn làm choáng kẻ địch xung quanh và tăng {0}% hệ số tỷ lệ chí mạng của đồng đội."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 12,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 60301,
+    "Param1": 700,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 600,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "AOE",
+    "Value": null,
+    "SkillLevelKey": 60301,
+    "AnimClipPath1": "Animation/Skill/Skill_60301",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 601013,
+    "SoundKey": 1603011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 500
+      },
+      {
+        "level": 2,
+        "value": 550
+      },
+      {
+        "level": 3,
+        "value": 600
+      },
+      {
+        "level": 4,
+        "value": 650
+      },
+      {
+        "level": 5,
+        "value": 700
+      },
+      {
+        "level": 6,
+        "value": 750
+      },
+      {
+        "level": 7,
+        "value": 800
+      },
+      {
+        "level": 8,
+        "value": 850
+      },
+      {
+        "level": 9,
+        "value": 900
+      },
+      {
+        "level": 10,
+        "value": 950
+      }
+    ],
+    "slug": "commander-s-cry"
+  },
+  {
+    "SkillKey": 60401,
+    "SkillNameKey": "SkillName_60401",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "大地强击",
+      "zh-Hant": "大地強擊",
+      "en-US": "Ground Slam",
+      "fr-FR": "Frappe au Sol",
+      "de-DE": "Erdschlag",
+      "id-ID": "Hantaman Tanah",
+      "ja-JP": "グラウンドスラム",
+      "ko-KR": "대지 강타",
+      "pl-PL": "Uderzenie w Ziemię",
+      "pt-BR": "Golpe no Chão",
+      "ru-RU": "Удар о Землю",
+      "es-ES": "Golpe Terrestre",
+      "th-TH": "ทุบพื้น",
+      "tr-TR": "Yer Darbesi",
+      "uk-UA": "Удар об Землю",
+      "vi-VN": "Đập Đất"
+    },
+    "SkillDescriptionKey": "SkillDescription_60401",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "猛击地面引发地震,对敌人造成{0}%的物理伤害。地震产生的岩石受到范围物理攻击时会爆炸。",
+      "zh-Hant": "猛擊地面引發地震,對敵人造成{0}%的物理傷害。地震產生的岩石受到範圍物理攻擊時會爆炸。",
+      "en-US": "Smash the ground hard, causing an earthquake that deals {0}% physical damage to enemies. Rocks created by the earthquake explode when hit by AoE physical attacks.",
+      "fr-FR": "Frappez le sol violemment, déclenchant un séisme qui inflige {0}% de dégâts physiques. Les rochers ainsi créés explosent en recevant des dégâts physiques de zone.",
+      "de-DE": "Schmettere den Boden, löse ein Erdbeben aus und füge Gegnern {0}% physischen Schaden zu. Vom Erdbeben erzeugte Felsen explodieren bei Flächenschaden.",
+      "id-ID": "Hantam tanah keras-keras menimbulkan gempa yang memberi {0}% kerusakan fisik kepada musuh. Batu yang muncul dari gempa meledak saat terkena serangan fisik area.",
+      "ja-JP": "地面を強く叩きつけて地震を起こし、敵に{0}%の物理ダメージを与える。地震で生じた岩は範囲物理攻撃を受けると爆発する。",
+      "ko-KR": "땅을 강하게 내리찍어 지진을 일으키고 적들에게 {0}%의 물리피해를 입힌다. 지진을 통해 생겨난 바위들은 범위 물리 공격을 맞으면 폭발한다.",
+      "pl-PL": "Uderz mocno w ziemię, wywołując trzęsienie, które zadaje {0}% obrażeń fizycznych. Powstałe skały eksplodują od fizycznych ataków obszarowych.",
+      "pt-BR": "Esmague o chão com força, causando um terremoto que inflige {0}% de dano físico. As rochas geradas explodem ao receber dano físico em área.",
+      "ru-RU": "Сильный удар о землю вызывает землетрясение, наносящее {0}% физического урона. Образовавшиеся камни взрываются от физических атак по области.",
+      "es-ES": "Golpea el suelo con fuerza causando un terremoto que inflige {0}% de daño físico. Las rocas creadas explotan al recibir un ataque físico en área.",
+      "th-TH": "ทุบพื้นอย่างแรงทำให้เกิดแผ่นดินไหวสร้างความเสียหายกายภาพ {0}% ให้ศัตรู หินที่เกิดจากแผ่นดินไหวจะระเบิดเมื่อโดนการโจมตีกายภาพแบบ AoE",
+      "tr-TR": "Yere sertçe vurarak deprem yarat ve düşmanlara %{0} fiziksel hasar ver. Oluşan kayalar alan fiziksel saldırıya maruz kaldığında patlar.",
+      "uk-UA": "Сильно вдарте по землі, спричиняючи землетрус, що завдає {0}% фізичної шкоди. Створене каміння вибухає від фізичних атак по області.",
+      "vi-VN": "Đập mạnh xuống đất gây động đất, gây {0}% sát thương vật lý cho kẻ địch. Đá tạo ra từ động đất sẽ nổ khi bị tấn công vật lý diện rộng."
+    },
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 9,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 300,
+    "Order": 700,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee, AOE",
+    "Value": null,
+    "SkillLevelKey": 60401,
+    "AnimClipPath1": "Animation/Skill/Skill_60401",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 601023,
+    "SoundKey": 1604011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 3700
+      },
+      {
+        "level": 2,
+        "value": 3950
+      },
+      {
+        "level": 3,
+        "value": 4200
+      },
+      {
+        "level": 4,
+        "value": 4450
+      },
+      {
+        "level": 5,
+        "value": 4700
+      },
+      {
+        "level": 6,
+        "value": 4950
+      },
+      {
+        "level": 7,
+        "value": 5200
+      },
+      {
+        "level": 8,
+        "value": 5450
+      },
+      {
+        "level": 9,
+        "value": 5700
+      },
+      {
+        "level": 10,
+        "value": 5950
+      }
+    ],
+    "slug": "ground-slam"
+  },
+  {
+    "SkillKey": 60501,
+    "SkillNameKey": "SkillName_60501",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "旋转斧",
+      "zh-Hant": "旋轉斧",
+      "en-US": "Axe Spin",
+      "fr-FR": "Tourbillon de Hache",
+      "de-DE": "Axtwirbel",
+      "id-ID": "Putaran Kapak",
+      "ja-JP": "アックススピン",
+      "ko-KR": "도끼 돌리기",
+      "pl-PL": "Obrót Toporem",
+      "pt-BR": "Giro de Machado",
+      "ru-RU": "Вращение Топором",
+      "es-ES": "Giro de Hacha",
+      "th-TH": "หมุนขวาน",
+      "tr-TR": "Balta Dönüşü",
+      "uk-UA": "Обертання Сокирою",
+      "vi-VN": "Xoay Rìu"
+    },
+    "SkillDescriptionKey": "SkillDescription_60501",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "持斧旋转,每秒对周围敌人造成{0}%物理伤害,有几率使其流血。攻击流血中的敌人造成额外伤害。",
+      "zh-Hant": "持斧旋轉,每秒對周圍敵人造成{0}%物理傷害,有機率使其流血。攻擊流血中的敵人造成額外傷害。",
+      "en-US": "Spin with an axe, dealing {0}% physical damage per second to nearby enemies and a chance to apply bleeding. Attacks against bleeding enemies deal bonus damage.",
+      "fr-FR": "Tournoyez avec une hache, infligeant {0}% de dégâts physiques par seconde aux ennemis proches avec une chance d'appliquer Saignement. Les attaques sur des ennemis saignants infligent des dégâts bonus.",
+      "de-DE": "Wirble mit einer Axt und füge nahen Gegnern pro Sekunde {0}% physischen Schaden zu mit Chance auf Blutung. Angriffe auf blutende Gegner verursachen Bonusschaden.",
+      "id-ID": "Berputar dengan kapak, memberi {0}% kerusakan fisik per detik kepada musuh di sekitar dan berpeluang menyebabkan Pendarahan. Serangan ke musuh yang berdarah memberi kerusakan tambahan.",
+      "ja-JP": "斧を持って回転し、周囲の敵に毎秒{0}%の物理ダメージを与え、一定確率で出血させる。出血中の敵を攻撃すると追加ダメージを与える。",
+      "ko-KR": "도끼를 들고 회전하며 주변 적들에게 초당 {0}%의 물리피해를 입히고 일정확률로 출혈을 일으킨다. 출혈 중인 적을 공격하면 추가 피해를 입힌다.",
+      "pl-PL": "Wiruj z toporem, zadając {0}% obrażeń fizycznych na sekundę pobliskim wrogom z szansą na Krwawienie. Ataki na krwawiących wrogów zadają dodatkowe obrażenia.",
+      "pt-BR": "Gira com um machado, infligindo {0}% de dano físico por segundo a inimigos próximos com chance de causar Sangramento. Ataques em inimigos sangrando causam dano extra.",
+      "ru-RU": "Вращайтесь с топором, нанося {0}% физического урона в секунду ближайшим врагам и с шансом наложить Кровотечение. Атаки по кровоточащим врагам наносят дополнительный урон.",
+      "es-ES": "Gira con un hacha, infligiendo {0}% de daño físico por segundo a enemigos cercanos con probabilidad de causar Sangrado. Los ataques a enemigos sangrando infligen daño extra.",
+      "th-TH": "หมุนด้วยขวานสร้างความเสียหายกายภาพ {0}% ต่อวินาทีให้ศัตรูรอบข้างและมีโอกาสทำให้เลือดออก โจมตีศัตรูที่เลือดออกอยู่จะสร้างความเสียหายเพิ่ม",
+      "tr-TR": "Baltayla dön, yakındaki düşmanlara saniyede %{0} fiziksel hasar ver ve belirli bir şansla Kanama uygula. Kanayan düşmanlara yapılan saldırılar bonus hasar verir.",
+      "uk-UA": "Обертайтесь із сокирою, завдаючи {0}% фізичної шкоди за секунду найближчим ворогам із шансом накласти Кровотечу. Атаки по кровоточивих ворогах завдають додаткової шкоди.",
+      "vi-VN": "Xoay người với rìu, gây {0}% sát thương vật lý mỗi giây cho kẻ địch xung quanh và có cơ hội gây Chảy Máu. Đòn đánh vào kẻ địch đang chảy máu gây thêm sát thương."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 18,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 60501,
+    "Param1": 500,
+    "Param2": 500,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 800,
+    "DamageType": "Physical",
+    "DamageDeliveryType": "Melee, AOE",
+    "Value": null,
+    "SkillLevelKey": 60501,
+    "AnimClipPath1": "Animation/Skill/Skill_60501",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 601033,
+    "SoundKey": 1303011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 1000
+      },
+      {
+        "level": 2,
+        "value": 1080
+      },
+      {
+        "level": 3,
+        "value": 1160
+      },
+      {
+        "level": 4,
+        "value": 1240
+      },
+      {
+        "level": 5,
+        "value": 1320
+      },
+      {
+        "level": 6,
+        "value": 1400
+      },
+      {
+        "level": 7,
+        "value": 1480
+      },
+      {
+        "level": 8,
+        "value": 1560
+      },
+      {
+        "level": 9,
+        "value": 1640
+      },
+      {
+        "level": 10,
+        "value": 1720
+      }
+    ],
+    "slug": "axe-spin"
+  },
+  {
+    "SkillKey": 60601,
+    "SkillNameKey": "SkillName_60601",
+    "SkillNameKey_i18n": {
+      "zh-Hans": "嗜血",
+      "zh-Hant": "嗜血",
+      "en-US": "Bloodlust",
+      "fr-FR": "Soif de Sang",
+      "de-DE": "Blutgier",
+      "id-ID": "Haus Darah",
+      "ja-JP": "ブラッドラスト",
+      "ko-KR": "피의 갈증",
+      "pl-PL": "Żądza Krwi",
+      "pt-BR": "Sede de Sangue",
+      "ru-RU": "Жажда Крови",
+      "es-ES": "Sed de Sangre",
+      "th-TH": "กระหายเลือด",
+      "tr-TR": "Kan Susuzluğu",
+      "uk-UA": "Жага Крові",
+      "vi-VN": "Khát Máu"
+    },
+    "SkillDescriptionKey": "SkillDescription_60601",
+    "SkillDescriptionKey_i18n": {
+      "zh-Hans": "消耗当前一半生命，一段时间内攻击伤害增加{0}%。",
+      "zh-Hant": "消耗當前一半生命，一段時間內攻擊傷害增加{0}%。",
+      "en-US": "Consume half of current HP to increase attack damage by {0}% for a time.",
+      "fr-FR": "Consomme la moitié de vos PV actuels pour augmenter les dégâts d'attaque de {0}% pendant un moment.",
+      "de-DE": "Verbrauche die Hälfte deiner aktuellen LP, um den Angriffsschaden eine Weile um {0}% zu erhöhen.",
+      "id-ID": "Habiskan setengah HP saat ini untuk menambah {0}% kerusakan serangan untuk sementara waktu.",
+      "ja-JP": "現在HPの半分を消費し、一定時間攻撃ダメージが{0}%増加します。",
+      "ko-KR": "현재 보유한 체력의 절반을 소모하고, 일정 시간 동안 공격력이 {0}% 증가한다.",
+      "pl-PL": "Zużyj połowę obecnego PŻ, aby zwiększyć obrażenia ataku o {0}% na pewien czas.",
+      "pt-BR": "Consome metade dos seus PV atuais para aumentar o dano de ataque em {0}% por algum tempo.",
+      "ru-RU": "Потратьте половину текущего HP, чтобы увеличить урон атаки на {0}% на время.",
+      "es-ES": "Consume la mitad de tu vida actual para aumentar el daño de ataque en {0}% durante un tiempo.",
+      "th-TH": "ใช้ HP ปัจจุบันครึ่งหนึ่ง เพิ่มความเสียหายโจมตี {0}% ในระยะเวลาหนึ่ง",
+      "tr-TR": "Mevcut canının yarısını tüket, saldırı hasarını bir süre %{0} artır.",
+      "uk-UA": "Витратьте половину поточного HP, щоб збільшити шкоду атаки на {0}% на час.",
+      "vi-VN": "Tiêu hao một nửa HP hiện tại để tăng {0}% sát thương tấn công trong một khoảng thời gian."
+    },
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 25,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 60601,
+    "Param1": 800,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": 900,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": null,
+    "SkillLevelKey": 60601,
+    "AnimClipPath1": "Animation/Skill/Skill_60601",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": 601043,
+    "SoundKey": 1303011,
+    "levels": [
+      {
+        "level": 1,
+        "value": 4000
+      },
+      {
+        "level": 2,
+        "value": 4300
+      },
+      {
+        "level": 3,
+        "value": 4600
+      },
+      {
+        "level": 4,
+        "value": 4900
+      },
+      {
+        "level": 5,
+        "value": 5200
+      },
+      {
+        "level": 6,
+        "value": 5500
+      },
+      {
+        "level": 7,
+        "value": 5800
+      },
+      {
+        "level": 8,
+        "value": 6100
+      },
+      {
+        "level": 9,
+        "value": 6400
+      },
+      {
+        "level": 10,
+        "value": 6700
+      }
+    ],
+    "slug": "bloodlust"
+  },
+  {
+    "SkillKey": 100111,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100111",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11001111,
+    "levels": [],
+    "slug": "id-100111"
+  },
+  {
+    "SkillKey": 100211,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 130,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100211",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11002111,
+    "levels": [],
+    "slug": "id-100211"
+  },
+  {
+    "SkillKey": 100221,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100221",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11002211,
+    "levels": [],
+    "slug": "id-100221"
+  },
+  {
+    "SkillKey": 100231,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": 999,
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100231",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11002311,
+    "levels": [],
+    "slug": "id-100231"
+  },
+  {
+    "SkillKey": 100311,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100311",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11003111,
+    "levels": [],
+    "slug": "id-100311"
+  },
+  {
+    "SkillKey": 100411,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100411",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11004111,
+    "levels": [],
+    "slug": "id-100411"
+  },
+  {
+    "SkillKey": 100421,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100421",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11004211,
+    "levels": [],
+    "slug": "id-100421"
+  },
+  {
+    "SkillKey": 100431,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 250,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100431",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11004311,
+    "levels": [],
+    "slug": "id-100431"
+  },
+  {
+    "SkillKey": 100511,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100511",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11005111,
+    "levels": [],
+    "slug": "id-100511"
+  },
+  {
+    "SkillKey": 100521,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100521",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11005211,
+    "levels": [],
+    "slug": "id-100521"
+  },
+  {
+    "SkillKey": 100531,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 300,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_100531",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11005311,
+    "levels": [],
+    "slug": "id-100531"
+  },
+  {
+    "SkillKey": 109011,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 750,
+    "Param2": 250,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 300,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_109011",
+    "AnimClipPath2": "Animation/Skill/Skill_109011_2",
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11090111,
+    "levels": [],
+    "slug": "id-109011"
+  },
+  {
+    "SkillKey": 109021,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 4,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 450,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1500,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_109021",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11090211,
+    "levels": [],
+    "slug": "id-109021"
+  },
+  {
+    "SkillKey": 109031,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 10,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 700,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1500,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_109031",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11090311,
+    "levels": [],
+    "slug": "id-109031"
+  },
+  {
+    "SkillKey": 109041,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 12,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 300,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1500,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_109041",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11090411,
+    "levels": [],
+    "slug": "id-109041"
+  },
+  {
+    "SkillKey": 109051,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 8,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 700,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1500,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_109051",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 11090511,
+    "levels": [],
+    "slug": "id-109051"
+  },
+  {
+    "SkillKey": 209011,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 750,
+    "Param2": 250,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 230,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_209011",
+    "AnimClipPath2": "Animation/Skill/Skill_209011_2",
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12090111,
+    "levels": [],
+    "slug": "id-209011"
+  },
+  {
+    "SkillKey": 209021,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 8,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Buff",
+    "BuffGroupKey": 209021,
+    "Param1": 500,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 250,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1800,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_209021",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12090211,
+    "levels": [],
+    "slug": "id-209021"
+  },
+  {
+    "SkillKey": 209031,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK_COUNT",
+    "ActivationValue": 6,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 600,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1350,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_209031",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12090311,
+    "levels": [],
+    "slug": "id-209031"
+  },
+  {
+    "SkillKey": 209041,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 16,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 270,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 2300,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_209041",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12090411,
+    "levels": [],
+    "slug": "id-209041"
+  },
+  {
+    "SkillKey": 209051,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 10,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 600,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 2000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_209051",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12090511,
+    "levels": [],
+    "slug": "id-209051"
+  },
+  {
+    "SkillKey": 309011,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 750,
+    "Param2": 250,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 700,
+    "Order": 999,
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": 1000,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_309011",
+    "AnimClipPath2": "Animation/Skill/Skill_309011_2",
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13090111,
+    "levels": [],
+    "slug": "id-309011"
+  },
+  {
+    "SkillKey": 309021,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 5,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 700,
+    "Order": 999,
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": 800,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_309021",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13090211,
+    "levels": [],
+    "slug": "id-309021"
+  },
+  {
+    "SkillKey": 309031,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 11,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": 500,
+    "Param2": 300,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": 999,
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": 1500,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_309031",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13090311,
+    "levels": [],
+    "slug": "id-309031"
+  },
+  {
+    "SkillKey": 309041,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 9,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 700,
+    "Order": 999,
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": 1700,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_309041",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13090411,
+    "levels": [],
+    "slug": "id-309041"
+  },
+  {
+    "SkillKey": 309051,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "COOLDOWN",
+    "ActivationValue": 18,
+    "SLOTTYPE": "SKILL",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 600,
+    "Order": 999,
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": 2300,
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_309051",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13090511,
+    "levels": [],
+    "slug": "id-309051"
+  },
+  {
+    "SkillKey": "200111 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200111",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12001111,
+    "levels": [],
+    "slug": "id-200111 "
+  },
+  {
+    "SkillKey": "200211 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 130,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200211",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12002111,
+    "levels": [],
+    "slug": "id-200211 "
+  },
+  {
+    "SkillKey": "200221 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200221",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12002211,
+    "levels": [],
+    "slug": "id-200221 "
+  },
+  {
+    "SkillKey": "200231 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200231",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12002311,
+    "levels": [],
+    "slug": "id-200231 "
+  },
+  {
+    "SkillKey": "200241 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200241",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12002411,
+    "levels": [],
+    "slug": "id-200241 "
+  },
+  {
+    "SkillKey": "200311 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200311",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12003111,
+    "levels": [],
+    "slug": "id-200311 "
+  },
+  {
+    "SkillKey": "200411 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200411",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12004111,
+    "levels": [],
+    "slug": "id-200411 "
+  },
+  {
+    "SkillKey": "200421 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200421",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12004211,
+    "levels": [],
+    "slug": "id-200421 "
+  },
+  {
+    "SkillKey": "200511 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200511",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12005111,
+    "levels": [],
+    "slug": "id-200511 "
+  },
+  {
+    "SkillKey": "200611 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200611",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12006111,
+    "levels": [],
+    "slug": "id-200611 "
+  },
+  {
+    "SkillKey": "200621 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200621",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12006211,
+    "levels": [],
+    "slug": "id-200621 "
+  },
+  {
+    "SkillKey": "200711 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200711",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12007111,
+    "levels": [],
+    "slug": "id-200711 "
+  },
+  {
+    "SkillKey": "200811 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200811",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12008111,
+    "levels": [],
+    "slug": "id-200811 "
+  },
+  {
+    "SkillKey": "200911 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_200911",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12009111,
+    "levels": [],
+    "slug": "id-200911 "
+  },
+  {
+    "SkillKey": "201111 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_201111",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12011111,
+    "levels": [],
+    "slug": "id-201111 "
+  },
+  {
+    "SkillKey": 201211,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 130,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_201211",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 12010111,
+    "levels": [],
+    "slug": "id-201211"
+  },
+  {
+    "SkillKey": "300111 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 130,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300111",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13001111,
+    "levels": [],
+    "slug": "id-300111 "
+  },
+  {
+    "SkillKey": "300121 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300121",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13001211,
+    "levels": [],
+    "slug": "id-300121 "
+  },
+  {
+    "SkillKey": "300131 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300131",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13001311,
+    "levels": [],
+    "slug": "id-300131 "
+  },
+  {
+    "SkillKey": "300211 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 250,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300211",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13002111,
+    "levels": [],
+    "slug": "id-300211 "
+  },
+  {
+    "SkillKey": "300311 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300311",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13003111,
+    "levels": [],
+    "slug": "id-300311 "
+  },
+  {
+    "SkillKey": "300411 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300411",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13004111,
+    "levels": [],
+    "slug": "id-300411 "
+  },
+  {
+    "SkillKey": "300421 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 900,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300421",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13004211,
+    "levels": [],
+    "slug": "id-300421 "
+  },
+  {
+    "SkillKey": "300431 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300431",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13004311,
+    "levels": [],
+    "slug": "id-300431 "
+  },
+  {
+    "SkillKey": "300441 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Cold",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300441",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13004411,
+    "levels": [],
+    "slug": "id-300441 "
+  },
+  {
+    "SkillKey": "300511 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 200,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300511",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13005111,
+    "levels": [],
+    "slug": "id-300511 "
+  },
+  {
+    "SkillKey": "300611 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 170,
+    "Order": "999 ",
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300611",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13006111,
+    "levels": [],
+    "slug": "id-300611 "
+  },
+  {
+    "SkillKey": "300711 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300711",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13007111,
+    "levels": [],
+    "slug": "id-300711 "
+  },
+  {
+    "SkillKey": "300811 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300811",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13008111,
+    "levels": [],
+    "slug": "id-300811 "
+  },
+  {
+    "SkillKey": "300821 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300821",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13008211,
+    "levels": [],
+    "slug": "id-300821 "
+  },
+  {
+    "SkillKey": "300831 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 250,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300831",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13008311,
+    "levels": [],
+    "slug": "id-300831 "
+  },
+  {
+    "SkillKey": "300841 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 130,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300841",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13008411,
+    "levels": [],
+    "slug": "id-300841 "
+  },
+  {
+    "SkillKey": "300911 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 300,
+    "Order": "999 ",
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_300911",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13009111,
+    "levels": [],
+    "slug": "id-300911 "
+  },
+  {
+    "SkillKey": 301015,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Fire",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_301015",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13010111,
+    "levels": [],
+    "slug": "id-301015"
+  },
+  {
+    "SkillKey": 301025,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Cold",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_301025",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13010211,
+    "levels": [],
+    "slug": "id-301025"
+  },
+  {
+    "SkillKey": 301035,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Lightning",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_301035",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13010311,
+    "levels": [],
+    "slug": "id-301035"
+  },
+  {
+    "SkillKey": 301045,
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 800,
+    "Order": "999 ",
+    "DamageType": "Chaos",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_301045",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13010411,
+    "levels": [],
+    "slug": "id-301045"
+  },
+  {
+    "SkillKey": "301111 ",
+    "SkillNameKey": null,
+    "SkillDescriptionKey": null,
+    "ACTIVATIONTYPE": "BASEATTACK",
+    "ActivationValue": 0,
+    "SLOTTYPE": "BASEATTACK",
+    "SkillBuffType": "Normal",
+    "BuffGroupKey": null,
+    "Param1": null,
+    "Param2": null,
+    "Param3": null,
+    "Param4": null,
+    "Param5": null,
+    "Range": 150,
+    "Order": "999 ",
+    "DamageType": "Physical",
+    "DamageDeliveryType": null,
+    "Value": "1000 ",
+    "SkillLevelKey": null,
+    "AnimClipPath1": "Animation/Skill/Skill_301111",
+    "AnimClipPath2": null,
+    "AnimClipPath3": null,
+    "AttributeKey": null,
+    "SoundKey": 13011111,
+    "levels": [],
+    "slug": "id-301111 "
+  }
+]

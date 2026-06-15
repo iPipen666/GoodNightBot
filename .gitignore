@@ -1,0 +1,73 @@
+# ───────── СЕКРЕТЫ / СЕРВЕР (НИКОГДА не в публичный репозиторий) ─────────
+server/
+secrets/
+*.env
+donate.env
+*.session
+*.db
+licenses.db
+credentials*.html
+
+# локальное состояние клиента (генерится на машине юзера)
+license.json
+update_state.json
+dl_stats.json
+session_log/
+*.log
+chest_audit.log
+.tesseract/
+
+# внутренние бизнес/план-доки (не для паблика)
+CLAUDE.md
+DESIGN.md
+ROADMAP.md
+ROADMAP_STAGE_HOPPING.md
+TODO_tomorrow.md
+GAME_DATA_MAP.md
+docs/
+_attic/
+
+# артефакты сборки (релизы кладём в GitHub Releases, не в репо)
+build*/
+dist*/
+installer/
+release/
+*.spec.bak
+
+# бинарь клиента (идёт в GitHub Releases, не в репо)
+GoodNightBot.exe
+*.exe
+
+# скретч-картинки/арт/мусор в корне (не часть рантайма; templates/fonts/icon — остаются)
+image.png
+image copy.png
+*_debug.png
+boxes_debug.png
+icon_prev_moon.ico
+arts/
+content/
+
+# внутренние план/исследование-доки (не для паблика)
+REDESIGN_PLAN.md
+SCENARIO.md
+swarm-plan.md
+swarm-design.md
+research_A_mechanic.md
+research_B_automation_risk.md
+research_C_techdesign.md
+GAME_MAP.md
+GAMEDB_SCHEMA.md
+GAME_DB.md
+HELP_SCHEMA.md
+README_PORTABLE.md
+
+# локальный клауд-конфиг
+.claude/
+
+# python / IDE
+.venv/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+.DS_Store

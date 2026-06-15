@@ -1,0 +1,11 @@
+mss>=10
+pygetwindow>=0.0.9
+pydirectinput-rgx>=2.1.0
+pyautogui>=0.9.54
+numpy>=1.26
+Pillow>=10
+keyboard>=0.13.5
+opencv-python>=4.9
+pytesseract>=0.3.10
+pynput>=1.7
+cryptography>=42
