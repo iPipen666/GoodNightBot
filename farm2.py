@@ -676,6 +676,51 @@ def ensure_log_ready(attempts=4, log=logx.log_human):
     return False, n
 
 
+def _init_hop(ctx):
+    """Собрать HopMode, если включён hop-режим (config.hop.enabled). БЕЗОПАСНО: без калибровки PORTAL
+    stagenav.goto вернёт False → реальных прыжков не будет. Выкл → ctx['_hop']=None (нулевое влияние)."""
+    h = farm.CFG.get("hop", {})
+    ctx["_hop"] = None
+    if not h.get("enabled"):
+        return
+    try:
+        import hopmode
+        import hopper
+        import stagenav
+        stages = hopper.load_nav()
+        ctx["_hop"] = hopmode.HopMode(
+            stages, hero_level=int(h.get("hero_level", 80)),
+            navigate=stagenav.navigate, log=logx.log_human,
+            difficulty=h.get("difficulty"), max_ahead=int(h.get("max_ahead", 8)))
+        ctx["_hop_sc"] = ctx["_hop_ct"] = ctx["_hop_df"] = 0
+        logx.log_human("hop-режим ВКЛ (stagenav кликает только при откалиброванном PORTAL)")
+    except Exception as e:
+        logx.log_human(f"hop-init err: {e!r}")
+
+
+def _hop_step(ctx, now=None):
+    """Скормить HopMode дельты лог-счётчиков (stage_clear/getbox/defeat) + тикнуть. No-op если hop off.
+    Тайминг безопасен внутри HopMode/runtracker (не прыгаем пока босс не убит+сундук не забран)."""
+    hm = ctx.get("_hop")
+    if hm is None or getattr(farm, "_LOG", None) is None:
+        return
+    now = now if now is not None else time.time()
+    lw = farm._LOG
+    ev = []
+    sc = getattr(lw, "stages_cleared", 0)
+    if sc > ctx.get("_hop_sc", 0):
+        ev += [("stage_clear", None, now)] * (sc - ctx["_hop_sc"]); ctx["_hop_sc"] = sc
+    ct = sum((getattr(lw, "chests", {}) or {}).values())
+    if ct > ctx.get("_hop_ct", 0):
+        ev.append(("getbox", "stage_boss", now)); ctx["_hop_ct"] = ct
+    df = getattr(lw, "defeats", 0)
+    if df > ctx.get("_hop_df", 0):
+        ev += [("defeat", None, now)] * (df - ctx["_hop_df"]); ctx["_hop_df"] = df
+    if ev:
+        hm.on_log_events(ev)
+    hm.tick(now)
+
+
 def _check_chest_autoopen():
     """Старт-детект сундукового HUD (chest_stock): авто-открытие ВКЛ/ВЫКЛ + сколько в стоке.
     ТОЛЬКО ДЕТЕКТ (без кликов). Юзер: «приоритетнее задетектить сундук, если ОТКЛЮЧЕНО автооткрытие».
@@ -781,6 +826,7 @@ def run(mode="live", log_cb=None, stat_cb=None, stop_event=None, politeness="pol
         "last_scan_ts": 0.0,
         "last_logopen_ts": 0.0,
     }
+    _init_hop(ctx)                  # hop-режим (прыжки по стадиям) — если включён в config.hop.enabled
 
     once = mode in ("once", "dry")  # один проход и выход (тест/dry)
     while True:
@@ -857,6 +903,7 @@ def run(mode="live", log_cb=None, stat_cb=None, stop_event=None, politeness="pol
             if not parallel and slept - last_obs >= obs_iv:
                 last_obs = slept
                 _observe_log(ctx)
+                _hop_step(ctx)                        # hop-режим: дельты лог-счётчиков → тайминг прыжка (no-op если off)
             # МАКСИМАЛЬНО ЧАСТО читаем лог во время ожидания: ценный дроп (бижу) → прерываем
             # ожидание и сразу идём на проход → прелок успевает залочить до раскладки/мержа.
             if slept - last_log >= log_iv:

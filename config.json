@@ -207,6 +207,12 @@
     "must_update_grace_h": 72,
     "api": "https://raw.githubusercontent.com/iPipen666/GoodNightBot/main"
   },
+  "hop": {
+    "enabled": false,
+    "difficulty": null,
+    "hero_level": 80,
+    "max_ahead": 8
+  },
   "links": {
     "telegram": "https://t.me/+vHGjyYJt1JM0NzNi",
     "telegram_bot": "https://t.me/taskbar_herobot"
