@@ -632,6 +632,50 @@ def _check_records_ready():
         logx.log_human(f"[лог-чек] {e!r}")
 
 
+def ensure_log_ready(attempts=4, log=logx.log_human):
+    """БЛОКИРУЮЩИЙ стартовый гейт лога RECORDS (Денис: «бот запустился → проверил окна → есть ли
+    развёрнутый лог → нет? закрепил, навёлся, развернул до макс → начал работу»).
+
+    КЛЮЧЕВОЙ ФИКС (найден живьём 2026-06-16): оценивать лог ТОЛЬКО ПОСЛЕ clear_panels — открытые
+    HERO/STATUS/cube перекрывают лог, и find_log даёт ложный n=0 («закрыт»), хотя он открыт.
+    Цикл: focus → clear_panels → find_log → если мало: открыть(Settings) + развернуть-до-макс
+    (pin_and_expand растит строки клик-за-кликом пока растёт = подтверждённый максимум) → повтор.
+    НЕ блокирует вечно: после attempts продолжаем (счёт догонит при развороте в цикле). (ready, n)."""
+    import log_setup
+    import records_ctl
+    if not farm.focus_game():
+        farm._stat(records_ready=False)
+        log("лог-гейт: окно игры не найдено")
+        return False, 0
+    n = 0
+    with mss.mss() as sct:
+        for i in range(1, attempts + 1):
+            if farm._hardstop():
+                return False, n
+            farm.clear_panels(sct)                         # КРИТИЧНО: снять перекрытие панелями
+            time.sleep(0.4)
+            n = log_setup.find_log().get("n", 0)
+            if n < COUNT_MIN_LINES:                         # реально закрыт → открыть через Settings
+                log(f"лог-гейт {i}/{attempts}: n={n} < {COUNT_MIN_LINES} — открываю лог…")
+                try:
+                    records_ctl.ensure_ready(farm.CFG, log=log, expand=False)
+                except Exception as e:
+                    log(f"лог-гейт open err: {e!r}")
+                time.sleep(0.3)
+            try:
+                records_ctl.pin_and_expand(farm.CFG, log=log)   # развернуть до МАКСИМУМА (рост строк)
+            except Exception as e:
+                log(f"лог-гейт expand err: {e!r}")
+            n = log_setup.find_log().get("n", n)
+            if n >= COUNT_MIN_LINES:
+                farm._stat(records_ready=True)
+                log(f"лог-гейт ✓ ({i}/{attempts}): развёрнут, n={n} — начинаю работу")
+                return True, n
+    farm._stat(records_ready=False)
+    log(f"лог-гейт ⚠ не дошёл до готовности за {attempts} попыток (n={n}) — продолжу, досчитаю в цикле")
+    return False, n
+
+
 def _check_chest_autoopen():
     """Старт-детект сундукового HUD (chest_stock): авто-открытие ВКЛ/ВЫКЛ + сколько в стоке.
     ТОЛЬКО ДЕТЕКТ (без кликов). Юзер: «приоритетнее задетектить сундук, если ОТКЛЮЧЕНО автооткрытие».
@@ -720,7 +764,7 @@ def run(mode="live", log_cb=None, stat_cb=None, stop_event=None, politeness="pol
                 prescan(s0, detailed=False)   # быстрый: только подсчёт, без OCR каждого предмета
         except Exception as e:
             logx.log_human(f"[скан] {e!r}")
-        _check_records_ready()                # игровой лог открыт и пишет события? (счёт сундуков)
+        ensure_log_ready()                    # БЛОКИРУЮЩИЙ гейт: лог открыт+развёрнут до макс ДО фарма
         _check_chest_autoopen()               # сундуки: авто-открытие ВКЛ/ВЫКЛ? (детект, без кликов)
         logx.log_human("поехали 🚀")
 
