@@ -652,7 +652,9 @@ def ensure_log_ready(attempts=4, log=logx.log_human):
         for i in range(1, attempts + 1):
             if farm._hardstop():
                 return False, n
-            farm.clear_panels(sct)                         # КРИТИЧНО: снять перекрытие панелями
+            # КРИТИЧНО (Денис 2026-06-16): закрыть HERO/stash/cube — они перекрывают лог.
+            # clear_panels НЕ закрывает HERO; collapse_for_observe ESC-ит пока hero/stash/cube видны.
+            records_ctl.collapse_for_observe(farm.CFG, sct, log=log)
             time.sleep(0.4)
             n = log_setup.find_log().get("n", 0)
             if n < COUNT_MIN_LINES:                         # реально закрыт → открыть через Settings
