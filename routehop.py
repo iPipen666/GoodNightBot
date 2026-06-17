@@ -80,10 +80,9 @@ def parse_route_cfg(route):
                 dwell = int(item.get("dwell_sec") or item.get("time") or 0)
             except (TypeError, ValueError):
                 dwell = 0
-            if dwell <= 0:
-                errors.append(f"время должно быть >0 сек для {lab}")
-                continue
-            stops.append({"label": lab, "dwell_sec": dwell})
+            # без секунд (визуальный конструктор) → безопасный дефолт-таймер; защита от misclick
+            # остаётся (CLEARED-гейт не даёт прыгнуть в момент боссового сундука).
+            stops.append({"label": lab, "dwell_sec": dwell if dwell > 0 else 240})
     return stops, errors
 
 

@@ -182,6 +182,16 @@ class Panel:
             return (CTA_FONT, size, "bold italic")
         return self._font(size, True)
 
+    def _en(self, key, **kw):
+        """Английское значение ключа — для БРЕНДОВЫХ CTA (Saira) и анимированной строки статуса:
+        они ВСЕГДА латиницей (Saira уродски рендерит кириллицу), независимо от языка UI."""
+        import i18n
+        s = i18n.LANG.get(key, {}).get("en-US", key)
+        try:
+            return s.format(**kw) if kw else s
+        except Exception:
+            return s
+
     # ---------- мелкая кнопка-бейдж в шапке ----------
     def _badge(self, parent, off, text, fg, cmd):
         """Бейдж-кнопка в шапке. off — отступ от ПРАВОГО края (anchor=ne, relx=1.0),
@@ -191,6 +201,113 @@ class Panel:
         b.place(relx=1.0, x=-off, y=6, anchor="ne")
         b.bind("<Button-1>", lambda e: cmd())
         return b
+
+    # ── язык интерфейса: дропдаун в шапке (применяется перезапуском панели) ──
+    _LANG_NAMES = {"ru-RU": "Русский", "en-US": "English", "de-DE": "Deutsch", "es-ES": "Español",
+                   "fr-FR": "Français", "pl-PL": "Polski", "pt-BR": "Português", "tr-TR": "Türkçe",
+                   "uk-UA": "Українська", "zh-Hans": "简体中文", "zh-Hant": "繁體中文", "ja-JP": "日本語",
+                   "ko-KR": "한국어", "th-TH": "ไทย", "vi-VN": "Tiếng Việt", "id-ID": "Bahasa Indonesia"}
+
+    def _lang_menu(self):
+        import i18n
+        cur = i18n._lang()
+        m = tk.Menu(self.root, tearoff=0, bg=T.PANEL, fg=T.INK, activebackground=T.EDGE_HI,
+                    activeforeground=T.STAR, bd=0)
+        for loc in i18n.LOCALES:
+            mark = "● " if loc == cur else "    "
+            m.add_command(label=mark + self._LANG_NAMES.get(loc, loc),
+                          command=lambda l=loc: self._set_lang(l))
+        try:
+            m.tk_popup(self.root.winfo_pointerx(), self.root.winfo_pointery())
+        finally:
+            m.grab_release()
+
+    def _set_lang(self, loc):
+        try:
+            cfg = load_cfg(); cfg["lang_main"] = loc; save_cfg(cfg)
+        except Exception:
+            return
+        try:
+            self.status.config(text=t("lang_restart"), fg=T.MOON)
+        except Exception:
+            pass
+        self._restart_panel()
+
+    def _restart_panel(self):
+        """Перезапустить панель (применить язык). Запускаем отложенный релонч и выходим, чтобы
+        освободить single-instance-мьютекс до старта новой копии."""
+        import subprocess
+        exe = os.path.join(HERE, "GoodNightBot.exe")
+        if os.path.exists(exe):
+            cmd = 'cmd /c timeout /t 2 >nul & start "" "%s"' % exe
+        else:
+            pyw = os.path.join(HERE, ".venv", "Scripts", "pythonw.exe")
+            cmd = 'cmd /c timeout /t 2 >nul & start "" "%s" "%s"' % (pyw, os.path.join(HERE, "control.py"))
+        try:
+            subprocess.Popen(cmd, shell=True)
+        except Exception:
+            pass
+        self.root.after(250, lambda: os._exit(0))
+
+    # ── Stage hop с главного экрана ──
+    def _hop_main_toggle(self):
+        cfg = load_cfg()
+        cfg.setdefault("hop", {})["enabled"] = bool(self._hop_main_var.get())
+        save_cfg(cfg)
+        self._refresh_start_gate()      # hop.enabled влияет на гейт START (нужна калибровка PORTAL)
+
+    def _hop_open_settings(self):
+        """ОТДЕЛЬНОЕ окно настроек прыжков по этапам (пресеты/маршрут/калибровка PORTAL)."""
+        if getattr(self, "_hopwin", None) is not None:
+            try:
+                if self._hopwin.winfo_exists():
+                    self._hopwin.lift(); self._hopwin.focus_force(); return
+            except Exception:
+                pass
+        self._cfg = load_cfg(); self._cfgvars = {}; self._gvars = {}; self._defaults = {}
+        w = tk.Toplevel(self.root); self._hopwin = w
+        w.title("Stage hop"); w.configure(bg=T.NIGHT)
+        sw, sh = self.root.winfo_screenwidth(), self.root.winfo_screenheight()
+        ww, wh = 470, min(760, sh - 80)
+        w.geometry("%dx%d+%d+%d" % (ww, wh, (sw - ww) // 2, max(20, (sh - wh) // 2)))
+        try:
+            w.iconbitmap(ICON_ICO)
+        except Exception:
+            pass
+
+        def _close():
+            try:
+                w.unbind_all("<MouseWheel>")
+            except Exception:
+                pass
+            try:
+                w.destroy()
+            except Exception:
+                pass
+            self._hopwin = None
+
+        bb = tk.Frame(w, bg=T.NIGHT); bb.pack(side="bottom", fill="x", padx=12, pady=(4, 10))
+        tk.Button(bb, text="Save ✓", command=lambda: (self._save_settings(), _close(),
+                  self._refresh_start_gate(),
+                  self._hop_main_var.set(bool((load_cfg().get("hop", {}) or {}).get("enabled")))
+                  if hasattr(self, "_hop_main_var") else None),
+                  bg=T.GO, fg=T.GO_INK, relief="flat", bd=0, font=self._cta_font(13),
+                  pady=7, cursor="hand2").pack(fill="x")
+
+        area = tk.Frame(w, bg=T.EDGE); area.pack(fill="both", expand=True, padx=8, pady=8)
+        canvas = tk.Canvas(area, bg=T.NIGHT, highlightthickness=0)
+        sb = ttk.Scrollbar(area, orient="vertical", command=canvas.yview)
+        canvas.configure(yscrollcommand=sb.set)
+        sb.pack(side="right", fill="y"); canvas.pack(side="left", fill="both", expand=True)
+        holder = tk.Frame(canvas, bg=T.NIGHT)
+        cwin = canvas.create_window((0, 0), window=holder, anchor="nw")
+        holder.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.bind("<Configure>", lambda e: canvas.itemconfig(cwin, width=e.width))
+        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(int(-e.delta / 120), "units"))
+        inner = tk.Frame(holder, bg=T.NIGHT)        # внутренний отступ — текст не липнет к краям
+        inner.pack(fill="both", expand=True, padx=16, pady=12)
+        self._tab_hop(inner)
+        w.protocol("WM_DELETE_WINDOW", _close)
 
     def _build(self):
         r = self.root
@@ -257,6 +374,7 @@ class Panel:
         self._badge(wrap, 36, "?", T.INK,   self._help)
         self._badge(wrap, 62, "⚙", T.MOON,  self._settings)
         self._badge(wrap, 90, "—", T.INK,   self._minimize)
+        self._badge(wrap, 120, "🌐", T.SUB, self._lang_menu)   # выбор языка интерфейса
 
         body = tk.Frame(wrap, bg=T.NIGHT)
         body.pack(fill="both", expand=True, padx=12, pady=(2, 8))
@@ -303,7 +421,7 @@ class Panel:
         # ── калибровка: ПОД блоком версии — заметна когда что-то не готово ──
         cal_bar = tk.Frame(body, bg=T.NIGHT)
         cal_bar.pack(fill="x", pady=(2, 2))
-        self._calib_btn = tk.Button(cal_bar, text="⚙ Calibrate", command=self._run_calibration,
+        self._calib_btn = tk.Button(cal_bar, text=t("calibrate"), command=self._run_calibration,
                                     bg=T.PANEL, fg=T.MOON, activebackground=T.EDGE_HI,
                                     relief="flat", bd=0, font=self._font(11, True),
                                     cursor="hand2", pady=6)
@@ -322,7 +440,7 @@ class Panel:
             _amts = [99, 499, 999]
         dfr = tk.Frame(body, bg=T.NIGHT)
         dfr.pack(fill="x", pady=(0, 4))
-        tk.Label(dfr, text="Support the project", bg=T.NIGHT, fg=T.MOON,
+        tk.Label(dfr, text=self._en("support_project"), bg=T.NIGHT, fg=T.MOON,
                  font=self._cta_font(13)).pack(anchor="w", pady=(0, 2))
         drow = tk.Frame(dfr, bg=T.NIGHT)
         drow.pack(fill="x")
@@ -333,12 +451,12 @@ class Panel:
                           font=self._font(10, True), cursor="hand2", pady=5)
             b.pack(side="left", fill="x", expand=True, padx=2)
         # своя сумма (ввод на странице оплаты; минимум 99 — лимит на сервере)
-        tk.Button(dfr, text="Custom amount…", command=self._donate_custom,
+        tk.Button(dfr, text=t("custom_amount"), command=self._donate_custom,
                   bg=T.PANEL, fg=T.SUB, activebackground=T.EDGE_HI, activeforeground=T.STAR,
                   relief="flat", bd=0, font=self._font(8, True), cursor="hand2",
                   pady=4).pack(fill="x", padx=2, pady=(3, 0))
         # для иностранцев — «спасибо» в Telegram Stars (открывает бота; текст не переводится)
-        tk.Button(dfr, text="★  Say thanks in Stars", command=self._donate_stars,
+        tk.Button(dfr, text=t("say_thanks_stars"), command=self._donate_stars,
                   bg=T.PANEL, fg=T.SUB, activebackground=T.EDGE_HI, activeforeground=T.STAR,
                   relief="flat", bd=0, font=self._font(8, True), cursor="hand2",
                   pady=4).pack(fill="x", padx=2, pady=(3, 0))
@@ -430,6 +548,19 @@ class Panel:
             self.mdesc[val] = lb
         self._set_mode("parallel")
 
+        # ── Stage hop — отдельный режим ПРЯМО на главном (раньше был спрятан в настройках) ──
+        hp = (load_cfg().get("hop", {}) or {})
+        hop_row = tk.Frame(body, bg=T.NIGHT)
+        hop_row.pack(fill="x", pady=(5, 0))
+        self._hop_main_var = tk.BooleanVar(value=bool(hp.get("enabled")))
+        tk.Checkbutton(hop_row, text="✦ " + t("hop_enable"), variable=self._hop_main_var,
+                       command=self._hop_main_toggle, bg=T.NIGHT, fg=T.MOON, selectcolor=T.PANEL,
+                       activebackground=T.NIGHT, activeforeground=T.STAR, font=self._font(9, True),
+                       bd=0, highlightthickness=0, cursor="hand2", anchor="w").pack(side="left")
+        tk.Button(hop_row, text=t("hop_setup"), command=self._hop_open_settings, bg=T.PANEL,
+                  fg=T.SUB, activebackground=T.EDGE_HI, activeforeground=T.STAR, relief="flat",
+                  bd=0, font=self._font(8, True), cursor="hand2", padx=8, pady=1).pack(side="right")
+
         tk.Frame(body, bg=T.EDGE, height=2).pack(fill="x", pady=4)
 
         # вкладки лога: Общий / только Лут (дроп слабо виден в общем потоке)
@@ -451,10 +582,10 @@ class Panel:
         # ── CTA «вступай в наш Telegram» — золотой акцентный блок, заманиваем в сообщество ──
         self.tg_wrap = tk.Frame(body, bg=T.MOON, cursor="hand2")
         self.tg_wrap.pack(side="bottom", fill="x", padx=2, pady=(3, 0))
-        self.tg_btn = tk.Label(self.tg_wrap, text=t("tg_btn"), bg=T.MOON, fg=T.GO_INK,
+        self.tg_btn = tk.Label(self.tg_wrap, text=self._en("tg_btn"), bg=T.MOON, fg=T.GO_INK,
                                font=self._cta_font(15), cursor="hand2")
         self.tg_btn.pack(fill="x", pady=(5, 0))
-        self.tg_sub = tk.Label(self.tg_wrap, text=t("tg_sub"), bg=T.MOON, fg="#6e5c22",
+        self.tg_sub = tk.Label(self.tg_wrap, text=self._en("tg_sub"), bg=T.MOON, fg="#6e5c22",
                                font=self._font(8), cursor="hand2")
         self.tg_sub.pack(fill="x", pady=(0, 5))
 
@@ -480,7 +611,7 @@ class Panel:
         # кнопка «База знаний» ПОД логом — закреплена снизу, всегда видна
         self.db_glow = tk.Frame(body, bg=T.EDGE)
         self.db_glow.pack(side="bottom", fill="x")
-        self.db_btn = tk.Label(self.db_glow, text=t("db_btn"), bg=T.PANEL2,
+        self.db_btn = tk.Label(self.db_glow, text=self._en("db_btn"), bg=T.PANEL2,
                                fg=T.MOON, font=self._cta_font(13), cursor="hand2", pady=7)
         self.db_btn.pack(fill="x", padx=2, pady=2)
         self.db_btn.bind("<Button-1>", lambda e: self._open_db())
@@ -588,9 +719,9 @@ class Panel:
         try:
             self._lbl_mode.config(text=t("mode"))
             self._lbl_f12.config(text=t("f12"))
-            self.db_btn.config(text=t("db_btn"))
-            self.tg_btn.config(text=t("tg_btn"))
-            self.tg_sub.config(text=t("tg_sub"))
+            self.db_btn.config(text=self._en("db_btn"))      # бренд-CTA — всегда латиница
+            self.tg_btn.config(text=self._en("tg_btn"))
+            self.tg_sub.config(text=self._en("tg_sub"))
             self.upd_lbl.config(text=t("upd_check"))
             self._lbl_date.config(text=t("date"))
             self.mode_btns["parallel"].config(text=t("m_parallel"))
@@ -1221,20 +1352,20 @@ class Panel:
         self._cfgvars = {}
         self._gvars = {}
         self._defaults = {}
-        ov = self._overlay("Settings")
+        ov = self._overlay(st("настройки"))
         btns = tk.Frame(ov, bg=T.NIGHT); btns.pack(side="bottom", fill="x", padx=12, pady=(4, 10))
         tk.Button(btns, text="Save ✓", command=self._save_settings, bg=T.GO, fg=T.GO_INK,
                   relief="flat", bd=0, font=self._cta_font(14), pady=8, cursor="hand2").pack(fill="x")
-        tk.Button(btns, text="↺ reset to defaults", command=self._reset_defaults, bg=T.PANEL,
+        tk.Button(btns, text=st("↺ сброс к умолчаниям"), command=self._reset_defaults, bg=T.PANEL,
                   fg=T.SUB, relief="flat", bd=0, font=self._font(9, True), pady=5,
                   cursor="hand2").pack(fill="x", pady=(4, 0))
         body = tk.Frame(ov, bg=T.NIGHT); body.pack(fill="both", expand=True, padx=16, pady=6)
-        self._s_toggle(body, "Auto-synthesis (cube)", "policy.merge_enabled", False,
-                       "Merge low-grade items into stronger ones. OFF = never touch the cube (safest).",
+        self._s_toggle(body, "Авто-синтез (куб)", "policy.merge_enabled", False,
+                       "Сводить низкие грейды в сильные. ВЫКЛ = куб не трогается (безопаснее всего).",
                        fg=T.MOON)
-        self._s_toggle(body, "Collect mail", "state.mail_enabled", True)
-        self._s_toggle(body, "Protect valuables", "policy.log_prelock", True,
-                       "Locks jewelry & Immortal+ before merging — keep ON.")
+        self._s_toggle(body, "Забирать почту", "state.mail_enabled", True)
+        self._s_toggle(body, "Беречь ценное", "policy.log_prelock", True,
+                       "Лочит бижу и Бессмертный+ перед мержем — держи ВКЛ.")
         # язык перевода БД (UI всегда английский)
         try:
             import db_browser as _dbm
@@ -1244,9 +1375,9 @@ class Panel:
             _locs, _labs, _LL = ["ru-RU", "en-US"], ["Русский", "English"], {"ru-RU": "Русский", "en-US": "English"}
         self._lang_l2c = dict(zip(_labs, _locs))
         self._lang_main_var = tk.StringVar(value=_LL.get("en-US", "English"))   # UI фиксирован EN
-        self._s_section(body, "Database translation")
+        self._s_section(body, "Перевод базы знаний")
         self._lang_tr_on = tk.BooleanVar(value=bool(self._cfg.get("translate_enabled", True)))
-        tk.Checkbutton(body, text="show item names translated", variable=self._lang_tr_on,
+        tk.Checkbutton(body, text=st("показывать имена предметов переведёнными"), variable=self._lang_tr_on,
                        bg=T.NIGHT, fg=T.EV["mail"], selectcolor=T.EDGE, activebackground=T.NIGHT,
                        activeforeground=T.INK, font=self._font(9), anchor="w").pack(fill="x")
         _curtr = self._cfg.get("lang_translate", "ru-RU")
@@ -1261,7 +1392,7 @@ class Panel:
         tk.Frame(body, bg=T.EDGE, height=1).pack(fill="x", pady=(16, 6))
         tk.Button(body, text="Advanced  ▾", command=self._open_advanced, bg=T.PANEL, fg=T.SUB,
                   relief="flat", bd=0, font=self._cta_font(12), pady=6, cursor="hand2").pack(fill="x")
-        tk.Label(body, text="scans · timing · intervals · grade selection · hoard list",
+        tk.Label(body, text=st("сканы · тайминги · интервалы · выбор грейдов · hoard-лист"),
                  bg=T.NIGHT, fg=T.FAINT, font=self._font(7), wraplength=HW - 80,
                  justify="left").pack(anchor="w", pady=(3, 0))
 
@@ -1775,21 +1906,21 @@ class Panel:
     def _tab_hop(self, f):
         import routehop
         h = self._cfg.get("hop", {}) or {}
-        self._s_section(f, "Stage hop — jump between stages")
-        self._s_hint(f, "Stage hop needs a one-time PORTAL calibration on YOUR window (the map "
-                        "coordinates are window-specific). Without it the bot NEVER clicks blind — "
-                        "hop just stays idle, farming is unaffected.")
+        self._s_section(f, "Прыжки по этапам")
+        self._s_hint(f, "Бот сам перемещается между этапами по карте PORTAL. Нужна разовая калибровка "
+                        "PORTAL под твоё окно. Без неё бот вслепую не кликает — прыжки просто стоят, "
+                        "обычный фарм не страдает.")
 
         # ── PORTAL calibration (REQUIRED for hop) — live status + launcher ──
-        self._s_section(f, "PORTAL calibration (required)")
+        self._s_section(f, "Калибровка PORTAL (обязательна)")
         self._hop_cal_status = tk.Label(f, text="", bg=T.NIGHT, fg=T.FAINT, font=self._font(9),
                                         wraplength=HW - 78, justify="left", anchor="w")
         self._hop_cal_status.pack(anchor="w", pady=(0, 2))
         crow = tk.Frame(f, bg=T.NIGHT); crow.pack(fill="x", pady=(0, 2))
-        tk.Button(crow, text="✦ calibrate PORTAL", command=self._hop_run_calibration, bg=T.PANEL,
+        tk.Button(crow, text=st("✦ калибровать PORTAL"), command=self._hop_run_calibration, bg=T.PANEL,
                   fg=T.MOON, relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
                   cursor="hand2").pack(side="left")
-        tk.Button(crow, text="↻ re-check", command=self._hop_refresh_cal_status, bg=T.PANEL,
+        tk.Button(crow, text=st("↻ перепроверить"), command=self._hop_refresh_cal_status, bg=T.PANEL,
                   fg=T.INK, relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
                   cursor="hand2").pack(side="left", padx=(6, 0))
         self._hop_refresh_cal_status()
@@ -1797,17 +1928,18 @@ class Panel:
         self._hop_mode_var = tk.StringVar(value=("off" if not h.get("enabled")
                                                  else (h.get("mode") or "strategy").lower()))
         row = tk.Frame(f, bg=T.NIGHT); row.pack(fill="x", pady=(4, 2))
-        tk.Label(row, text="mode", bg=T.NIGHT, fg=T.SUB, font=self._font(9),
+        tk.Label(row, text=st("режим"), bg=T.NIGHT, fg=T.SUB, font=self._font(9),
                  anchor="w").pack(side="left")
         self._hop_style(tk.OptionMenu(row, self._hop_mode_var, "off", "strategy", "route")).pack(side="right")
-        self._s_hint(f, "off — no hopping  ·  strategy — auto chest-juggling by level  ·  route — your timed map below")
+        self._s_hint(f, "off — без прыжков  ·  strategy — авто-жонглирование сундуками по уровню  ·  "
+                        "route — твоя таймерная карта ниже")
 
         # ── presets: ready community strategies + your saved routes ──
-        self._s_section(f, "Presets")
-        self._s_hint(f, "Ready-made community strategies + your own saved routes. Pick one and press "
-                        "load to fill the fields below. Save the current route as a named preset of your own.")
+        self._s_section(f, "Пресеты")
+        self._s_hint(f, "Готовые стратегии сообщества + твои сохранённые маршруты. Выбери и нажми "
+                        "«загрузить» — поля заполнятся. «Сохранить как» — сохранить текущий маршрут под именем.")
         prow = tk.Frame(f, bg=T.NIGHT); prow.pack(fill="x", pady=2)
-        tk.Label(prow, text="preset", bg=T.NIGHT, fg=T.SUB, font=self._font(9),
+        tk.Label(prow, text=st("пресет"), bg=T.NIGHT, fg=T.SUB, font=self._font(9),
                  anchor="w").pack(side="left")
         self._hop_preset_var = tk.StringVar()
         self._hop_preset_om = self._hop_style(tk.OptionMenu(prow, self._hop_preset_var, ""))
@@ -1817,53 +1949,59 @@ class Panel:
                                            wraplength=HW - 78, justify="left", anchor="w")
         self._hop_preset_status.pack(anchor="w")
         pbrow = tk.Frame(f, bg=T.NIGHT); pbrow.pack(fill="x", pady=(2, 0))
-        tk.Button(pbrow, text="load", command=self._hop_load_preset, bg=T.PANEL, fg=T.GO,
+        tk.Button(pbrow, text=st("загрузить"), command=self._hop_load_preset, bg=T.PANEL, fg=T.GO,
                   relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
                   cursor="hand2").pack(side="left")
-        tk.Button(pbrow, text="✦ save as", command=self._hop_save_preset, bg=T.PANEL, fg=T.MOON,
+        tk.Button(pbrow, text=st("✦ сохранить как"), command=self._hop_save_preset, bg=T.PANEL, fg=T.MOON,
                   relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
                   cursor="hand2").pack(side="left", padx=(6, 0))
-        tk.Button(pbrow, text="delete", command=self._hop_delete_preset, bg=T.PANEL, fg=T.WARN,
+        tk.Button(pbrow, text=st("удалить"), command=self._hop_delete_preset, bg=T.PANEL, fg=T.WARN,
                   relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
                   cursor="hand2").pack(side="left", padx=(6, 0))
 
-        self._s_section(f, "Strategy preset (mode = strategy)")
-        self._s_num(f, "hero level", "hop.hero_level", 80, "int",
-                    "your roster level — bounds stage level (EXP penalty if a stage is too high)")
+        self._s_section(f, "Стратегия (режим = strategy)")
+        self._s_num(f, "уровень героя", "hop.hero_level", 80, "int",
+                    "уровень твоего ростера — ограничивает уровень этапа (штраф к опыту, если этап слишком высокий)")
         cur_diff = (h.get("difficulty") or "any")
         self._hop_diff_var = tk.StringVar(value=cur_diff if cur_diff in self._HOP_DIFFS else "any")
         drow = tk.Frame(f, bg=T.NIGHT); drow.pack(fill="x", pady=2)
-        tk.Label(drow, text="difficulty", bg=T.NIGHT, fg=T.SUB, font=self._font(9),
+        tk.Label(drow, text=st("сложность"), bg=T.NIGHT, fg=T.SUB, font=self._font(9),
                  anchor="w").pack(side="left")
         self._hop_style(tk.OptionMenu(drow, self._hop_diff_var, *self._HOP_DIFFS)).pack(side="right")
-        self._s_hint(f, "keep to one difficulty = fewer PORTAL clicks per hop")
-        self._s_num(f, "max levels ahead", "hop.max_ahead", 8, "int",
-                    "never farm a stage more than N levels above hero (EXP-penalty guard)")
+        self._s_hint(f, "одна сложность = меньше кликов по PORTAL на прыжок")
+        self._s_num(f, "макс. уровней выше", "hop.max_ahead", 8, "int",
+                    "не фармить этап выше героя больше чем на N уровней (защита от штрафа к опыту)")
 
-        self._s_section(f, "Custom route (mode = route)")
-        self._s_hint(f, "One stage per line:   3-3-9 / time: 235 sec\n"
-                        "X-Y-Z = difficulty(1-4)-act(1-3)-stage(1-10). Give each stage enough time so the "
-                        "pack fully farms it. Loops top→bottom forever.")
-        txt = tk.Text(f, height=7, bg="#120e22", fg=T.INK, insertbackground=T.MOON, relief="flat",
-                      bd=0, font=self._font(10), wrap="none", highlightthickness=1,
-                      highlightbackground=T.EDGE, highlightcolor=T.MOON)
-        txt.pack(fill="x", pady=(2, 2), ipady=3)
-        stops, _ = routehop.parse_route_cfg(h.get("route", []))
-        if stops:
-            txt.insert("1.0", routehop.format_route(stops))
-        self._hop_route_txt = txt
-        self._hop_route_status = tk.Label(f, text="", bg=T.NIGHT, fg=T.FAINT, font=self._font(8),
-                                          wraplength=HW - 78, justify="left", anchor="w")
-        self._hop_route_status.pack(anchor="w")
-        brow = tk.Frame(f, bg=T.NIGHT); brow.pack(fill="x", pady=(4, 0))
-        tk.Button(brow, text="✓ check", command=self._hop_check_route, bg=T.PANEL, fg=T.INK,
-                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+        self._s_section(f, "Свой маршрут (режим = route)")
+        self._hop_boss_var = tk.BooleanVar(value=bool(h.get("boss_gate", True)))
+        tk.Checkbutton(f, text=st("доходить и убивать босса этапа перед прыжком"),
+                       variable=self._hop_boss_var, bg=T.NIGHT, fg=T.MOON, selectcolor=T.EDGE,
+                       activebackground=T.NIGHT, activeforeground=T.STAR, font=self._font(9),
+                       anchor="w", wraplength=HW - 80, justify="left").pack(fill="x", pady=(2, 0))
+        self._s_hint(f, "Без секунд: бот по логу ждёт, что этап пройден (и босс убит, если включено), "
+                        "и только тогда прыгает дальше. Не дошёл — ждёт и проверяет. Карта зациклена.")
+        # ── визуальный конструктор: строки [слож·акт·этап] через дропдауны + «＋ добавить шаг» ──
+        self._hop_rows = []
+        self._hop_rows_box = tk.Frame(f, bg=T.NIGHT)
+        self._hop_rows_box.pack(fill="x", pady=(2, 2))
+        _stops, _ = routehop.parse_route_cfg(h.get("route", []))
+        for _s in _stops:
+            try:
+                _d, _a, _g = (int(x) for x in _s["label"].split("-"))
+                self._hop_add_row(_d, _a, _g, fresh=False)
+            except Exception:
+                pass
+        if not self._hop_rows:
+            self._hop_add_row(1, 1, 1, fresh=True)
+        arow = tk.Frame(f, bg=T.NIGHT); arow.pack(fill="x", pady=(2, 0))
+        tk.Button(arow, text=st("＋ добавить шаг"), command=self._hop_add_row_copy, bg=T.PANEL,
+                  fg=T.GO, relief="flat", bd=0, font=self._font(9, True), padx=10, pady=5,
                   cursor="hand2").pack(side="left")
-        tk.Button(brow, text="✦ fill preset", command=self._hop_fill_preset, bg=T.PANEL, fg=T.MOON,
-                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+        tk.Button(arow, text=st("✦ из пресета"), command=self._hop_fill_preset, bg=T.PANEL,
+                  fg=T.MOON, relief="flat", bd=0, font=self._font(9, True), padx=10, pady=5,
                   cursor="hand2").pack(side="left", padx=(6, 0))
-        self._s_hint(f, "⚠ legit navigation only — never bypass chest cooldown by reconnecting (ban risk). "
-                        "Mind the EXP penalty: don't route stages far above your level.")
+        self._s_hint(f, "⚠ только честная навигация — не сбрасывай КД сундука реконнектом (риск бана). "
+                        "Не ставь этапы намного выше уровня героя (штраф к опыту).")
 
     def _hop_style(self, om):
         om.config(bg=T.PANEL, fg=T.INK, activebackground=T.PANEL2, activeforeground=T.MOON,
@@ -1872,16 +2010,85 @@ class Panel:
                           activeforeground=T.MOON, font=self._font(10), bd=0)
         return om
 
-    def _hop_check_route(self):
-        import routehop
-        stops, errs = routehop.parse_route(self._hop_route_txt.get("1.0", "end"))
-        if errs:
-            self._hop_route_status.config(text="⚠ " + "  ·  ".join(errs[:3]), fg=T.WARN)
-        elif not stops:
-            self._hop_route_status.config(text="route empty — add lines like  3-3-9 / time: 235 sec", fg=T.FAINT)
-        else:
-            total = sum(s["dwell_sec"] for s in stops)
-            self._hop_route_status.config(text=f"✓ {len(stops)} stages, full loop ~{total}s", fg=T.GO)
+    # ── визуальный конструктор маршрута: строки [слож·акт·этап] дропдаунами ──
+    _HOP_DIFF_OPTS = ["1", "2", "3", "4"]
+    _HOP_ACT_OPTS = ["1", "2", "3"]
+    _HOP_STAGE_OPTS = [str(i) for i in range(1, 11)]
+
+    def _hop_add_row(self, d=1, a=1, s=1, fresh=False):
+        rf = tk.Frame(self._hop_rows_box, bg=T.PANEL, highlightthickness=2,
+                      highlightbackground=(T.MOON if fresh else T.PANEL))
+        rf.pack(fill="x", pady=2)
+        dv, av, sv = tk.StringVar(value=str(d)), tk.StringVar(value=str(a)), tk.StringVar(value=str(s))
+        row = {"diff": dv, "act": av, "stage": sv, "frame": rf, "fresh": fresh}
+        for var, opts, lbl in ((dv, self._HOP_DIFF_OPTS, st("слож")),
+                               (av, self._HOP_ACT_OPTS, st("акт")),
+                               (sv, self._HOP_STAGE_OPTS, st("этап"))):
+            cell = tk.Frame(rf, bg=T.PANEL); cell.pack(side="left", fill="x", expand=True, padx=3, pady=3)
+            tk.Label(cell, text=lbl, bg=T.PANEL, fg=T.FAINT, font=self._font(7)).pack(anchor="w")
+            self._hop_style(tk.OptionMenu(cell, var, *opts)).pack(fill="x")
+
+        def _touched(*_):
+            if row.get("fresh"):
+                row["fresh"] = False
+                try:
+                    rf.config(highlightbackground=T.PANEL)
+                except Exception:
+                    pass
+        for var in (dv, av, sv):
+            var.trace_add("write", _touched)
+        tk.Button(rf, text="✕", command=lambda: self._hop_del_row(row), bg=T.PANEL, fg=T.STOPC,
+                  relief="flat", bd=0, font=self._font(11, True), cursor="hand2",
+                  padx=6).pack(side="right", padx=(2, 4))
+        self._hop_rows.append(row)
+
+    def _hop_add_row_copy(self):
+        if self._hop_rows:
+            last = self._hop_rows[-1]
+            try:
+                self._hop_add_row(int(last["diff"].get()), int(last["act"].get()),
+                                  int(last["stage"].get()), fresh=True)
+                return
+            except Exception:
+                pass
+        self._hop_add_row(1, 1, 1, fresh=True)
+
+    def _hop_del_row(self, row):
+        if len(self._hop_rows) <= 1:
+            return                                   # хотя бы один шаг оставляем
+        try:
+            row["frame"].destroy()
+        except Exception:
+            pass
+        try:
+            self._hop_rows.remove(row)
+        except ValueError:
+            pass
+
+    def _hop_set_rows(self, stops):
+        for r in list(getattr(self, "_hop_rows", [])):
+            try:
+                r["frame"].destroy()
+            except Exception:
+                pass
+        self._hop_rows = []
+        for s in stops or []:
+            try:
+                d, a, g = (int(x) for x in str(s.get("label", "")).split("-"))
+                self._hop_add_row(d, a, g, fresh=False)
+            except Exception:
+                pass
+        if not self._hop_rows:
+            self._hop_add_row(1, 1, 1, fresh=True)
+
+    def _hop_collect_route(self):
+        out = []
+        for r in getattr(self, "_hop_rows", []):
+            try:
+                out.append({"label": f"{int(r['diff'].get())}-{int(r['act'].get())}-{int(r['stage'].get())}"})
+            except Exception:
+                pass
+        return out
 
     def _hop_fill_preset(self):
         import routehop
@@ -1891,10 +2098,7 @@ class Panel:
             lvl = int((self._cfg.get("hop", {}) or {}).get("hero_level", 80))
         diff = self._hop_diff_var.get()
         diff = None if diff in ("any", "") else diff
-        stops = routehop.suggest_route(lvl, difficulty=diff, n=4, dwell_sec=240)
-        self._hop_route_txt.delete("1.0", "end")
-        self._hop_route_txt.insert("1.0", routehop.format_route(stops))
-        self._hop_check_route()
+        self._hop_set_rows(routehop.suggest_route(lvl, difficulty=diff, n=4))
 
     # ── PORTAL calibration status / launcher ──
     def _hop_refresh_cal_status(self):
@@ -2061,11 +2265,11 @@ class Panel:
             return
         ok = not (s["missing"] or s["stale"])
         if s["all_ok"]:
-            self._calib_btn.config(text="✓ calibrated — recalibrate", fg=T.GO)
+            self._calib_btn.config(text=t("calibrated_recal"), fg=T.GO)
             self._calib_hint.config(text="")
         else:
             n = len(s["missing"]) + len(s["stale"])
-            self._calib_btn.config(text="⚙ Calibrate now (%d)" % n, fg=T.NIGHT, bg=T.MOON)
+            self._calib_btn.config(text=t("calibrate_now", n=n), fg=T.NIGHT, bg=T.MOON)
             self._calib_hint.config(
                 text="%d point-set(s) need a one-time calibration on your window — tap to fix" % n)
         self._refresh_start_gate()   # START недоступен пока есть некалиброванные точки ИЛИ ждёт апдейт
@@ -2103,9 +2307,7 @@ class Panel:
         if patch.get("difficulty"):
             self._hop_diff_var.set(patch["difficulty"])
         if patch.get("route_stops") is not None:
-            self._hop_route_txt.delete("1.0", "end")
-            self._hop_route_txt.insert("1.0", routehop.format_route(patch["route_stops"]))
-            self._hop_check_route()
+            self._hop_set_rows(patch["route_stops"])
         tag = "built-in" if name in hop_presets._COMMUNITY_NAMES else "custom"
         msg = f"loaded {tag} '{name}' → mode {patch['mode']}"
         if patch.get("warn"):
@@ -2188,12 +2390,10 @@ class Panel:
                 cfg["hop"]["mode"] = mode
             d = self._hop_diff_var.get()
             cfg["hop"]["difficulty"] = None if d in ("any", "") else d
-            try:
-                import routehop
-                stops, _ = routehop.parse_route(self._hop_route_txt.get("1.0", "end"))
-                cfg["hop"]["route"] = stops
-            except Exception:
-                pass
+            if hasattr(self, "_hop_boss_var"):
+                cfg["hop"]["boss_gate"] = bool(self._hop_boss_var.get())
+            if hasattr(self, "_hop_rows"):
+                cfg["hop"]["route"] = self._hop_collect_route()   # из визуального конструктора (без секунд)
         # язык БД
         if hasattr(self, "_lang_main_var"):
             cfg["lang_main"] = self._lang_l2c.get(self._lang_main_var.get(), cfg.get("lang_main", "ru-RU"))
@@ -2298,11 +2498,11 @@ class Panel:
 
     def _running_ui(self, on):
         if on:
-            self.btn.config(text=t("stop"), bg=T.STOPC, fg=T.STOP_INK, activebackground=T.STOPC)
+            self.btn.config(text=self._en("stop"), bg=T.STOPC, fg=T.STOP_INK, activebackground=T.STOPC)
             self.dot.itemconfig(self._oval, fill=T.GO)
             self.status.config(text=t("farming"), fg=T.GO)
         else:
-            self.btn.config(text=t("start"), bg=T.GO, fg=T.GO_INK, activebackground=T.GO)
+            self.btn.config(text=self._en("start"), bg=T.GO, fg=T.GO_INK, activebackground=T.GO)
             self.dot.itemconfig(self._oval, fill=T.FAINT)
             self.status.config(text=t("ready"), fg=T.SUB)
 

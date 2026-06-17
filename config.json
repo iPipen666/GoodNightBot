@@ -202,7 +202,7 @@
   "translate_enabled": true,
   "lang_translate": "ru-RU",
   "resume_idle_seconds": 10,
-  "panel_geom": "425x1267+827+176",
+  "panel_geom": "425x1267+845+122",
   "update": {
     "auto": false,
     "must_update_grace_h": 72,

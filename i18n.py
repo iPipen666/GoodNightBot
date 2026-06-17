@@ -240,6 +240,18 @@ def localize_log(text):
 
 # k: {locale: text}. Эмодзи общие, не переводятся.
 LANG = {
+    # ── строки, перенесённые из хардкода под i18n (видимые на главном экране) ──
+    "support_project": {"ru-RU": "Поддержать проект", "en-US": "Support the project"},
+    "custom_amount": {"ru-RU": "Своя сумма…", "en-US": "Custom amount…"},
+    "say_thanks_stars": {"ru-RU": "★ Спасибо в Stars", "en-US": "★ Say thanks in Stars"},
+    "calibrate": {"ru-RU": "⚙ Калибровка", "en-US": "⚙ Calibrate"},
+    "calibrate_now": {"ru-RU": "⚙ Калибровать ({n})", "en-US": "⚙ Calibrate now ({n})"},
+    "calibrated_recal": {"ru-RU": "✓ откалибровано — заново", "en-US": "✓ calibrated — recalibrate"},
+    "hop_main": {"ru-RU": "Прыжки по этапам", "en-US": "Stage hop"},
+    "hop_enable": {"ru-RU": "вкл. прыжки по этапам", "en-US": "enable stage hop"},
+    "hop_setup": {"ru-RU": "настроить…", "en-US": "configure…"},
+    "lang_pick": {"ru-RU": "Язык интерфейса", "en-US": "Interface language"},
+    "lang_restart": {"ru-RU": "Язык изменён — панель перезапускается…", "en-US": "Language changed — restarting…"},
     "ready": {"ru-RU": "готов", "en-US": "ready", "de-DE": "bereit", "es-ES": "listo",
               "fr-FR": "prêt", "pl-PL": "gotowy", "pt-BR": "pronto", "tr-TR": "hazır",
               "uk-UA": "готовий", "zh-Hans": "就绪", "zh-Hant": "就緒", "ja-JP": "準備完了",
@@ -690,6 +702,36 @@ for _k, _tr in _FILL.items():
 # прогоняют отображаемый текст через st(ru): отдаёт перевод текущей локали, иначе en, иначе
 # ru-оригинал (graceful). Фаза 1: каркас (заголовок/кнопки/вкладки/секции). Поля — фаза 2.
 _ST = {
+    # ── окно Stage hop (ru-исходник → перевод; длинные подсказки пока ru-фолбэк для не-ru) ──
+    "Прыжки по этапам": {"en-US": "Stage hop"},
+    "Калибровка PORTAL (обязательна)": {"en-US": "PORTAL calibration (required)"},
+    "✦ калибровать PORTAL": {"en-US": "✦ calibrate PORTAL"},
+    "↻ перепроверить": {"en-US": "↻ re-check"},
+    "режим": {"en-US": "mode"},
+    "Пресеты": {"en-US": "Presets"},
+    "пресет": {"en-US": "preset"},
+    "загрузить": {"en-US": "load"},
+    "✦ сохранить как": {"en-US": "✦ save as"},
+    "удалить": {"en-US": "delete"},
+    "Стратегия (режим = strategy)": {"en-US": "Strategy preset (mode = strategy)"},
+    "уровень героя": {"en-US": "hero level"},
+    "сложность": {"en-US": "difficulty"},
+    "макс. уровней выше": {"en-US": "max levels ahead"},
+    "Свой маршрут (режим = route)": {"en-US": "Custom route (mode = route)"},
+    # ── простой экран настроек (ru-исходник → перевод) ──
+    "настройки": {"en-US": "Settings"},
+    "Авто-синтез (куб)": {"en-US": "Auto-synthesis (cube)"},
+    "Сводить низкие грейды в сильные. ВЫКЛ = куб не трогается (безопаснее всего).":
+        {"en-US": "Merge low-grade items into stronger ones. OFF = never touch the cube (safest)."},
+    "Забирать почту": {"en-US": "Collect mail"},
+    "Беречь ценное": {"en-US": "Protect valuables"},
+    "Лочит бижу и Бессмертный+ перед мержем — держи ВКЛ.":
+        {"en-US": "Locks jewelry & Immortal+ before merging — keep ON."},
+    "Перевод базы знаний": {"en-US": "Database translation"},
+    "показывать имена предметов переведёнными": {"en-US": "show item names translated"},
+    "↺ сброс к умолчаниям": {"en-US": "↺ reset to defaults"},
+    "сканы · тайминги · интервалы · выбор грейдов · hoard-лист":
+        {"en-US": "scans · timing · intervals · grade selection · hoard list"},
     "⚙ настройки": {"en-US": "⚙ settings", "de-DE": "⚙ Einstellungen", "es-ES": "⚙ ajustes",
         "fr-FR": "⚙ réglages", "pl-PL": "⚙ ustawienia", "pt-BR": "⚙ ajustes", "tr-TR": "⚙ ayarlar",
         "uk-UA": "⚙ налаштування", "zh-Hans": "⚙ 设置", "zh-Hant": "⚙ 設定", "ja-JP": "⚙ 設定",

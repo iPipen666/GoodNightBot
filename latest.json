@@ -1,8 +1,8 @@
 {
-  "version": "1.1.17",
+  "version": "1.1.18",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "1f021430ed3fe8ff67462c7b33475ebdb657737dd913076a425c88ad895b16a3",
-  "sig": "RwEWgnrTWQ1cP6F083PPAlUze1LKvIViKWAJebwqtwPzoXlyK4_FbdNl2IqtKfusPGi2inARJxX8uxqf1nsEAQ",
+  "sha256": "0433f3d3ebd8e706e4c0a5abe81bbf88409bcd63e06842848c2f2c7bdd17bbff",
+  "sig": "ezI-RGC5B0ycAI_b8WyX67kNvP60JzTZ3oJa3SA3w0HMXSk5DZsj4-b3vr9MTPgEjf41lvun67v1ZXrAw8ESDw",
   "min_version": "1.1.6",
-  "notes": "Прогресс-бар в цвете темы (мятный). START сам разблокируется после калибровки (без перезапуска)."
+  "notes": "Русский интерфейс + выбор языка в шапке (16 языков). Stage hop вынесен на главный + отдельное окно с визуальным конструктором маршрута. Брендовые CTA остаются английскими."
 }
