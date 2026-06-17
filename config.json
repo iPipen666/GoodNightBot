@@ -198,10 +198,11 @@
   },
   "_comment": "cube_mode: 'synthesis' (9/9 одной редкости -> мерж, <9 вернуть+стоп), 'craft' (выбери тип+Lv в игре, 1 крафт/итерацию за материал, max_iterations=число крафтов), 'alchemy' (мусор -> золото, ТОЛЬКО вручную). dry_run=true -> лог без кликов. Режим/тип/Lv выбираешь В ИГРЕ. chest.scan_full_screen=true сканит весь экран; ловит ложно -> false + сузь search_region. Любой PNG в templates/chests/ ищется как сундук.",
   "lang_main": "en-US",
+  "ocr_lang": "ru",
   "translate_enabled": true,
   "lang_translate": "ru-RU",
   "resume_idle_seconds": 10,
-  "panel_geom": "425x1000+80+24",
+  "panel_geom": "425x1267+827+176",
   "update": {
     "auto": false,
     "must_update_grace_h": 72,
@@ -209,9 +210,11 @@
   },
   "hop": {
     "enabled": false,
+    "mode": "strategy",
     "difficulty": null,
     "hero_level": 80,
-    "max_ahead": 8
+    "max_ahead": 8,
+    "route": []
   },
   "links": {
     "telegram": "https://t.me/+vHGjyYJt1JM0NzNi",
@@ -236,6 +239,6 @@
       600
     ]
   },
-  "autostart_on_ready": true,
+  "autostart_on_ready": false,
   "autostart_mode": "auto"
 }

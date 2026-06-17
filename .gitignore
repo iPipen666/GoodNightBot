@@ -73,3 +73,9 @@ __pycache__/
 .DS_Store
 MONITORING.md
 NIGHT_LOG.md
+
+# per-window PORTAL calibration — NEVER ship (window-fraction, each user calibrates locally)
+portal_calibration.json
+portal_calibration.json.bak
+
+models/

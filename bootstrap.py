@@ -19,7 +19,7 @@ VENV = os.path.join(HERE, ".venv")
 VENV_PY = os.path.join(VENV, "Scripts", "python.exe")
 VENV_PYW = os.path.join(VENV, "Scripts", "pythonw.exe")
 REQ = os.path.join(HERE, "requirements.txt")
-DEPS_CHECK = "import cv2,mss,pyautogui,numpy,pygetwindow,keyboard,pydirectinput,pytesseract"
+DEPS_CHECK = "import cv2,mss,pyautogui,numpy,pygetwindow,keyboard,pydirectinput,pytesseract,rapidocr_onnxruntime,onnxruntime"
 
 # ── Tesseract-OCR (внешний бинарь, нужен для чтения тултипов) ──
 CFG_PATH = os.path.join(HERE, "config.json")

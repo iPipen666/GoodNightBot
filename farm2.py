@@ -655,6 +655,7 @@ def ensure_log_ready(attempts=4, log=logx.log_human):
             # КРИТИЧНО (Денис 2026-06-16): закрыть HERO/stash/cube — они перекрывают лог.
             # clear_panels НЕ закрывает HERO; collapse_for_observe ESC-ит пока hero/stash/cube видны.
             records_ctl.collapse_for_observe(farm.CFG, sct, log=log)
+            records_ctl.reveal_log(farm.CFG, sct, log=log)   # КЛИК в поле лога → проявить RECORDS (ховер Unity не ловит)
             time.sleep(0.4)
             n = log_setup.find_log().get("n", 0)
             if n < COUNT_MIN_LINES:                         # реально закрыт → открыть через Settings
@@ -686,16 +687,36 @@ def _init_hop(ctx):
     if not h.get("enabled"):
         return
     try:
-        import hopmode
-        import hopper
         import stagenav
-        stages = hopper.load_nav()
-        ctx["_hop"] = hopmode.HopMode(
-            stages, hero_level=int(h.get("hero_level", 80)),
-            navigate=stagenav.navigate, log=logx.log_human,
-            difficulty=h.get("difficulty"), max_ahead=int(h.get("max_ahead", 8)))
+        # ОБЯЗАТЕЛЬНАЯ калибровка PORTAL под окно юзера — без неё хоп безопасно простаивает (кликов нет)
+        cst, cdetail = stagenav.calibration_status()
+        if cst != "ok":
+            logx.log_human(f"⚠ ХОП ВКЛ, но PORTAL НЕ откалиброван ({cst}): {cdetail}. "
+                           "Прыжков НЕ будет — прогони калибровку PORTAL в панели (вкладка Stage hop) "
+                           "ИЛИ calibrate_portal.py. Фарм работает как обычно.")
         ctx["_hop_sc"] = ctx["_hop_ct"] = ctx["_hop_df"] = 0
-        logx.log_human("hop-режим ВКЛ (stagenav кликает только при откалиброванном PORTAL)")
+        mode = (h.get("mode") or "strategy").lower()
+        if mode == "route":                               # таймерный маршрут (кастомная карта)
+            import routehop
+            stops, errs = routehop.parse_route_cfg(h.get("route", []))
+            for e in errs:
+                logx.log_human(f"hop-маршрут: {e}")
+            if not stops:
+                logx.log_human("hop-маршрут пуст/невалиден — режим выключен")
+                return
+            ctx["_hop"] = routehop.RouteHop(stops, navigate=stagenav.navigate, log=logx.log_human)
+            total = sum(s["dwell_sec"] for s in stops)
+            logx.log_human(f"hop-режим МАРШРУТ ВКЛ: {len(stops)} этапов, круг ~{total}с "
+                           "(stagenav кликает только при откалиброванном PORTAL)")
+        else:                                             # пресет «по стратегии» (событийный juggling)
+            import hopmode
+            import hopper
+            stages = hopper.load_nav()
+            ctx["_hop"] = hopmode.HopMode(
+                stages, hero_level=int(h.get("hero_level", 80)),
+                navigate=stagenav.navigate, log=logx.log_human,
+                difficulty=h.get("difficulty"), max_ahead=int(h.get("max_ahead", 8)))
+            logx.log_human("hop-режим СТРАТЕГИЯ ВКЛ (stagenav кликает только при откалиброванном PORTAL)")
     except Exception as e:
         logx.log_human(f"hop-init err: {e!r}")
 
@@ -769,6 +790,11 @@ def run(mode="live", log_cb=None, stat_cb=None, stop_event=None, politeness="pol
       "auto"   — отсчёт 3-2-1 и старт, короткие паузы (8–20 с).
     """
     farm.set_hooks(log_cb, stat_cb, stop_event)
+    try:
+        import vision
+        vision.reset_session_scale()       # окно/масштаб мог смениться между сессиями → переучить
+    except Exception:
+        pass
     farm.STATS.update(cycle=0, merges=0, box_normal=0, box_stage=0, box_act=0,
                       loot_valuable=0, loot_materials=0)   # счётчики — с нуля на каждую сессию
     if getattr(farm, "_LOG", None) is not None:

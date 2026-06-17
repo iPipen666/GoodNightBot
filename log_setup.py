@@ -33,23 +33,33 @@ def _log_bands(frame):
     стек, обычно верх-центр); (2) ПЛАВАЮЩАЯ пилюля последнего события (1 строка, ЛЮБОЕ место,
     часто низ-центр). Прежний `_log_region` сканил только верх 60% → ПРОПУСКАЛ нижнюю пилюлю
     (корень «n=0, не считается» в боевом виде). Теперь — все банды по высоте.
-    Метод: медиана яркости строки по ЦЕНТРАЛЬНЫМ колонкам (0.30–0.72W, мимо просвета браузера
-    слева) < 60 → тёмная строка пилюли; группируем в банды; таскбар внизу (>0.95H) отрезаем."""
+    Метод: ДОЛЯ тёмных пикселей в ЦЕНТРАЛЬНЫХ колонках (0.30–0.72W, мимо просвета браузера слева)
+    > 0.5 → строка тёмного окна лога. КЛЮЧ: окно RECORDS = тёмный фон + тонкий яркий текст; по
+    МЕДИАНЕ строка с текстом во всю ширину = «яркая» (текст заполняет центр) → строки текста выпадали,
+    оставались тонкие сливеры 7px (баг: «Не удалось пройти Этап 2-7» не читался). Доля-тёмных собирает
+    строку целиком (штрихи текста тонкие → большинство пикселей всё равно тёмные). Таскбар (>0.95H) режем."""
     a = np.asarray(frame)[:, :, :3]
     gray = a.mean(axis=2)
     H, W = gray.shape
     cl, cr = int(W * 0.30), int(W * 0.72)
-    med = np.median(gray[:, cl:cr], axis=1)
-    isdark = med < 60
+    darkfrac = (gray[:, cl:cr] < 70).mean(axis=1)
+    isdark = darkfrac > 0.5
     isdark[int(H * 0.95):] = False                # таскбар/нижняя кромка — не лог
-    bands, cur = [], []
+    # GAP-толерантная группировка: яркая строка ТЕКСТА внутри одной строки лога рвала банду на
+    # тонкие сливеры (h≈8-10), каждый = пол-высоты глифа → OCR пустой. Разрыв ≤4px не закрывает банду
+    # (та же строка); >4px — отдельная строка лога. Чинит фрагментацию «Не удалось пройти Этап».
+    bands, cur, gap = [], [], 0
     for y in range(H):
         if isdark[y]:
-            cur.append(y)
+            cur.append(y); gap = 0
         elif cur:
-            if cur[-1] - cur[0] >= 6:
-                bands.append((cur[0], cur[-1]))
-            cur = []
+            gap += 1
+            if gap > 4:
+                if cur[-1] - cur[0] >= 6:
+                    bands.append((cur[0], cur[-1]))
+                cur, gap = [], 0
+            else:
+                cur.append(y)
     if cur and cur[-1] - cur[0] >= 6:
         bands.append((cur[0], cur[-1]))
     out = []
@@ -89,6 +99,18 @@ def _rows(frame, scale=1.4, max_channel=True):
     return out
 
 
+def _log_field():
+    """(rx,ry) точки лога из records_calibration.json — центр зоны для кропа OCR. None если нет."""
+    import json
+    import os
+    try:
+        p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "records_calibration.json")
+        v = json.load(open(p, encoding="utf-8")).get("log_field")
+        return (v["rx"], v["ry"]) if v else None
+    except Exception:
+        return None
+
+
 def find_log(frame=None):
     """Найти лог по тексту строк-событий. Вернуть dict:
       {n: число строк, box: (x0,y0,x1,y1) объединяющий бокс лог-строк, rows: [(text,box)…]}
@@ -104,24 +126,25 @@ def find_log(frame=None):
         if not w:
             return {"n": 0}
         frame = logwatch.grab(w)
+    # RapidOCR сам ДЕТЕКТИТ все текстовые строки (band-сегментация/мультимасштаб не нужны) и читает
+    # кириллич. моделью. Просвет рабочего стола сквозь прозрачный оверлей отсекает `_is_log_line`.
+    # СКОРОСТЬ: окно RECORDS в известной зоне (вокруг калибр. log_field) — OCR'им только её (≈3× быстрее,
+    # меньше ложных строк). Нет калибровки → весь кадр.
+    import ocr_engine
     arr = np.asarray(frame)
-    H = arr.shape[0]
-    # «Хорошие» банды: НЕ вырожденные. На СВЕТЛОМ фоне (browser сквозь прозрачность) банды чисто
-    # изолируют пилюлю/стек. Но фон за прозрачным оверлеем меняется: на ТЁМНОМ фоне банда
-    # вырождается (всё «тёмное» → одна банда на весь кадр) — её отбрасываем (>70% высоты) и идём
-    # в полнокадровый OCR (он читает одиночную пилюлю независимо от фона).
-    good = [b for b in _log_bands(frame) if 8 <= (b[3] - b[1]) < int(H * 0.70)]
-    log_rows = []
-    if good:
-        raw = []
-        for rx0, ry0, rx1, ry1 in good:
-            crop = arr[ry0 : ry1 + 1, rx0 : rx1 + 2]
-            scale = 4.0 if (ry1 - ry0) < 200 else 3.0     # мелкая банда — крупнее апскейл
-            raw += [(t, (b[0] + rx0, b[1] + ry0, b[2] + rx0, b[3] + ry0))
-                    for (t, b) in _rows(crop, scale=scale)]
-        log_rows = [(t, b) for (t, b) in raw if logwatch._is_log_line(t)]
-    if not log_rows:                                   # банд нет / пусты → полнокадровый фолбэк
-        log_rows = [(t, b) for (t, b) in _rows(frame, scale=2.0) if logwatch._is_log_line(t)]
+    H, W = arr.shape[:2]
+    ox, oy = 0, 0
+    lf = _log_field()
+    if lf:
+        cy = int(lf[1] * H)
+        oy = max(0, cy - int(0.52 * H))                # окно тянется ВВЕРХ от точки клика
+        y1 = min(H, cy + int(0.06 * H))
+        ox = int(0.24 * W); x1 = int(0.74 * W)         # центр по X (мимо панели слева / героев справа)
+        region = np.ascontiguousarray(arr[oy:y1, ox:x1])
+    else:
+        region = arr
+    log_rows = [(t, (b[0] + ox, b[1] + oy, b[2] + ox, b[3] + oy))
+                for (t, b) in ocr_engine.read(region) if logwatch._is_log_line(t)]
     if not log_rows:
         return {"n": 0}
     log_rows.sort(key=lambda tb: tb[1][1])             # сверху вниз по y

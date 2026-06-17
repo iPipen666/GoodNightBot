@@ -47,6 +47,15 @@ _SCALE_CACHE = {}         # name -> последний удачный масшт
 _MISS = {}                # размера, общий кэш ломал детект, напр. mail.png 190px vs hero.png 300px)
 _SCALE_BAND = 0.15        # ± вокруг кэша
 _MISS_BEFORE_FULL = 3     # столько промахов подряд -> полный пересвип шаблона
+# ГЛОБАЛЬНЫЙ масштаб сессии: игра ОДНОГО масштаба всю сессию. Полный свип 35 масштабов × 9 панелей
+# ≈5с КАЖДЫЙ detect, когда панель закрыта (per-name кэш пуст → полный свип). Как только ЛЮБАЯ панель
+# нашлась на масштабе S — ВСЕ панели (даже невиданные) ищем узкой полосой вокруг S → detect <1с.
+_SESSION_SCALE = None
+
+
+def reset_session_scale():
+    global _SESSION_SCALE
+    _SESSION_SCALE = None
 
 _TPL = {}
 
@@ -95,15 +104,23 @@ def _match(full, tpl, scales=None):
     return best
 
 
-def detect(win, sct):
-    """Открытые панели -> {name: {cx,cy,w,h,scale,score}} (центр баннера, ЭКРАН. коорд)."""
+def detect(win, sct, names=None):
+    """Открытые панели -> {name: {cx,cy,w,h,scale,score}} (центр баннера, ЭКРАН. коорд).
+    names=[…] — матчить ТОЛЬКО эти панели (быстрее, когда нужны 2-3 из 9)."""
+    global _SESSION_SCALE
     full, off = grab(win, sct)
     cands = []
-    for name, tpl in _templates().items():
-        # узкая полоса вокруг кэша ЭТОГО шаблона (быстро); полный свип первый раз / после промахов
+    items = [(n, t) for n, t in _templates().items() if names is None or n in names]
+    for name, tpl in items:
+        # масштаб: per-name кэш → иначе ГЛОБАЛЬНЫЙ масштаб сессии (узкая полоса) → иначе полный свип.
+        # Сессионный масштаб убирает 5с-свипы для ещё-не-виданных/закрытых панелей (игра 1 масштаба).
         cs = _SCALE_CACHE.get(name)
         if cs is not None and _MISS.get(name, 0) < _MISS_BEFORE_FULL:
             scales = [s for s in SCALES if cs - _SCALE_BAND <= s <= cs + _SCALE_BAND]
+        elif _SESSION_SCALE is not None:
+            # масштаб игры фиксирован всю сессию → закрытая/невиданная панель ищется узкой полосой
+            # вокруг session_scale БЕЗ _MISS-эскалации (закрытая панель не значит «другой масштаб»).
+            scales = [s for s in SCALES if _SESSION_SCALE - _SCALE_BAND <= s <= _SESSION_SCALE + _SCALE_BAND]
         else:
             scales = SCALES
         score, cx, cy, w, h, scale = _match(full, tpl, scales)
@@ -127,6 +144,7 @@ def detect(win, sct):
                      "w": w, "h": h, "scale": round(scale, 3),
                      "score": round(float(score), 3)}
         _SCALE_CACHE[name] = scale
+        _SESSION_SCALE = scale          # игра 1 масштаба → запомнить для ВСЕХ панелей сессии
         _MISS[name] = 0
     return out
 

@@ -322,9 +322,9 @@ def k():
     return human.kill_pressed(KKEY) or _stopped()
 
 
-def detect(sct):
+def detect(sct, names=None):
     w = fw()
-    return (w, vision.detect(w, sct)) if w else (None, {})
+    return (w, vision.detect(w, sct, names=names)) if w else (None, {})
 
 
 def isleep(sec):
@@ -512,7 +512,7 @@ def ensure_inventory_tab(sct):
     КОРЕНЬ багов «8 вместо 10 / 0 / 16»: на вкладке Formation сетка инвентаря попадает на
     иконки персонажей/петов → мусорный счёт. Клик по вкладке идемпотентен (уже Inventory →
     остаётся). Курсор паркуется на кнопке (ниже сетки, не перекрывает ячейки). Вернуть hero|None."""
-    w, d = detect(sct)
+    w, d = detect(sct, names=["hero"])
     h = d.get("hero")
     if not h:
         h = ensure_open(sct, "hero")
@@ -524,7 +524,7 @@ def ensure_inventory_tab(sct):
         human.click(x, y, CFG)
         _bot_cursor[0] = idle.cursor_pos()
         time.sleep(COUNT_SETTLE)
-        h = detect(sct)[1].get("hero", h)
+        h = detect(sct, names=["hero"])[1].get("hero", h)
     return h
 
 
@@ -864,7 +864,7 @@ def ensure_open(sct, name):
     """Гарантировать панель name открытой (Tab-bootstrap + тоггл в HERO). Вернуть dict|None.
     Клик-тоггл + ПОЛЛИНГ детекта (анимация открытия ~до 2.4с — без поллинга детект
     срабатывал слишком рано => «не открыт»). До 2 попыток клика."""
-    w, d = detect(sct)
+    w, d = detect(sct, names=[name, "hero"])
     if name in d:
         return d[name]
     hero = ensure_hero(sct)
@@ -879,11 +879,11 @@ def ensure_open(sct, name):
         if k():
             return None
         click_el(hero, "hero", toggle, f"открыть {name}")
-        for _ in range(8):                  # поллинг ~2.4с
+        for _ in range(6):                  # поллинг (detect ~быстрый с names → больше запас по времени)
             if _hardstop():                 # СТОП — мгновенно выходим из поллинга
                 return None
             time.sleep(0.3)
-            w, d = detect(sct)
+            w, d = detect(sct, names=[name, "hero"])
             if name in d:
                 return d[name]
             hero = d.get("hero", hero)       # обновить ссылку на hero (мог сместиться)
@@ -896,17 +896,19 @@ def clear_panels(sct):
     куб/стэш. ESC закрывает верхнюю открытую панель — проверено живьём 2026-06-07: диалога
     выхода НЕ открывает, на пустом экране ESC безвреден (no-op). Бьём короткую серию ESC (до 4),
     выходя, когда баннеров на экране не осталось (все 9 панелей зашаблонены в vision.PANELS)."""
-    _, d = detect(sct)
-    blk = [n for n in d if n in ("runes", "status", "settings", "portal", "tradeship")]
-    if blk:
-        log(f"  лишние панели открыты: {blk} — закрываю (ESC)")
+    _BLK = ("runes", "status", "settings", "portal", "tradeship")
+    _, d = detect(sct, names=_BLK)        # детектим ТОЛЬКО блокирующие (1-5 шаблонов, не все 9 — быстро)
+    blk = [n for n in d if n in _BLK]
+    if not blk:
+        return                            # чистить нечего — НЕ бьём ESC вслепую (экономит ~7с старта)
+    log(f"  лишние панели открыты: {blk} — закрываю (ESC)")
     for i in range(4):
         if k():
             return
         human.key("esc", CFG)
         time.sleep(0.45)
-        _, d = detect(sct)
-        if i >= 1 and not d:        # ≥2 ESC сделано и баннеров не видно -> чисто
+        _, d = detect(sct, names=_BLK)
+        if not d:                         # блокирующих баннеров не осталось -> чисто
             break
 
 

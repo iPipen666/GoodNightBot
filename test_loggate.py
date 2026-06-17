@@ -29,6 +29,7 @@ def _setup(find_seq):
     sys.modules["log_setup"] = ls
     rc = types.ModuleType("records_ctl")
     rc.collapse_for_observe = lambda cfg, sct, log=None: calls.append("clear")  # закрывает HERO/stash/cube
+    rc.reveal_log = lambda cfg, sct=None, log=None: calls.append("reveal")       # КЛИК в поле лога → RECORDS
     rc.ensure_ready = lambda cfg, log=None, expand=True: (calls.append("open") or (True, True))
     rc.pin_and_expand = lambda cfg, log=None: (calls.append("expand") or True)
     sys.modules["records_ctl"] = rc

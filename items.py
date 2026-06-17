@@ -1,6 +1,7 @@
 # items.py — OCR-ридер тултипов предметов (Волна 1)
-# Наводит курсор БЕЗ клика, снимает область тултипа, распознаёт Tesseract rus,
-# парсит структуру предмета: имя, ранг, тип, требование уровня, торгуемость.
+# Наводит курсор БЕЗ клика, снимает область тултипа, распознаёт через ocr_engine
+# (RapidOCR), парсит структуру: имя, ранг, тип, требование уровня, торгуемость.
+# (tesseract_cmd ниже оставлен для logwatch.py — он ещё на pytesseract, см. ~стр.37)
 
 import os
 import json
@@ -14,6 +15,7 @@ import pytesseract
 import human
 import idle
 import vision
+import ocr_engine
 
 # ─── константы модуля ───
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -34,6 +36,8 @@ def _resolve_tesseract():
     return cand[0] or r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
+# tooltip-OCR ниже теперь использует RapidOCR (ocr_engine). Этот tesseract_cmd оставлен
+# намеренно: logwatch.py импортирует items РАДИ этого сайд-эффекта (logwatch ещё на pytesseract).
 pytesseract.pytesseract.tesseract_cmd = _resolve_tesseract()
 OCR_LANG = CFG.get("ocr", {}).get("lang", "rus")
 
@@ -156,27 +160,17 @@ def db_learn(name, type=None, rank=None):
 
 # ─── внутренние хелперы ───
 
-def _preprocess(img):
-    """BGR ndarray → grayscale → upscale × TOOLTIP.upscale. БЕЗ Otsu-порога:
-    тултип = светлый текст на тёмном фоне, Otsu его убивает (проверено: чистый
-    grayscale читается «Ранг Обычный...», а Otsu даёт пусто)."""
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    scale = float(TOOLTIP.get("upscale", 2.0))
-    if scale != 1.0:
-        h, w = gray.shape
-        gray = cv2.resize(gray, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_CUBIC)
-    return gray
-
-
 def _read_name(img):
     """Имя предмета из орнаментального заголовка тултипа (верхняя полоса бокса).
-    Отдельный OCR: psm 6 + ×4 апскейл; чистим токены (орнамент-рамка даёт мусор
-    слева — короткие/повторяющиеся фрагменты). None если не прочиталось."""
+    Отдельный OCR (RapidOCR) по полосе заголовка с ×2 апскейлом; чистим токены
+    (орнамент-рамка даёт мусор слева — короткие/повторяющиеся фрагменты).
+    None если не прочиталось."""
     h, w = img.shape[:2]
     strip = img[18:72, 55:max(56, w - 55)]
-    g = cv2.cvtColor(strip, cv2.COLOR_BGR2GRAY)
-    g = cv2.resize(g, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
-    txt = pytesseract.image_to_string(g, lang=OCR_LANG, config="--psm 6")
+    # узкая полоса заголовка → умеренный апскейл (×2) помогает на мелком тексте,
+    # RapidOCR сам детектит строки. Передаём BGR (read() ест BGR).
+    strip = cv2.resize(strip, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    txt = "\n".join(t for (t, _box) in ocr_engine.read(strip))
     words = []
     for tok in re.findall(r"[A-Za-zА-Яа-яЁё]{3,}", txt):   # ru И en (игра может быть на English)
         if re.search(r"(.)\1\1", tok):   # 3+ одинаковых подряд = мусор орнамента
@@ -241,14 +235,14 @@ def _ocr_box(sct, slot_xy, flip):
     """Снять+OCR один бокс тултипа для заданного flip. Вернуть (result_dict, img)."""
     box = _tooltip_box(slot_xy, flip)
     img = np.array(sct.grab(box))[:, :, :3]   # mss BGRA -> BGR
-    txt = pytesseract.image_to_string(_preprocess(img), lang=OCR_LANG)
+    txt = "\n".join(t for (t, _box) in ocr_engine.read(img))
     return parse_tooltip(txt), img
 
 
 def _ocr_box_at(sct, box):
     """OCR произвольного бокса {left,top,width,height} -> (result, img)."""
     img = np.array(sct.grab(box))[:, :, :3]
-    txt = pytesseract.image_to_string(_preprocess(img), lang=OCR_LANG)
+    txt = "\n".join(t for (t, _box) in ocr_engine.read(img))
     return parse_tooltip(txt), img
 
 
@@ -326,7 +320,7 @@ def read_grade(sct, slot_xy, flip=None, settle=None):
         for top in (base["top"], max(0, base["top"] - base["height"] + 24)):
             box = dict(base, top=top)
             img = np.array(sct.grab(box))[:, :, :3]
-            txt = pytesseract.image_to_string(_preprocess(img), lang=OCR_LANG)
+            txt = "\n".join(t for (t, _box) in ocr_engine.read(img))
             word, _ = _rank_in(txt)
             if word:
                 return word

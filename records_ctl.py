@@ -46,31 +46,78 @@ def is_ready():
     return logwatch.records_signal() > 0
 
 
+def _checkbox_on(sct, x, y, size=24):
+    """Чекбокс игры включён? Включённый = зелёная галка; выключенный = пустой тёмный бокс.
+    Читаем зелёные пиксели в окне size×size вокруг точки. mss grab = BGRA → канал G = [...,1]."""
+    import numpy as np
+    h = size // 2
+    img = np.array(sct.grab({"left": int(x - h), "top": int(y - h),
+                             "width": size, "height": size}))[:, :, :3]
+    b, g, r = img[:, :, 0].astype(int), img[:, :, 1].astype(int), img[:, :, 2].astype(int)
+    green = ((g > 90) & (g > r + 25) & (g > b + 25)).sum()
+    return green > size * size * 0.05            # ≥5% зелёных = галка стоит
+
+
+def pin_log_via_settings(cfg, sct, log=lambda *_: None):
+    """ЗАКРЕПИТЬ окно лога через игровые Settings, vision-методом (баннер-relative офсеты из
+    offsets.json — едут всем юзерам, без дробной калибровки). Поток: focus → (Tab открыть HERO,
+    если ни HERO ни Settings не открыты) → клик шестерёнки `hero.open_settings` → детект баннера
+    SETTINGS → читаем чекбокс `settings.pin_log`: стоит — закрыть; снят — кликнуть → закрыть.
+    Идемпотентно (не снимает уже стоящую галку). Безопасно: нет офсетов → False без слепых кликов."""
+    import vision
+    import farm
+    need = ("open_settings" in farm.OFF.get("hero", {})
+            and "pin_log" in farm.OFF.get("settings", {}))
+    if not need:
+        log("⚠ нет офсетов hero.open_settings / settings.pin_log — запусти calibrate_all.py (фазы 4-5)")
+        return False
+    farm.focus_game(); time.sleep(0.4)
+    _, d = farm.detect(sct)
+    if "settings" not in d:
+        if "hero" not in d:                       # игровой UI закрыт → Tab открывает HERO
+            farm.press_tab(); time.sleep(0.6)
+            _, d = farm.detect(sct)
+        if "hero" in d:
+            farm.click_el(d["hero"], "hero", "open_settings", "открыть Настройки")
+            time.sleep(0.8)
+            _, d = farm.detect(sct)
+    if "settings" not in d:
+        log("⚠ панель Settings не открылась (баннер не найден)")
+        return False
+    sp = d["settings"]
+    if "tab_basic" in farm.OFF.get("settings", {}):    # на всякий — открыть вкладку «Основные»
+        farm.click_el(sp, "settings", "tab_basic", "вкладка Основные"); time.sleep(0.3)
+        _, d = farm.detect(sct); sp = d.get("settings", sp)
+    cbx, cby = vision.pt(sp, *farm.OFF["settings"]["pin_log"])
+    if _checkbox_on(sct, cbx, cby):
+        log("лог уже закреплён ✓")
+    else:
+        farm.click_el(sp, "settings", "pin_log", "Закрепить окно лога")
+        time.sleep(0.4)
+        log("поставил «Закрепить окно лога»")
+    if "close" in farm.OFF.get("settings", {}):
+        farm.click_el(sp, "settings", "close", "закрыть Настройки")
+    else:
+        import human
+        human.key("esc", cfg)
+    time.sleep(0.5)
+    return True
+
+
 def ensure_ready(cfg, log=lambda *_: None, expand=True):
-    """Гарантировать читаемый лог. Если закрыт — открыть через Settings. Вернуть (ok, did_open).
-    Безопасно: если калибровки нет — только проверка + предупреждение, без слепых кликов."""
+    """Гарантировать читаемый лог. Закрыт → ЗАКРЕПИТЬ через Settings (vision). Вернуть (ok, did_open).
+    Безопасно: нет офсетов настроек → предупреждение, без слепых кликов."""
     if is_ready():
         if expand:
             _expand(cfg)
         return True, False
-    cal = _cal()
-    gs, lo = _screen("game_settings", cal), _screen("log_open", cal)
-    if not (gs and lo):
-        log("⚠ лог RECORDS не читается, а калибровка открытия пустая — открой лог вручную "
-            "(Settings → Pin Log Window) и включи галки Chest/Stage")
-        return False, False
-    import human
-    log("лог закрыт — открываю через настройки…")
-    _click(gs, cfg); time.sleep(0.7)              # игровая шестерёнка → Settings (General)
-    _click(lo, cfg); time.sleep(0.5)              # тумблер лога
-    human.key("esc", cfg); time.sleep(0.6)        # закрыть Settings
+    import mss
+    with mss.mss() as sct:
+        pin_log_via_settings(cfg, sct, log=log)
     ok = is_ready()
     if ok and expand:
         _expand(cfg)
-    if ok:
-        log("лог RECORDS открыт ✓")
-    else:
-        log("⚠ не удалось открыть лог автоматически — открой вручную (Settings → Pin Log Window)")
+    log("лог RECORDS закреплён ✓" if ok else "⚠ не удалось закрепить лог автоматически")
     return ok, True
 
 
@@ -129,6 +176,30 @@ def poll_loop(stop_check, interval=2.5):
             if stop_check():
                 return
             time.sleep(0.25)
+
+
+def reveal_log(cfg, sct=None, log=lambda *_: None):
+    """КЛИКНУТЬ в поле лога (калибр. `log_field` в records_calibration), чтобы проявить окно RECORDS.
+    Unity НЕ реагирует надёжно на программный ховер (move_abs) — нужен реальный клик (Денис, живьём
+    2026-06-16). Клик по месту нижней строки лога вызывает рамку RECORDS + строки. Без калибровки →
+    no-op (False). Безопасно: точка = пустое поле лога, не кнопка/предмет."""
+    cal = _cal()
+    lf = cal.get("log_field")
+    w = logwatch.find_game_window()
+    if not lf or not w:
+        if not lf:
+            log("⚠ нет калибровки log_field — запусти calibrate_logfield.py (1 клик по нижней строке лога)")
+        return False
+    x = int(w.left + lf["rx"] * w.width)
+    y = int(w.top + lf["ry"] * w.height)
+    import human
+    try:
+        import farm
+        farm.focus_game(); time.sleep(0.3)
+    except Exception:
+        pass
+    human.click(x, y, cfg); time.sleep(0.5)         # реальный клик → проявить RECORDS
+    return True
 
 
 def collapse_for_observe(cfg, sct, log=lambda *_: None):

@@ -39,30 +39,71 @@ def _child_env():
     return env
 
 
-def find_python():
-    """Системный python (НЕ этот exe): py-лаунчер -> PATH -> типовые пути. None если нет."""
-    cands = []
+def _py_ok(exe):
+    """Кандидат — РЕАЛЬНЫЙ python ≥3.10 (запускаем и проверяем версию). Отсекает WindowsApps-заглушку
+    (она не выполняет -c, открывает Store) и старые версии."""
+    if not exe or not os.path.exists(exe):
+        return False
     try:
-        out = subprocess.run(["py", "-3", "-c", "import sys;print(sys.executable)"],
-                             capture_output=True, text=True, creationflags=FLAGS, timeout=15)
-        if out.returncode == 0 and out.stdout.strip():
-            cands.append(out.stdout.strip())
+        r = subprocess.run([exe, "-c", "import sys;print(sys.version_info[0],sys.version_info[1])"],
+                           capture_output=True, text=True, creationflags=FLAGS, timeout=20)
+        p = r.stdout.split()
+        return r.returncode == 0 and len(p) >= 2 and int(p[0]) == 3 and int(p[1]) >= 10
+    except Exception:
+        return False
+
+
+def find_python():
+    """Системный python ≥3.10 (НЕ этот exe). Источники: py-лаунчер (все версии) → PATH → РЕЕСТР
+    (python.org) → Store → типовые пути. Каждый кандидат ВАЛИДИРУЕТСЯ запуском. None если нет."""
+    import shutil
+    cands = []
+    for arg in ("-3.13", "-3.12", "-3.11", "-3.10", "-3"):
+        try:
+            out = subprocess.run(["py", arg, "-c", "import sys;print(sys.executable)"],
+                                 capture_output=True, text=True, creationflags=FLAGS, timeout=15)
+            if out.returncode == 0 and out.stdout.strip():
+                cands.append(out.stdout.strip())
+        except Exception:
+            pass
+    for name in ("python", "python3", "python.exe"):
+        p = shutil.which(name)
+        if p:
+            cands.append(p)
+    try:                                            # реестр: python.org-инсталляции (per-user и all-users)
+        import winreg
+        for root in (winreg.HKEY_CURRENT_USER, winreg.HKEY_LOCAL_MACHINE):
+            for flag in (0, getattr(winreg, "KEY_WOW64_64KEY", 0), getattr(winreg, "KEY_WOW64_32KEY", 0)):
+                try:
+                    base = winreg.OpenKey(root, r"SOFTWARE\Python\PythonCore", 0, winreg.KEY_READ | flag)
+                except OSError:
+                    continue
+                for i in range(winreg.QueryInfoKey(base)[0]):
+                    try:
+                        ver = winreg.EnumKey(base, i)
+                        ip = winreg.QueryValue(winreg.OpenKey(base, ver + r"\InstallPath"), None)
+                        cands.append(os.path.join(ip, "python.exe"))
+                    except OSError:
+                        pass
     except Exception:
         pass
-    import shutil
-    for name in ("python.exe", "python"):
-        p = shutil.which(name)
-        if p and "WindowsApps" not in p:   # WindowsApps-заглушка не настоящий python
-            cands.append(p)
     la = os.environ.get("LOCALAPPDATA", "")
     pf = os.environ.get("ProgramFiles", r"C:\Program Files")
-    for base in (la, pf, r"C:\\"):
+    pf86 = os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)")
+    for base in (la, pf, pf86, r"C:\\"):
         for v in ("Python313", "Python312", "Python311", "Python310"):
             for sub in ((), ("Programs", "Python", v), ("Python", v)):
                 cands.append(os.path.join(base, *sub, "python.exe"))
+    if la:                                          # Microsoft Store python (реальная установка)
+        import glob
+        cands += glob.glob(os.path.join(la, "Microsoft", "WindowsApps",
+                                        "PythonSoftwareFoundation.Python.3.*", "python.exe"))
+    seen = set()
     for c in cands:
-        if c and os.path.exists(c):
-            return c
+        if c and c not in seen:
+            seen.add(c)
+            if _py_ok(c):
+                return c
     return None
 
 

@@ -17,30 +17,31 @@ def t_parse_label_bad():
 
 
 def t_nav_plan_sequence():
+    # этап 7 ≤ 7 → страница bottom, скролл вниз
     plan = sn.nav_plan("4-2-7")
-    keys = [k for _, k in plan]
-    assert keys == ["portal_open", "diff_dropdown", "diff_option_torment",
-                    "act_tab_2", "stage_nodes/2/7"], keys
+    assert plan == [("click", "diff_dropdown"),
+                    ("click", "diff_option_torment"), ("click", "act_tab_2"),
+                    ("scroll", "down"), ("node", "bottom:7")], plan
+    # этап 9 ≥ 8 → страница top, скролл вверх
+    plan2 = sn.nav_plan("2-3-9")
+    assert plan2[-2:] == [("scroll", "up"), ("node", "top:9")], plan2
     assert sn.nav_plan("badlabel") is None
 
 
-def t_resolve_node_and_point():
-    win = types.SimpleNamespace(left=100, top=200, width=1000, height=800)
-    cal = {"diff_dropdown": {"rx": 0.5, "ry": 0.1},
-           "stage_nodes": {"2": [{"rx": 0.6, "ry": 0.3}, {"rx": 0.6, "ry": 0.4}]}}
-    assert sn.resolve(cal, "diff_dropdown", win) == (100 + 500, 200 + 80)          # (600,280)
-    assert sn.resolve(cal, "stage_nodes/2/2", win) == (100 + 600, 200 + 320)        # (700,520)
-    assert sn.resolve(cal, "stage_nodes/2/9", win) is None                          # нет такого узла
-    assert sn.resolve(cal, "portal_open", win) is None                              # ключа нет
+def t_page_for():
+    assert [sn._page_for(n) for n in (1, 7, 8, 10)] == ["bottom", "bottom", "top", "top"]
 
 
-def t_empty_calibration_is_safe():
-    # Реальный скелет portal_calibration.json пустой → resolve всех ключей плана = None
-    cal = sn._cal()
-    win = types.SimpleNamespace(left=0, top=0, width=970, height=892)
-    plan = sn.nav_plan("4-2-7")
-    resolved = [sn.resolve(cal, k, win) for _, k in plan]
-    assert all(r is None for r in resolved), f"пустая калибровка → ничего не кликаем: {resolved}"
+def t_calib_status_vision_driven():
+    # PORTAL навигируется зрением → отдельная калибровка не нужна, статус всегда ok
+    assert sn.calibration_status()[0] == "ok"
+    assert sn.is_calibrated() is True
+
+
+def t_node_re_matches():
+    assert sn._NODE_RE.search("[2-7]").groups() == ("2", "7")
+    assert sn._NODE_RE.search("2-10]").groups() == ("2", "10")
+    assert sn._NODE_RE.search("Полуночные") is None
 
 
 if __name__ == "__main__":

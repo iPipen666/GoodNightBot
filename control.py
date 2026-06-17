@@ -161,6 +161,7 @@ class Panel:
         self.root.after(150, self._animate)
         self.root.after(120, self._drain)
         self.root.after(1600, self._activity_tick)
+        self.root.after(4000, self._startup_update_check)   # тихо проверить апдейт → заметное уведомление
         if load_cfg().get("autostart_db", False):   # БД авто-открытие — ВЫКЛ по умолчанию: окно БД
             self.root.after(800, self._autostart_db) # перекрывало плашку лога внизу → счёт читал 0
         farm.set_modal_hook(lambda text: MODAL_Q.put(text))   # воркер сможет просить модалку
@@ -274,6 +275,19 @@ class Panel:
                              relief="flat", font=self._cta_font(17),
                              cursor="hand2", pady=6, bd=0, state="disabled")
         self.btn.pack(fill="x", padx=2, pady=2)
+
+        # ── калибровка: ПРЯМО ПОД START (не в настройках) — заметна когда что-то не готово ──
+        cal_bar = tk.Frame(body, bg=T.NIGHT)
+        cal_bar.pack(fill="x", pady=(2, 2))
+        self._calib_btn = tk.Button(cal_bar, text="⚙ Calibrate", command=self._run_calibration,
+                                    bg=T.PANEL, fg=T.MOON, activebackground=T.EDGE_HI,
+                                    relief="flat", bd=0, font=self._font(11, True),
+                                    cursor="hand2", pady=6)
+        self._calib_btn.pack(fill="x", padx=2)
+        self._calib_hint = tk.Label(body, text="", bg=T.NIGHT, fg=T.WARN, font=self._font(8),
+                                    wraplength=HW - 40, justify="left")
+        self._calib_hint.pack(anchor="w", padx=2)
+        self.root.after(4500, self._refresh_calib_bar)   # показать статус калибровки после старта
 
         # ── «Поддержать проект» — 3 фикс-суммы, открывают платёжную ссылку в браузере ──
         # ХАРДКОД-текст (без i18n, не переводится). Ссылки в config.donate.urls; секретов в клиенте нет.
@@ -980,6 +994,56 @@ class Panel:
         except Exception:
             pass
 
+    # ── проактивное уведомление об апдейте (для юзеров с EXE) ──
+    def _startup_update_check(self):
+        """При старте тихо проверить апдейт; если есть — ПРЕВРАТИТЬ ссылку в заметное уведомление
+        (сами НЕ ставим — юзер решает). Так юзеры с EXE узнают о новой версии без ручной проверки.
+        Юзеры open-source обновляются через git — им сервер latest.json не отдаёт новее."""
+        if getattr(self, "_upd_busy", False):
+            return
+        threading.Thread(target=self._startup_update_worker, daemon=True).start()
+
+    def _startup_update_worker(self):
+        try:
+            import updater
+            m = updater.check()                       # валидная новее + подпись
+        except Exception:
+            m = None
+        if m:
+            self._pending_update = m
+            self.root.after(0, self._show_update_badge)
+
+    def _show_update_badge(self):
+        m = getattr(self, "_pending_update", None)
+        if not m:
+            return
+        self.upd_lbl.config(text="update v%s !" % m.get("version"), fg=T.GO)
+        self.upd_lbl.unbind("<Button-1>")
+        self.upd_lbl.bind("<Button-1>", lambda e: self._apply_pending_update())
+
+    def _apply_pending_update(self):
+        """Установить ожидающий апдейт — с предупреждением про разовую калибровку новой версии."""
+        m = getattr(self, "_pending_update", None)
+        if not m:
+            return self._check_updates()
+        msg = ("Update to v%s?\n\nThis version adds per-window calibration. After it installs, open "
+               "Settings -> Calibration and calibrate once on your window. Farming keeps working; "
+               "Stage hop and other click features turn on after you calibrate." % m.get("version"))
+        notes = (m.get("notes") or "").strip()
+        if notes:
+            msg += "\n\n" + notes
+        if not messagebox.askyesno("Update available", msg, parent=self.root):
+            return
+        self._upd_busy = True
+        self._upd_anim_n = 0
+        self._upd_anim()
+
+        def work():
+            import updater
+            ok, rmsg = updater.download_and_apply(m)
+            self.root.after(0, lambda: self._upd_done(rmsg))
+        threading.Thread(target=work, daemon=True).start()
+
     def _help(self):
         try:
             import help_window
@@ -997,7 +1061,7 @@ class Panel:
     # ───────────────────── страница настроек (вкладки) ─────────────────────
     SETTAGS = [("beh", "Поведение"), ("scan", "Сканы/OCR"), ("hum", "Хуманлайк"),
                ("pol", "Вежливость"), ("mail", "Почта"), ("lang", "Язык/БД"),
-               ("custom", "Свой конфиг")]
+               ("hop", "Stage hop"), ("custom", "Свой конфиг")]
 
     @staticmethod
     def _cfg_get(c, path, default=None):
@@ -1649,6 +1713,350 @@ class Panel:
                               activeforeground=T.MOON, font=self._font(10), bd=0)
             om.pack(side="right")
 
+    # ── вкладка: Stage hop (прыжки по стадиям) — English-only UI ──
+    _HOP_DIFFS = ["any", "NORMAL", "NIGHTMARE", "HELL", "TORMENT"]
+
+    def _tab_hop(self, f):
+        import routehop
+        h = self._cfg.get("hop", {}) or {}
+        self._s_section(f, "Stage hop — jump between stages")
+        self._s_hint(f, "Stage hop needs a one-time PORTAL calibration on YOUR window (the map "
+                        "coordinates are window-specific). Without it the bot NEVER clicks blind — "
+                        "hop just stays idle, farming is unaffected.")
+
+        # ── PORTAL calibration (REQUIRED for hop) — live status + launcher ──
+        self._s_section(f, "PORTAL calibration (required)")
+        self._hop_cal_status = tk.Label(f, text="", bg=T.NIGHT, fg=T.FAINT, font=self._font(9),
+                                        wraplength=HW - 78, justify="left", anchor="w")
+        self._hop_cal_status.pack(anchor="w", pady=(0, 2))
+        crow = tk.Frame(f, bg=T.NIGHT); crow.pack(fill="x", pady=(0, 2))
+        tk.Button(crow, text="✦ calibrate PORTAL", command=self._hop_run_calibration, bg=T.PANEL,
+                  fg=T.MOON, relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left")
+        tk.Button(crow, text="↻ re-check", command=self._hop_refresh_cal_status, bg=T.PANEL,
+                  fg=T.INK, relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left", padx=(6, 0))
+        self._hop_refresh_cal_status()
+        # режим: off / strategy / route
+        self._hop_mode_var = tk.StringVar(value=("off" if not h.get("enabled")
+                                                 else (h.get("mode") or "strategy").lower()))
+        row = tk.Frame(f, bg=T.NIGHT); row.pack(fill="x", pady=(4, 2))
+        tk.Label(row, text="mode", bg=T.NIGHT, fg=T.SUB, font=self._font(9),
+                 anchor="w").pack(side="left")
+        self._hop_style(tk.OptionMenu(row, self._hop_mode_var, "off", "strategy", "route")).pack(side="right")
+        self._s_hint(f, "off — no hopping  ·  strategy — auto chest-juggling by level  ·  route — your timed map below")
+
+        # ── presets: ready community strategies + your saved routes ──
+        self._s_section(f, "Presets")
+        self._s_hint(f, "Ready-made community strategies + your own saved routes. Pick one and press "
+                        "load to fill the fields below. Save the current route as a named preset of your own.")
+        prow = tk.Frame(f, bg=T.NIGHT); prow.pack(fill="x", pady=2)
+        tk.Label(prow, text="preset", bg=T.NIGHT, fg=T.SUB, font=self._font(9),
+                 anchor="w").pack(side="left")
+        self._hop_preset_var = tk.StringVar()
+        self._hop_preset_om = self._hop_style(tk.OptionMenu(prow, self._hop_preset_var, ""))
+        self._hop_preset_om.pack(side="right")
+        self._hop_refresh_presets()
+        self._hop_preset_status = tk.Label(f, text="", bg=T.NIGHT, fg=T.FAINT, font=self._font(8),
+                                           wraplength=HW - 78, justify="left", anchor="w")
+        self._hop_preset_status.pack(anchor="w")
+        pbrow = tk.Frame(f, bg=T.NIGHT); pbrow.pack(fill="x", pady=(2, 0))
+        tk.Button(pbrow, text="load", command=self._hop_load_preset, bg=T.PANEL, fg=T.GO,
+                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left")
+        tk.Button(pbrow, text="✦ save as", command=self._hop_save_preset, bg=T.PANEL, fg=T.MOON,
+                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left", padx=(6, 0))
+        tk.Button(pbrow, text="delete", command=self._hop_delete_preset, bg=T.PANEL, fg=T.WARN,
+                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left", padx=(6, 0))
+
+        self._s_section(f, "Strategy preset (mode = strategy)")
+        self._s_num(f, "hero level", "hop.hero_level", 80, "int",
+                    "your roster level — bounds stage level (EXP penalty if a stage is too high)")
+        cur_diff = (h.get("difficulty") or "any")
+        self._hop_diff_var = tk.StringVar(value=cur_diff if cur_diff in self._HOP_DIFFS else "any")
+        drow = tk.Frame(f, bg=T.NIGHT); drow.pack(fill="x", pady=2)
+        tk.Label(drow, text="difficulty", bg=T.NIGHT, fg=T.SUB, font=self._font(9),
+                 anchor="w").pack(side="left")
+        self._hop_style(tk.OptionMenu(drow, self._hop_diff_var, *self._HOP_DIFFS)).pack(side="right")
+        self._s_hint(f, "keep to one difficulty = fewer PORTAL clicks per hop")
+        self._s_num(f, "max levels ahead", "hop.max_ahead", 8, "int",
+                    "never farm a stage more than N levels above hero (EXP-penalty guard)")
+
+        self._s_section(f, "Custom route (mode = route)")
+        self._s_hint(f, "One stage per line:   3-3-9 / time: 235 sec\n"
+                        "X-Y-Z = difficulty(1-4)-act(1-3)-stage(1-10). Give each stage enough time so the "
+                        "pack fully farms it. Loops top→bottom forever.")
+        txt = tk.Text(f, height=7, bg="#120e22", fg=T.INK, insertbackground=T.MOON, relief="flat",
+                      bd=0, font=self._font(10), wrap="none", highlightthickness=1,
+                      highlightbackground=T.EDGE, highlightcolor=T.MOON)
+        txt.pack(fill="x", pady=(2, 2), ipady=3)
+        stops, _ = routehop.parse_route_cfg(h.get("route", []))
+        if stops:
+            txt.insert("1.0", routehop.format_route(stops))
+        self._hop_route_txt = txt
+        self._hop_route_status = tk.Label(f, text="", bg=T.NIGHT, fg=T.FAINT, font=self._font(8),
+                                          wraplength=HW - 78, justify="left", anchor="w")
+        self._hop_route_status.pack(anchor="w")
+        brow = tk.Frame(f, bg=T.NIGHT); brow.pack(fill="x", pady=(4, 0))
+        tk.Button(brow, text="✓ check", command=self._hop_check_route, bg=T.PANEL, fg=T.INK,
+                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left")
+        tk.Button(brow, text="✦ fill preset", command=self._hop_fill_preset, bg=T.PANEL, fg=T.MOON,
+                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left", padx=(6, 0))
+        self._s_hint(f, "⚠ legit navigation only — never bypass chest cooldown by reconnecting (ban risk). "
+                        "Mind the EXP penalty: don't route stages far above your level.")
+
+    def _hop_style(self, om):
+        om.config(bg=T.PANEL, fg=T.INK, activebackground=T.PANEL2, activeforeground=T.MOON,
+                  relief="flat", bd=0, highlightthickness=0, font=self._font(10), cursor="hand2")
+        om["menu"].config(bg=T.PANEL, fg=T.INK, activebackground=T.PANEL2,
+                          activeforeground=T.MOON, font=self._font(10), bd=0)
+        return om
+
+    def _hop_check_route(self):
+        import routehop
+        stops, errs = routehop.parse_route(self._hop_route_txt.get("1.0", "end"))
+        if errs:
+            self._hop_route_status.config(text="⚠ " + "  ·  ".join(errs[:3]), fg=T.WARN)
+        elif not stops:
+            self._hop_route_status.config(text="route empty — add lines like  3-3-9 / time: 235 sec", fg=T.FAINT)
+        else:
+            total = sum(s["dwell_sec"] for s in stops)
+            self._hop_route_status.config(text=f"✓ {len(stops)} stages, full loop ~{total}s", fg=T.GO)
+
+    def _hop_fill_preset(self):
+        import routehop
+        try:
+            lvl = int(float(self._cfgvars["hop.hero_level"][1].get()))
+        except Exception:
+            lvl = int((self._cfg.get("hop", {}) or {}).get("hero_level", 80))
+        diff = self._hop_diff_var.get()
+        diff = None if diff in ("any", "") else diff
+        stops = routehop.suggest_route(lvl, difficulty=diff, n=4, dwell_sec=240)
+        self._hop_route_txt.delete("1.0", "end")
+        self._hop_route_txt.insert("1.0", routehop.format_route(stops))
+        self._hop_check_route()
+
+    # ── PORTAL calibration status / launcher ──
+    def _hop_refresh_cal_status(self):
+        """Показать состояние калибровки PORTAL для текущего окна (ok/missing/mismatch)."""
+        try:
+            import stagenav
+            st, detail = stagenav.calibration_status()
+        except Exception as e:
+            st, detail = "error", repr(e)
+        col = {"ok": T.GO}.get(st, T.WARN)
+        mark = "✓" if st == "ok" else "⚠"
+        label = {"ok": "calibrated", "missing": "NOT calibrated",
+                 "window_mismatch": "window changed — recalibrate",
+                 "no_window": "old calibration — recalibrate"}.get(st, "status: " + st)
+        self._hop_cal_status.config(text=f"{mark} {label}\n{detail}", fg=col)
+
+    def _spawn_calibrator(self, script):
+        """Запустить калибратор в отдельной ВИДИМОЙ консоли (интерактив: курсор + F8). (ok, msg).
+        Явные кандидаты python.exe: venv проекта → рядом с sys.executable (под EXE sys.executable —
+        это сам EXE, не python, поэтому раньше кнопка молчала)."""
+        import subprocess
+        cands = [os.path.join(HERE, ".venv", "Scripts", "python.exe"),
+                 sys.executable.replace("pythonw.exe", "python.exe"),
+                 os.path.join(os.path.dirname(sys.executable), "python.exe")]
+        cons = next((c for c in cands
+                     if os.path.exists(c) and "python" in os.path.basename(c).lower()), None)
+        if not cons:
+            return False, "python.exe не найден (venv не собран?)"
+        path = os.path.join(HERE, script)
+        if not os.path.exists(path):
+            return False, f"нет файла {script}"
+        try:
+            subprocess.Popen([cons, path], cwd=HERE,
+                             creationflags=getattr(subprocess, "CREATE_NEW_CONSOLE", 0))
+            return True, "ok"
+        except Exception as e:
+            return False, repr(e)
+
+    def _run_calibration(self):
+        """Кнопка под START: сразу открыть пошаговый калибратор (лог + сундуки — единственное, что
+        требует калибровки; панели/портал портативны). Скрипт в консоли ведёт: куда навести + F8."""
+        ok, msg = self._spawn_calibrator("calibrate_records.py")
+        if ok:
+            self._calib_hint.config(
+                text="Открылось окно калибровки — следуй подсказкам в нём (наведи курсор куда сказано "
+                     "+ нажми F8). Закончишь — перезапусти панель, и всё заработает.", fg=T.MOON)
+        else:
+            self._calib_hint.config(text="⚠ не удалось запустить калибратор: " + msg, fg=T.WARN)
+
+    def _hop_run_calibration(self):
+        """Запустить calibrate_portal.py (интерактив: курсор+F8 по элементам PORTAL)."""
+        ok, msg = self._spawn_calibrator("calibrate_portal.py")
+        if ok:
+            self._hop_cal_status.config(
+                text="✦ calibration window opened — open PORTAL in game, hover each element, press "
+                     "F8. When done, press ↻ re-check.", fg=T.MOON)
+        else:
+            self._hop_cal_status.config(text=f"⚠ could not launch calibrator: {msg}", fg=T.WARN)
+
+    # ── Calibration — отдельный экран С ГЛАВНОГО (кнопка под START), не в настройках ──
+    def _open_calibration(self):
+        if self._ov is not None:
+            return self._close_ov()
+        ov = self._overlay("Calibration")
+        try:
+            stl = ttk.Style(self.root); stl.theme_use("clam")
+            stl.configure("Night.Vertical.TScrollbar", troughcolor=T.NIGHT, background=T.EDGE,
+                          bordercolor=T.NIGHT, arrowcolor=T.SUB, darkcolor=T.EDGE, lightcolor=T.EDGE)
+        except Exception:
+            pass
+        area = tk.Frame(ov, bg=T.EDGE); area.pack(fill="both", expand=True, padx=8, pady=(2, 8))
+        canvas = tk.Canvas(area, bg=T.NIGHT, highlightthickness=0)
+        sb = ttk.Scrollbar(area, orient="vertical", command=canvas.yview,
+                           style="Night.Vertical.TScrollbar")
+        canvas.configure(yscrollcommand=sb.set)
+        sb.pack(side="right", fill="y"); canvas.pack(side="left", fill="both", expand=True, padx=2, pady=2)
+        holder = tk.Frame(canvas, bg=T.NIGHT)
+        win = canvas.create_window((0, 0), window=holder, anchor="nw")
+        holder.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.bind("<Configure>", lambda e: canvas.itemconfig(win, width=e.width))
+        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(int(-e.delta / 120), "units"))
+        self._wheel_bound = True
+        self._calib_frame = holder
+        self._calib_render()
+
+    def _calib_render(self):
+        f = self._calib_frame
+        for w in f.winfo_children():
+            w.destroy()
+        import calibration
+        self._s_section(f, "Calibration — how the bot sees the game")
+        self._s_hint(f, "Banner-relative points are portable; window-fraction points are tied to YOUR "
+                        "window size and must be calibrated once on this PC. Run each that isn't OK, "
+                        "then re-check. The bot NEVER clicks on a non-OK calibration (no blind clicks).")
+        try:
+            rows = calibration.status_all()
+            s = calibration.summary()
+        except Exception as e:
+            tk.Label(f, text=f"calibration error: {e!r}", bg=T.NIGHT, fg=T.WARN,
+                     font=self._font(9)).pack(anchor="w")
+            return
+        if s["all_ok"]:
+            head, col = "✓ everything calibrated", T.GO
+        elif s["ready_basic"]:
+            head, col = f"farm works · {len(s['missing']) + len(s['stale'])} more to calibrate", T.WARN
+        else:
+            head, col = "⚠ NOT ready — calibrate panel buttons first", T.WARN
+        tk.Label(f, text=head, bg=T.NIGHT, fg=col, font=self._font(11, True)).pack(anchor="w", pady=(4, 4))
+        for r in rows:
+            ok = r["status"] == "ok"
+            row = tk.Frame(f, bg=T.NIGHT); row.pack(fill="x", pady=(3, 0))
+            tk.Label(row, text=("✓" if ok else "⚠"), bg=T.NIGHT, fg=(T.GO if ok else T.WARN),
+                     font=self._font(11, True), width=2).pack(side="left")
+            tk.Label(row, text=r["label"], bg=T.NIGHT, fg=T.INK, font=self._font(9), anchor="w",
+                     wraplength=HW - 160, justify="left").pack(side="left", fill="x", expand=True)
+            if not ok:
+                tk.Button(row, text="calibrate", command=lambda sc=r["produces"]: self._calib_launch(sc),
+                          bg=T.PANEL, fg=T.MOON, relief="flat", bd=0, font=self._font(8, True),
+                          padx=8, pady=3, cursor="hand2").pack(side="right")
+            self._s_hint(f, f"     {r['coord']} · {r['status']} — {r['detail']}")
+        brow = tk.Frame(f, bg=T.NIGHT); brow.pack(fill="x", pady=(8, 0))
+        tk.Button(brow, text="↻ re-check", command=self._calib_render, bg=T.PANEL, fg=T.INK,
+                  relief="flat", bd=0, font=self._font(9, True), padx=10, pady=4,
+                  cursor="hand2").pack(side="left")
+        self._refresh_calib_bar()                     # синхронизировать кнопку на главном экране
+
+    def _calib_launch(self, script):
+        ok, msg = self._spawn_calibrator(script)
+        try:
+            self._put(f"calibration: {msg}", T.MOON if ok else T.WARN)
+        except Exception:
+            pass
+
+    def _refresh_calib_bar(self):
+        """Обновить кнопку калибровки на главном экране (под START): сколько точек не готово."""
+        if not hasattr(self, "_calib_btn"):
+            return
+        try:
+            import calibration
+            s = calibration.summary()
+        except Exception:
+            return
+        if s["all_ok"]:
+            self._calib_btn.config(text="✓ calibrated — recalibrate", fg=T.GO)
+            self._calib_hint.config(text="")
+        else:
+            n = len(s["missing"]) + len(s["stale"])
+            self._calib_btn.config(text="⚙ Calibrate now (%d)" % n, fg=T.NIGHT, bg=T.MOON)
+            self._calib_hint.config(
+                text="%d point-set(s) need a one-time calibration on your window — tap to fix" % n)
+
+    # ── presets (community + custom) ──
+    def _hop_refresh_presets(self):
+        """Перестроить список пресетов в дропдауне (community + кастомные из hop_presets.json)."""
+        import hop_presets
+        names = [p["name"] for p in hop_presets.all_presets()]
+        menu = self._hop_preset_om["menu"]
+        menu.delete(0, "end")
+        for nm in names:
+            menu.add_command(label=nm, command=lambda v=nm: self._hop_preset_var.set(v))
+        if names and self._hop_preset_var.get() not in names:
+            self._hop_preset_var.set(names[0])
+
+    def _hop_load_preset(self):
+        """Применить выбранный пресет к полям вкладки (mode/difficulty/max_ahead/route)."""
+        import hop_presets
+        import routehop
+        name = self._hop_preset_var.get()
+        p = hop_presets.get(name)
+        if not p:
+            self._hop_preset_status.config(text="select a preset first", fg=T.FAINT); return
+        try:
+            lvl = int(float(self._cfgvars["hop.hero_level"][1].get()))
+        except Exception:
+            lvl = int((self._cfg.get("hop", {}) or {}).get("hero_level", 80))
+        diff = self._hop_diff_var.get()
+        diff = None if diff in ("any", "") else diff
+        patch = hop_presets.apply(p, lvl, diff)
+        self._hop_mode_var.set(patch["mode"])
+        if "max_ahead" in patch:
+            self._cfgvars["hop.max_ahead"][1].set(str(patch["max_ahead"]))
+        if patch.get("difficulty"):
+            self._hop_diff_var.set(patch["difficulty"])
+        if patch.get("route_stops") is not None:
+            self._hop_route_txt.delete("1.0", "end")
+            self._hop_route_txt.insert("1.0", routehop.format_route(patch["route_stops"]))
+            self._hop_check_route()
+        tag = "built-in" if name in hop_presets._COMMUNITY_NAMES else "custom"
+        msg = f"loaded {tag} '{name}' → mode {patch['mode']}"
+        if patch.get("warn"):
+            msg += " — " + patch["warn"]
+        self._hop_preset_status.config(text=msg, fg=T.WARN if patch.get("warn") else T.GO)
+
+    def _hop_save_preset(self):
+        """Сохранить текущий маршрут как именованный кастомный пресет."""
+        import tkinter.simpledialog as simpledialog
+        import hop_presets
+        import routehop
+        stops, errs = routehop.parse_route(self._hop_route_txt.get("1.0", "end"))
+        if errs or not stops:
+            self._hop_preset_status.config(text="fix the route first (press ✓ check)", fg=T.WARN); return
+        name = simpledialog.askstring("Save preset", "Name this route:", parent=self.root)
+        if not name:
+            return
+        ok, msg = hop_presets.add_user(name, stops)
+        self._hop_preset_status.config(text=msg, fg=T.GO if ok else T.WARN)
+        if ok:
+            self._hop_refresh_presets()
+            self._hop_preset_var.set(name.strip())
+
+    def _hop_delete_preset(self):
+        """Удалить выбранный кастомный пресет (community удалить нельзя)."""
+        import hop_presets
+        ok, msg = hop_presets.delete_user(self._hop_preset_var.get())
+        self._hop_preset_status.config(text=msg, fg=T.GO if ok else T.WARN)
+        if ok:
+            self._hop_refresh_presets()
+
     def _reset_defaults(self):
         """Откатить все поля настроек к значениям по умолчанию (применится после «сохранить»)."""
         for path, (kind, var) in self._cfgvars.items():
@@ -1691,6 +2099,21 @@ class Panel:
             hexmap = {nm: hx for nm, hx in self._HUD_COLORS}
             cfg.setdefault("hud", {})["color_top"] = hexmap.get(self._hud_top_var.get(), "#ffffff")
             cfg.setdefault("hud", {})["color_bottom"] = hexmap.get(self._hud_bot_var.get(), "#ffd95e")
+        # hop-режим (вкладка Stage hop): off/strategy/route + параметры + маршрут
+        if hasattr(self, "_hop_mode_var"):
+            mode = self._hop_mode_var.get()
+            cfg.setdefault("hop", {})
+            cfg["hop"]["enabled"] = (mode != "off")
+            if mode in ("strategy", "route"):
+                cfg["hop"]["mode"] = mode
+            d = self._hop_diff_var.get()
+            cfg["hop"]["difficulty"] = None if d in ("any", "") else d
+            try:
+                import routehop
+                stops, _ = routehop.parse_route(self._hop_route_txt.get("1.0", "end"))
+                cfg["hop"]["route"] = stops
+            except Exception:
+                pass
         # язык БД
         if hasattr(self, "_lang_main_var"):
             cfg["lang_main"] = self._lang_l2c.get(self._lang_main_var.get(), cfg.get("lang_main", "ru-RU"))

@@ -111,9 +111,14 @@ def main():
     if not fw():
         print("Окно игры не найдено."); sys.exit(1)
     data = json.load(open(OUTF, encoding="utf-8")) if os.path.exists(OUTF) else {}
+    want = {a.lower() for a in sys.argv[1:]}      # пусто = все фазы; иначе только указанные
+    def run(name):
+        return (not want) or name in want
+    if want:
+        print("Калибрую только:", ", ".join(sorted(want)))
 
     # ---- STASH ----
-    b = phase("ФАЗА 1 — STASH (по баннеру STASH)", "stash")
+    b = phase("ФАЗА 1 — STASH (по баннеру STASH)", "stash") if run("stash") else None
     if b:
         st = data.setdefault("stash", {})
         for i in range(1, 6):
@@ -131,7 +136,7 @@ def main():
         print("  -> offsets.json (stash)")
 
     # ---- CUBE ----
-    b = phase("ФАЗА 2 — CUBE, режим «Синтез» (по баннеру CUBE)", "cube")
+    b = phase("ФАЗА 2 — CUBE, режим «Синтез» (по баннеру CUBE)", "cube") if run("cube") else None
     if b:
         cu = data.setdefault("cube", {})
         steps = [("mode_toggle", "выпадашка РЕЖИМА (слева, «Синтез»)"),
@@ -152,7 +157,7 @@ def main():
         print("  -> offsets.json (cube)")
 
     # ---- HERO (тогглы открытия) ----
-    b = phase("ФАЗА 3 — HERO (ряд круглых кнопок снизу)", "hero")
+    b = phase("ФАЗА 3 — HERO (ряд круглых кнопок снизу)", "hero") if run("hero") else None
     if b:
         he = data.setdefault("hero", {})
         steps = [("open_stash", "кнопка-ОТКРЫВАШКА STASH (сундук) в ряду"),
@@ -165,6 +170,31 @@ def main():
             if p: he[key] = p
         json.dump(data, open(OUTF, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
         print("  -> offsets.json (hero)")
+
+    # ---- SETTINGS: кнопка «Настройки» (офсет от баннера HERO) ----
+    b = phase("ФАЗА 4 — кнопка НАСТРОЙКИ (открой HERO/игровой UI, шестерёнка видна вверху-справа)", "hero") if run("settings") else None
+    if b:
+        he = data.setdefault("hero", {})
+        p = cap("кнопка «Настройки»/шестерёнка (открывает панель Settings)", b)
+        if p: he["open_settings"] = p
+        json.dump(data, open(OUTF, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        print("  -> offsets.json (hero.open_settings)")
+
+    # ---- SETTINGS: чекбоксы вкладки «Основные» (офсет от баннера SETTINGS) ----
+    b = phase("ФАЗА 5 — SETTINGS, вкладка «Основные» (нажми Настройки -> откроется панель)", "settings") if run("settings") else None
+    if b:
+        se = data.setdefault("settings", {})
+        steps = [("tab_basic", "вкладка «Основные» (чтобы бот сам её открывал)"),
+                 ("pin_log", "ЧЕКБОКС «Закрепить окно лога»"),
+                 ("always_on_top", "чекбокс «Всегда сверху»"),
+                 ("autostart", "чекбокс «Запуск при старте рабочего стола»"),
+                 ("alchemy_confirm", "чекбокс «Показывать подтверждение алхимии»"),
+                 ("close", "кнопка ✕ закрыть Настройки")]
+        for key, prompt in steps:
+            p = cap(prompt, b)
+            if p: se[key] = p
+        json.dump(data, open(OUTF, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        print("  -> offsets.json (settings)")
 
     print("\nГОТОВО. offsets.json записан (banner-relative). Скажи Claude — соберёт бота.")
 

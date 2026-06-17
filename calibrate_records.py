@@ -155,6 +155,16 @@ def main():
             raise
         except Exception as e:
             print(f"  [секция {name}] ошибка: {e!r}")
+    # размер окна → гейт калибровки (calibration.py) валидирует, что доли окна сняты на ЭТОМ окне
+    for fn in ("records_calibration.json", "chest_calibration.json"):
+        p = os.path.join(HERE, fn)
+        if os.path.exists(p):
+            try:
+                d = json.load(open(p, encoding="utf-8"))
+                d["calib_window"] = {"w": int(w.width), "h": int(w.height)}
+                _save(p, d)
+            except Exception:
+                pass
     print("\n✅ Калибровка завершена. Панели (инвентарь/куб/тайник) — calibrate_all.py.")
     try:
         input("\nEnter — закрыть окно.")
