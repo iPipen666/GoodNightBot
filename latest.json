@@ -1,8 +1,8 @@
 {
-  "version": "1.1.9",
+  "version": "1.1.10",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "68a506f88f3d34db64fc8be799ce4ea23991a91c09d94365697eac7f6b79848a",
-  "sig": "IwmIbWhBeY1n-eUgUGwfqNWmDBn0u_yn6JO3pXFF1FrJW2bCpVV7HZFswo0eZ_pSZtin8Kse2LMoY5gjpTTSCw",
+  "sha256": "d16c3c3ff5f4d3865306be884ec302d6ff09f23b2e507fcdc2e358f11cce02ff",
+  "sig": "3Idi7ihmESpum6y2YC8CjKxKhTkk3NL1BnfwqPRn6jATNp8IZxNZCX5CrAUkP7uYUbHaF75rp54NoMS52fiVDA",
   "min_version": "1.1.6",
-  "notes": "Кнопка калибровки теперь реально открывает калибратор. START заблокирован, пока не пройдена калибровка под твоё окно."
+  "notes": "Калибратор почищен: убрана лишняя шестерёнка RECORDS, которую бот не использовал."
 }
