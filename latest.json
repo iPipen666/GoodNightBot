@@ -1,8 +1,8 @@
 {
-  "version": "1.1.10",
+  "version": "1.1.12",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "d16c3c3ff5f4d3865306be884ec302d6ff09f23b2e507fcdc2e358f11cce02ff",
-  "sig": "3Idi7ihmESpum6y2YC8CjKxKhTkk3NL1BnfwqPRn6jATNp8IZxNZCX5CrAUkP7uYUbHaF75rp54NoMS52fiVDA",
+  "sha256": "fbdc16217720bad3b1c01701fcbcc9eb1c15b99e28a3cd67488022d23865568a",
+  "sig": "jp-rpYYXvP1A3dKQpHi9HsgOgmvSj2y6rQgdeZyjWu05iPZ5B5xWpK9Eri4NJSBHDsaw6sqUl1Bb3FJE8G8iCQ",
   "min_version": "1.1.6",
-  "notes": "Калибратор почищен: убрана лишняя шестерёнка RECORDS, которую бот не использовал."
+  "notes": "Надёжная установка обновления (исправлена ошибка доступа к файлу), тихий апдейт с просьбой перезапустить."
 }

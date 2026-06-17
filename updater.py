@@ -74,9 +74,15 @@ def check():
 
 
 def download_and_apply(m, on_progress=None):
-    """Скачать установщик, проверить sha256, запустить. (ok, msg)."""
+    """Скачать установщик, проверить sha256, ТИХО поставить поверх, дождаться конца. (ok, msg)."""
     try:
-        dst = os.path.join(os.environ.get("TEMP", HERE), f"GoodNightBot-{m['version']}.exe")
+        tmp = os.environ.get("TEMP", HERE)
+        dst = os.path.join(tmp, f"GoodNightBot-{m['version']}.exe")
+        try:                                   # прошлый файл мог остаться ЗАЛОЧЕННЫМ (Defender /
+            if os.path.exists(dst):            # прерванная установка) → open(wb) дал бы «нет доступа
+                os.remove(dst)                 # к файлу». Удаляем; не вышло — берём уникальное имя.
+        except OSError:
+            dst = os.path.join(tmp, f"GoodNightBot-{m['version']}-{os.getpid()}.exe")
         with urllib.request.urlopen(m["url"], timeout=180) as r, open(dst, "wb") as f:
             h = hashlib.sha256()
             while True:
@@ -89,8 +95,14 @@ def download_and_apply(m, on_progress=None):
         if h.hexdigest() != m["sha256"]:
             os.remove(dst)
             return False, "хэш не совпал — файл повреждён/подменён"
-        subprocess.Popen([dst, "/SILENT"])     # установщик Inno поверх
-        return True, f"обновление {m['version']} запущено"
+        # тихо, без диалогов, ЖДЁМ конца установки (Inno ставит .py/.exe поверх даже при открытой
+        # панели — она читает код при старте и не держит локов). Панель перезапустит пользователь.
+        flags = 0x08000000 if os.name == "nt" else 0
+        r = subprocess.run([dst, "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART"],
+                           creationflags=flags, timeout=420)
+        if r.returncode != 0:
+            return False, f"установщик вернул код {r.returncode}"
+        return True, f"v{m['version']} установлено — перезапусти панель"
     except Exception as e:
         return False, f"ошибка обновления: {e}"
 

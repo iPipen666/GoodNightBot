@@ -1027,9 +1027,8 @@ class Panel:
         m = getattr(self, "_pending_update", None)
         if not m:
             return self._check_updates()
-        msg = ("Update to v%s?\n\nThis version adds per-window calibration. After it installs, open "
-               "Settings -> Calibration and calibrate once on your window. Farming keeps working; "
-               "Stage hop and other click features turn on after you calibrate." % m.get("version"))
+        msg = ("Обновить до v%s?\n\nПанель скачает и тихо установит обновление, затем попросит "
+               "перезапуститься. Калибровка и настройки сохранятся." % m.get("version"))
         notes = (m.get("notes") or "").strip()
         if notes:
             msg += "\n\n" + notes
