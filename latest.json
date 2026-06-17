@@ -1,8 +1,8 @@
 {
-  "version": "1.1.18",
+  "version": "1.1.19",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "0433f3d3ebd8e706e4c0a5abe81bbf88409bcd63e06842848c2f2c7bdd17bbff",
-  "sig": "ezI-RGC5B0ycAI_b8WyX67kNvP60JzTZ3oJa3SA3w0HMXSk5DZsj4-b3vr9MTPgEjf41lvun67v1ZXrAw8ESDw",
+  "sha256": "8a02eea274464c22553b71f191454909809788be7d05159c3e74e3a91bca0ded",
+  "sig": "TcXrE85ZZ_l49oweEUk8if_lOrP7VuSNxTGyILiA-PnZNuG1rx8_H_SW8XMsbrpMm3QHMYE1qT7fRSexVpboAA",
   "min_version": "1.1.6",
-  "notes": "Русский интерфейс + выбор языка в шапке (16 языков). Stage hop вынесен на главный + отдельное окно с визуальным конструктором маршрута. Брендовые CTA остаются английскими."
+  "notes": "Чтение игрового лога теперь на кириллице (RapidOCR + модель eslav в комплекте) — корректно считаются сундуки/дроп, защита ценного и прохождение этапов."
 }

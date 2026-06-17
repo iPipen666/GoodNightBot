@@ -3,7 +3,7 @@
 ; GoodNightBot.exe при первом старте сам создаёт venv и ставит зависимости (bootstrap).
 
 #define AppName "GoodNightBot"
-#define AppVer  "1.1.18"
+#define AppVer  "1.1.19"
 #define AppExe  "GoodNightBot.exe"
 
 [Setup]
@@ -41,6 +41,7 @@ Source: "*.json";               DestDir: "{app}"; Excludes: "records_calibration
 Source: "fonts\*";               DestDir: "{app}\fonts";           Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "templates\*";          DestDir: "{app}\templates";       Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "game_textassets\*";    DestDir: "{app}\game_textassets"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "models\*";             DestDir: "{app}\models";          Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#AppName}";        Filename: "{app}\{#AppExe}"; IconFilename: "{app}\icon.ico"

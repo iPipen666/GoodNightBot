@@ -37,14 +37,19 @@ def _engine():
     with _LOCK:
         if _ENGINE is None:
             from rapidocr_onnxruntime import RapidOCR
-            eng = RapidOCR()
             lang = (_ocr_lang() or "en").split("-")[0].lower()
             rec = os.path.join(_ESLAV, "rec.onnx")
-            if lang in _CYRILLIC_LANGS and os.path.exists(rec):
-                from rapidocr_onnxruntime.ch_ppocr_v3_rec import TextRecognizer
-                eng.text_recognizer = TextRecognizer({
-                    "model_path": rec, "keys_path": os.path.join(_ESLAV, "dict.txt"),
-                    "rec_img_shape": [3, 48, 320], "rec_batch_num": 6, "use_cuda": False})
+            keys = os.path.join(_ESLAV, "dict.txt")
+            eng = None
+            # кириллич. модель через 1.4.x-API (rec_model_path/rec_keys_path). Если не загрузилась
+            # (нет модели / другая версия rapidocr) — НЕ падаем, берём дефолтную (латиница).
+            if lang in _CYRILLIC_LANGS and os.path.exists(rec) and os.path.exists(keys):
+                try:
+                    eng = RapidOCR(rec_model_path=rec, rec_keys_path=keys)
+                except Exception:
+                    eng = None
+            if eng is None:
+                eng = RapidOCR()
             _ENGINE = eng
     return _ENGINE
 
