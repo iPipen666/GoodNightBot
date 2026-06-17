@@ -1,8 +1,8 @@
 {
-  "version": "1.1.16",
+  "version": "1.1.17",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "385d77351396932b6b830adb97b37e80c1cca4d73c9bfafc7296f110426acab5",
-  "sig": "B6xEN9T5uXXfi3N-RML06e3xnrqvmBQ4m-flFhhnOw8zRP4iVFYIN7Y1-rp7p-79nmKjmezPou6rlTDPB32yCw",
+  "sha256": "1f021430ed3fe8ff67462c7b33475ebdb657737dd913076a425c88ad895b16a3",
+  "sig": "RwEWgnrTWQ1cP6F083PPAlUze1LKvIViKWAJebwqtwPzoXlyK4_FbdNl2IqtKfusPGi2inARJxX8uxqf1nsEAQ",
   "min_version": "1.1.6",
-  "notes": "Стильный прогресс-бар обновления (домино-плитки с зарядом)."
+  "notes": "Прогресс-бар в цвете темы (мятный). START сам разблокируется после калибровки (без перезапуска)."
 }

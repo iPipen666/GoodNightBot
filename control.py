@@ -293,7 +293,8 @@ class Panel:
         self.upd_lbl.pack(side="right")
         # прогресс обновления (скрыт; во время апдейта — бар + понятный статус процесса)
         self._upd_prog = tk.Frame(body, bg=T.NIGHT)
-        self._upd_pbar = DominoBar(self._upd_prog, segs=20, height=20, bg=T.NIGHT, unlit=T.EDGE)
+        self._upd_pbar = DominoBar(self._upd_prog, segs=20, height=20, bg=T.NIGHT, lo=T.SUB,
+                                   hi=T.GO, unlit=T.EDGE, spark=T.STAR, wave=T.GO)
         self._upd_pbar.pack(fill="x", padx=2, pady=(1, 0))
         self._upd_status = tk.Label(self._upd_prog, text="", bg=T.NIGHT, fg=T.MOON, font=self._font(8),
                                     anchor="w", wraplength=HW - 40, justify="left")
@@ -311,6 +312,7 @@ class Panel:
                                     wraplength=HW - 40, justify="left")
         self._calib_hint.pack(anchor="w", padx=2)
         self.root.after(4500, self._refresh_calib_bar)   # статус калибровки после старта
+        self.root.bind("<FocusIn>", self._on_panel_focus)  # вернулся в панель → перечитать статус
 
         # ── «Поддержать проект» — 3 фикс-суммы, открывают платёжную ссылку в браузере ──
         # ХАРДКОД-текст (без i18n, не переводится). Ссылки в config.donate.urls; секретов в клиенте нет.
@@ -1925,7 +1927,7 @@ class Panel:
         if not os.path.exists(path):
             return False, f"нет файла {script}"
         try:
-            subprocess.Popen([cons, path], cwd=HERE,
+            self._calib_proc = subprocess.Popen([cons, path], cwd=HERE,
                              creationflags=getattr(subprocess, "CREATE_NEW_CONSOLE", 0))
             return True, "ok"
         except Exception as e:
@@ -1937,8 +1939,9 @@ class Panel:
         ok, msg = self._spawn_calibrator("calibrate_records.py")
         if ok:
             self._calib_hint.config(
-                text="Открылось окно калибровки — следуй подсказкам в нём (наведи курсор куда сказано "
-                     "+ нажми F8). Закончишь — перезапусти панель, и всё заработает.", fg=T.MOON)
+                text="Открылось окно калибровки — следуй подсказкам (наведи курсор + F8). "
+                     "Закончишь — панель сама подхватит, START разблокируется (перезапуск не нужен).", fg=T.MOON)
+            self._watch_calibrator()      # перечитать статус, когда калибратор закроется
         else:
             self._calib_hint.config(text="⚠ не удалось запустить калибратор: " + msg, fg=T.WARN)
 
@@ -2025,6 +2028,27 @@ class Panel:
             self._put(f"calibration: {msg}", T.MOON if ok else T.WARN)
         except Exception:
             pass
+
+    def _on_panel_focus(self, _e=None):
+        """Панель снова в фокусе (напр. закрыл окно калибратора) → перечитать статус калибровки.
+        Дебаунс 1.5с; во время фарма не трогаем."""
+        if self._alive():
+            return
+        now = time.time()
+        if now - getattr(self, "_last_focus_check", 0) < 1.5:
+            return
+        self._last_focus_check = now
+        self._refresh_calib_bar()
+
+    def _watch_calibrator(self, tries=300):
+        """Дождаться ЗАКРЫТИЯ запущенного калибратора (дочерний процесс) и перечитать статус ровно
+        тогда — событийно, без слепого таймера. Пара повторов на случай задержки записи файла."""
+        proc = getattr(self, "_calib_proc", None)
+        if proc is not None and proc.poll() is None and tries > 0:
+            self.root.after(1000, lambda: self._watch_calibrator(tries - 1))
+            return
+        self._refresh_calib_bar()
+        self.root.after(1200, self._refresh_calib_bar)
 
     def _refresh_calib_bar(self):
         """Обновить кнопку калибровки на главном экране (под START): сколько точек не готово."""
