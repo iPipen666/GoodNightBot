@@ -40,15 +40,16 @@ def _child_env():
 
 
 def _py_ok(exe):
-    """Кандидат — РЕАЛЬНЫЙ python ≥3.10 (запускаем и проверяем версию). Отсекает WindowsApps-заглушку
-    (она не выполняет -c, открывает Store) и старые версии."""
+    """Кандидат — РЕАЛЬНЫЙ python 3.10–3.12 (запускаем и проверяем версию). Отсекает WindowsApps-заглушку
+    (она не выполняет -c, открывает Store), старые версии И слишком новые: rapidocr_onnxruntime требует
+    <3.13, на 3.13/3.14 колесо OCR не ставится. Нет подходящего → ставим bundled 3.12.7."""
     if not exe or not os.path.exists(exe):
         return False
     try:
         r = subprocess.run([exe, "-c", "import sys;print(sys.version_info[0],sys.version_info[1])"],
                            capture_output=True, text=True, creationflags=FLAGS, timeout=20)
         p = r.stdout.split()
-        return r.returncode == 0 and len(p) >= 2 and int(p[0]) == 3 and int(p[1]) >= 10
+        return r.returncode == 0 and len(p) >= 2 and int(p[0]) == 3 and 10 <= int(p[1]) <= 12
     except Exception:
         return False
 

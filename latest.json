@@ -1,8 +1,8 @@
 {
-  "version": "1.1.6",
-  "url": "https://github.com/iPipen666/GoodNightBot/releases/download/v1.1.6/GoodNightBot-Setup.exe",
-  "sha256": "ec4c989a85b4faec10f55bd86379ce3818a6c13fb7886c2cac9c39f45c61c5ce",
-  "sig": "CxK26mJ5Nk3mGHRbmA9S0_O1Rjs7lDn_qZWIIBKzZi1Rb2EXUHkcIh7mJcNgoTdLmfFM2VswvjM-7Bpl9dQRCQ",
+  "version": "1.1.7",
+  "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
+  "sha256": "5a57b181fd92c74861be9936cee1f70de3437e76b232cb76a6fe3709a617da6d",
+  "sig": "JUANxyMLX6jWGLkMSl6igjURLkjqLvenZv27KZvbavx0G5OAXDEG1R3JHmDodnDT07_2KIBWV2C9oJ2VPE9HDA",
   "min_version": "1.1.6",
-  "notes": "Исправлен запуск (надёжный поиск Python). Дальше обновления ставятся автоматически."
+  "notes": "Исправлен первый запуск на новых Python (3.13/3.14): бот ставит совместимый Python сам. Дальше обновления автоматические."
 }

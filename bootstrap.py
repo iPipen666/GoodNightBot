@@ -8,6 +8,7 @@ import os
 import sys
 import json
 import queue
+import shutil
 import threading
 import subprocess
 import urllib.request
@@ -137,9 +138,26 @@ def ensure_tesseract():
     return False
 
 
+def _venv_bad():
+    """Существующий venv на несовместимом Python (>3.12 → rapidocr_onnxruntime не ставится) либо не
+    запускается. Тогда его надо снести и пересоздать на sys.executable (launcher уже даёт 3.10–3.12)."""
+    if not os.path.exists(VENV_PY):
+        return False
+    flags = 0x08000000 if os.name == "nt" else 0
+    try:
+        r = subprocess.run([VENV_PY, "-c", "import sys;print(sys.version_info[1])"], cwd=HERE,
+                           creationflags=flags, capture_output=True, text=True, timeout=20)
+        return not (r.returncode == 0 and r.stdout.strip().isdigit() and int(r.stdout.strip()) <= 12)
+    except Exception:
+        return True
+
+
 def setup_worker():
     """В фоне: venv -> зависимости -> OCR -> запуск панели. Шлёт статусы в Q."""
     Q.put(("step", "проверяю Python…"))
+    if _venv_bad():
+        Q.put(("step", "пересоздаю окружение\n(несовместимая версия Python)…"))
+        shutil.rmtree(VENV, ignore_errors=True)
     if not os.path.exists(VENV_PY):
         Q.put(("step", "создаю окружение (venv)…"))
         if not _run([sys.executable, "-m", "venv", VENV]):
