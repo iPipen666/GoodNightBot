@@ -277,7 +277,28 @@ class Panel:
                              cursor="hand2", pady=6, bd=0, state="disabled")
         self.btn.pack(fill="x", padx=2, pady=2)
 
-        # ── калибровка: ПРЯМО ПОД START (не в настройках) — заметна когда что-то не готово ──
+        # версия + ТОНКАЯ кнопка апдейта ПРЯМО под START (заметнее, чем в подвале). Есть апдейт →
+        # кнопка зеленеет, START лочится (как при некалиброванном клиенте — сперва обнови).
+        verrow = tk.Frame(body, bg=T.NIGHT)
+        verrow.pack(fill="x", padx=2, pady=(2, 0))
+        self._verrow = verrow
+        self.ver_lbl = tk.Label(verrow, text="v" + self._app_version(), bg=T.NIGHT,
+                                fg=T.FAINT, font=self._font(8))
+        self.ver_lbl.pack(side="left", padx=(2, 0))
+        self.upd_lbl = tk.Button(verrow, text=t("upd_check"), bg=T.PANEL, fg=T.SUB,
+                                 activebackground=T.EDGE, activeforeground=T.INK, relief="flat",
+                                 bd=0, font=self._font(8, True), cursor="hand2", padx=10, pady=1,
+                                 command=self._check_updates)
+        self.upd_lbl.pack(side="right")
+        # прогресс обновления (скрыт; во время апдейта — бар + понятный статус процесса)
+        self._upd_prog = tk.Frame(body, bg=T.NIGHT)
+        self._upd_pbar = ttk.Progressbar(self._upd_prog, mode="determinate", maximum=100)
+        self._upd_pbar.pack(fill="x", padx=2, pady=(1, 0))
+        self._upd_status = tk.Label(self._upd_prog, text="", bg=T.NIGHT, fg=T.MOON, font=self._font(8),
+                                    anchor="w", wraplength=HW - 40, justify="left")
+        self._upd_status.pack(fill="x", padx=2)
+
+        # ── калибровка: ПОД блоком версии — заметна когда что-то не готово ──
         cal_bar = tk.Frame(body, bg=T.NIGHT)
         cal_bar.pack(fill="x", pady=(2, 2))
         self._calib_btn = tk.Button(cal_bar, text="⚙ Calibrate", command=self._run_calibration,
@@ -288,7 +309,7 @@ class Panel:
         self._calib_hint = tk.Label(body, text="", bg=T.NIGHT, fg=T.WARN, font=self._font(8),
                                     wraplength=HW - 40, justify="left")
         self._calib_hint.pack(anchor="w", padx=2)
-        self.root.after(4500, self._refresh_calib_bar)   # показать статус калибровки после старта
+        self.root.after(4500, self._refresh_calib_bar)   # статус калибровки после старта
 
         # ── «Поддержать проект» — 3 фикс-суммы, открывают платёжную ссылку в браузере ──
         # ХАРДКОД-текст (без i18n, не переводится). Ссылки в config.donate.urls; секретов в клиенте нет.
@@ -423,16 +444,7 @@ class Panel:
         # ── нижняя группа: закреплена СНИЗУ (не исчезает при сжатии окна по высоте) ──
         cr = tk.Label(body, text="Created by SQll", bg=T.NIGHT, fg=T.FAINT, font=self._font(8))
         cr.pack(side="bottom", pady=(2, 0))
-        # строка версии + ручная проверка обновлений (клиент обновляемый; сервер задаётся в config.update.api)
-        verrow = tk.Frame(body, bg=T.NIGHT)
-        verrow.pack(side="bottom", fill="x")
-        self.ver_lbl = tk.Label(verrow, text="v" + self._app_version(), bg=T.NIGHT,
-                                fg=T.FAINT, font=self._font(7))
-        self.ver_lbl.pack(side="left", padx=(4, 0))
-        self.upd_lbl = tk.Label(verrow, text=t("upd_check"), bg=T.NIGHT, fg=T.MOON,
-                                font=self._font(7), cursor="hand2")
-        self.upd_lbl.pack(side="right", padx=(0, 4))
-        self.upd_lbl.bind("<Button-1>", lambda e: self._check_updates())
+        # (версия + кнопка апдейта теперь ПОД START, см. выше — в подвале их больше нет)
         # ── CTA «вступай в наш Telegram» — золотой акцентный блок, заманиваем в сообщество ──
         self.tg_wrap = tk.Frame(body, bg=T.MOON, cursor="hand2")
         self.tg_wrap.pack(side="bottom", fill="x", padx=2, pady=(3, 0))
@@ -978,28 +990,26 @@ class Panel:
                 cur = updater._current()
                 self.root.after(0, lambda: self._upd_done(t("upd_latest", v=cur)))
                 return
-            ver = m.get("version")
-            self.root.after(0, lambda: self.upd_lbl.config(text=t("upd_found", v=ver), fg=T.MOON))
-            ok, msg = updater.download_and_apply(m)
-            self.root.after(0, lambda: self._upd_done(msg))
+            self._pending_update = m                  # НЕ ставим молча — показываем кнопку, юзер решает
+            self.root.after(0, self._show_update_badge)
         except Exception as e:
             self.root.after(0, lambda: self._upd_done(t("upd_err", e=e)))
 
     def _upd_done(self, msg):
-        """Стоп анимации, показать результат на кнопке 8с, затем вернуть «check updates»."""
+        """Текстовый результат проверки (офлайн/последняя/ошибка) на кнопке 8с, затем назад."""
         self._upd_busy = False
         try:
-            self.upd_lbl.config(text=msg, fg=T.MOON)
-            self.root.after(8000, lambda: self.upd_lbl.config(text=t("upd_check"), fg=T.MOON)
-                            if not getattr(self, "_upd_busy", False) else None)
+            self.upd_lbl.config(text=msg, fg=T.SUB, bg=T.PANEL, command=self._check_updates)
+            self.root.after(8000, lambda: self.upd_lbl.config(text=t("upd_check"), fg=T.SUB, bg=T.PANEL,
+                            command=self._check_updates)
+                            if not getattr(self, "_upd_busy", False)
+                            and not getattr(self, "_pending_update", None) else None)
         except Exception:
             pass
 
-    # ── проактивное уведомление об апдейте (для юзеров с EXE) ──
+    # ── проактивное уведомление об апдейте ──
     def _startup_update_check(self):
-        """При старте тихо проверить апдейт; если есть — ПРЕВРАТИТЬ ссылку в заметное уведомление
-        (сами НЕ ставим — юзер решает). Так юзеры с EXE узнают о новой версии без ручной проверки.
-        Юзеры open-source обновляются через git — им сервер latest.json не отдаёт новее."""
+        """При старте тихо проверить апдейт; есть → зелёная кнопка под START + лок START (сперва обнови)."""
         if getattr(self, "_upd_busy", False):
             return
         threading.Thread(target=self._startup_update_worker, daemon=True).start()
@@ -1015,34 +1025,77 @@ class Panel:
             self.root.after(0, self._show_update_badge)
 
     def _show_update_badge(self):
+        """Есть апдейт → кнопка зеленеет «⬆ обновить до vX», START лочится, пока не обновишься."""
         m = getattr(self, "_pending_update", None)
         if not m:
             return
-        self.upd_lbl.config(text="update v%s !" % m.get("version"), fg=T.GO)
-        self.upd_lbl.unbind("<Button-1>")
-        self.upd_lbl.bind("<Button-1>", lambda e: self._apply_pending_update())
+        self._upd_busy = False                        # остановить «бегущие точки» проверки
+        try:
+            self.upd_lbl.config(text="⬆ обновить до v%s" % m.get("version"), fg=T.GO_INK, bg=T.GO,
+                                activebackground=T.GO, state="normal", command=self._apply_pending_update)
+        except Exception:
+            pass
+        self._refresh_start_gate()                    # START → disabled
 
     def _apply_pending_update(self):
-        """Установить ожидающий апдейт — с предупреждением про разовую калибровку новой версии."""
+        """Установить апдейт: подтверждение → прогресс-бар (скачивание% → установка → готово)."""
         m = getattr(self, "_pending_update", None)
         if not m:
             return self._check_updates()
+        if getattr(self, "_upd_busy", False):
+            return
         msg = ("Обновить до v%s?\n\nПанель скачает и тихо установит обновление, затем попросит "
                "перезапуститься. Калибровка и настройки сохранятся." % m.get("version"))
         notes = (m.get("notes") or "").strip()
         if notes:
             msg += "\n\n" + notes
-        if not messagebox.askyesno("Update available", msg, parent=self.root):
+        if not messagebox.askyesno("Обновление", msg, parent=self.root):
             return
         self._upd_busy = True
-        self._upd_anim_n = 0
-        self._upd_anim()
+        self.upd_lbl.config(state="disabled")
+        self._upd_prog.pack(fill="x", padx=2, pady=(0, 2), after=self._verrow)   # показать прогресс
+        self._upd_pbar.config(mode="determinate", value=0)
+        self._upd_status.config(text="Подготовка к обновлению…", fg=T.MOON)
+        threading.Thread(target=self._do_update, args=(m,), daemon=True).start()
 
-        def work():
-            import updater
-            ok, rmsg = updater.download_and_apply(m)
-            self.root.after(0, lambda: self._upd_done(rmsg))
-        threading.Thread(target=work, daemon=True).start()
+    def _do_update(self, m):
+        import updater
+
+        def prog(frac):
+            pct = max(0, min(100, int(frac * 100)))
+            self.root.after(0, lambda: (self._upd_pbar.config(value=pct),
+                            self._upd_status.config(text="Скачивание обновления… %d%%" % pct)))
+        try:
+            path = updater.download(m, prog)
+            self.root.after(0, self._upd_installing)
+            rc = updater.install(path)
+            self.root.after(0, lambda: self._update_finished(m, rc == 0,
+                            "" if rc == 0 else "установщик вернул код %s" % rc))
+        except Exception as e:
+            self.root.after(0, lambda: self._update_finished(m, False, str(e)))
+
+    def _upd_installing(self):
+        try:
+            self._upd_pbar.config(mode="indeterminate"); self._upd_pbar.start(14)
+            self._upd_status.config(text="Установка… не закрывай панель", fg=T.MOON)
+        except Exception:
+            pass
+
+    def _update_finished(self, m, ok, err=""):
+        self._upd_busy = False
+        try:
+            self._upd_pbar.stop(); self._upd_pbar.config(mode="determinate", value=100 if ok else 0)
+        except Exception:
+            pass
+        if ok:
+            self._upd_status.config(
+                text="✓ v%s установлено — ЗАКРОЙ и снова открой панель" % m.get("version"), fg=T.GO)
+            self.upd_lbl.config(text="перезапусти панель ↻", fg=T.GO_INK, bg=T.GO, state="normal",
+                                command=lambda: None)
+        else:
+            self._upd_status.config(text="⚠ не удалось обновить: %s" % err, fg=T.WARN)
+            self.upd_lbl.config(text="⬆ обновить до v%s" % m.get("version"), fg=T.GO_INK, bg=T.GO,
+                                state="normal", command=self._apply_pending_update)
 
     def _help(self):
         try:
@@ -1990,12 +2043,7 @@ class Panel:
             self._calib_btn.config(text="⚙ Calibrate now (%d)" % n, fg=T.NIGHT, bg=T.MOON)
             self._calib_hint.config(
                 text="%d point-set(s) need a one-time calibration on your window — tap to fix" % n)
-        # ГЕЙТ START: пока есть некалиброванные точки — кнопка недоступна (нельзя фармить без калибровки)
-        try:
-            if getattr(self, "ready", False) and not self._alive():
-                self.btn.config(state=("normal" if ok else "disabled"))
-        except Exception:
-            pass
+        self._refresh_start_gate()   # START недоступен пока есть некалиброванные точки ИЛИ ждёт апдейт
 
     # ── presets (community + custom) ──
     def _hop_refresh_presets(self):
@@ -2157,13 +2205,14 @@ class Panel:
     def start(self):
         if self._alive():
             return
-        if not self._calib_ready():                        # жёсткий гейт: без калибровки не фармим
-            self._put("⚠ Сначала пройди калибровку — нажми «Calibrate now» под START", T.EV["warn"])
+        ok, reason = self._can_start()                     # жёсткий гейт: без калибровки/с апдейтом не фармим
+        if not ok:
+            self._put("⬆ Сначала установи обновление (кнопка update под START)" if reason == "update"
+                      else "⚠ Сначала пройди калибровку — нажми «Calibrate now» под START", T.EV["warn"])
             try:
                 self.btn.config(state="disabled")
             except Exception:
                 pass
-            self._refresh_calib_bar()
             return
         try:
             farm.reload_config(); state.reload_config()   # подхватить настройки
@@ -2317,9 +2366,8 @@ class Panel:
         self.root.after(120, self._drain)
 
     def _calib_ready(self):
-        """Все калибровки готовы для ЭТОГО окна? START разрешён только тогда — фарм без калибровки
-        запрещён (требование: не давать пользоваться ботом, пока юзер не прошёл калибровку).
-        При ошибке реестра не блокируем (fail-open, чтобы баг калибровки не запер бота навсегда)."""
+        """Все калибровки готовы для ЭТОГО окна? При ошибке реестра не блокируем (fail-open, чтобы
+        баг калибровки не запер бота навсегда)."""
         try:
             import calibration
             s = calibration.summary()
@@ -2327,14 +2375,37 @@ class Panel:
         except Exception:
             return True
 
+    def _can_start(self):
+        """(ok, reason): фарм разрешён только если откалибровано И нет ожидающего обновления.
+        reason ∈ '' | 'calib' | 'update' — для понятного сообщения пользователю."""
+        if getattr(self, "_pending_update", None):
+            return False, "update"
+        if not self._calib_ready():
+            return False, "calib"
+        return True, ""
+
+    def _refresh_start_gate(self):
+        """Включить/выключить START по готовности (калибровка + нет апдейта). Только когда панель
+        готова и не фармит — чтобы не трогать кнопку во время работы."""
+        if not hasattr(self, "btn") or not getattr(self, "ready", False) or self._alive():
+            return
+        ok, _ = self._can_start()
+        try:
+            self.btn.config(state=("normal" if ok else "disabled"))
+        except Exception:
+            pass
+
     def _set_ready(self, win_found):
         self.ready = True
         self._running_ui(False)
-        cal_ok = self._calib_ready()
-        self.btn.config(state=("normal" if cal_ok else "disabled"))
+        ok, reason = self._can_start()
+        self.btn.config(state=("normal" if ok else "disabled"))
         self._put("☾ готов" + ("" if win_found else " (открой игру)"),
                   T.EV["ok"] if win_found else T.EV["warn"])
-        if not cal_ok:
+        if reason == "update":
+            self._put("⬆ доступно обновление — установи его (кнопка update под START), потом фарм", T.EV["warn"])
+            return
+        if reason == "calib":
             self._put("⚠ сначала калибровка — нажми «Calibrate now» под START (фарм заблокирован)", T.EV["warn"])
             self._refresh_calib_bar()
             return

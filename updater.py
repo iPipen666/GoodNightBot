@@ -73,35 +73,47 @@ def check():
     return m
 
 
-def download_and_apply(m, on_progress=None):
-    """Скачать установщик, проверить sha256, ТИХО поставить поверх, дождаться конца. (ok, msg)."""
+def download(m, on_progress=None):
+    """Скачать установщик в TEMP, проверить sha256. on_progress(frac 0..1). Возвращает путь.
+    Бросает при ошибке хэша/сети. Прошлый файл мог остаться ЗАЛОЧЕННЫМ (Defender / прерванная
+    установка) → open(wb) дал бы «нет доступа к файлу»; удаляем, не вышло — уникальное имя по pid."""
+    tmp = os.environ.get("TEMP", HERE)
+    dst = os.path.join(tmp, f"GoodNightBot-{m['version']}.exe")
     try:
-        tmp = os.environ.get("TEMP", HERE)
-        dst = os.path.join(tmp, f"GoodNightBot-{m['version']}.exe")
-        try:                                   # прошлый файл мог остаться ЗАЛОЧЕННЫМ (Defender /
-            if os.path.exists(dst):            # прерванная установка) → open(wb) дал бы «нет доступа
-                os.remove(dst)                 # к файлу». Удаляем; не вышло — берём уникальное имя.
-        except OSError:
-            dst = os.path.join(tmp, f"GoodNightBot-{m['version']}-{os.getpid()}.exe")
-        with urllib.request.urlopen(m["url"], timeout=180) as r, open(dst, "wb") as f:
-            h = hashlib.sha256()
-            while True:
-                chunk = r.read(1 << 16)
-                if not chunk:
-                    break
-                f.write(chunk); h.update(chunk)
-                if on_progress:
-                    on_progress(f.tell())
-        if h.hexdigest() != m["sha256"]:
+        if os.path.exists(dst):
             os.remove(dst)
-            return False, "хэш не совпал — файл повреждён/подменён"
-        # тихо, без диалогов, ЖДЁМ конца установки (Inno ставит .py/.exe поверх даже при открытой
-        # панели — она читает код при старте и не держит локов). Панель перезапустит пользователь.
-        flags = 0x08000000 if os.name == "nt" else 0
-        r = subprocess.run([dst, "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART"],
-                           creationflags=flags, timeout=420)
-        if r.returncode != 0:
-            return False, f"установщик вернул код {r.returncode}"
+    except OSError:
+        dst = os.path.join(tmp, f"GoodNightBot-{m['version']}-{os.getpid()}.exe")
+    with urllib.request.urlopen(m["url"], timeout=180) as r, open(dst, "wb") as f:
+        total = int(r.headers.get("Content-Length") or 0)
+        h = hashlib.sha256(); done = 0
+        while True:
+            chunk = r.read(1 << 16)
+            if not chunk:
+                break
+            f.write(chunk); h.update(chunk); done += len(chunk)
+            if on_progress and total:
+                on_progress(done / total)
+    if h.hexdigest() != m["sha256"]:
+        os.remove(dst)
+        raise ValueError("хэш не совпал — файл повреждён/подменён")
+    return dst
+
+
+def install(path):
+    """Тихо поставить скачанный установщик поверх, ДОЖДАТЬСЯ конца. Возвращает код возврата
+    (Inno ставит .py/.exe поверх даже при открытой панели — локов на них нет)."""
+    flags = 0x08000000 if os.name == "nt" else 0
+    return subprocess.run([path, "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART"],
+                          creationflags=flags, timeout=420).returncode
+
+
+def download_and_apply(m, on_progress=None):
+    """Скачать + поставить + дождаться. (ok, msg). on_progress(frac 0..1)."""
+    try:
+        rc = install(download(m, on_progress))
+        if rc != 0:
+            return False, f"установщик вернул код {rc}"
         return True, f"v{m['version']} установлено — перезапусти панель"
     except Exception as e:
         return False, f"ошибка обновления: {e}"

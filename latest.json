@@ -1,8 +1,8 @@
 {
-  "version": "1.1.12",
+  "version": "1.1.14",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "fbdc16217720bad3b1c01701fcbcc9eb1c15b99e28a3cd67488022d23865568a",
-  "sig": "jp-rpYYXvP1A3dKQpHi9HsgOgmvSj2y6rQgdeZyjWu05iPZ5B5xWpK9Eri4NJSBHDsaw6sqUl1Bb3FJE8G8iCQ",
+  "sha256": "3d6f79c5eef006d164c76e68438430bdce99df14990729a0f9eeadcd46d839b8",
+  "sig": "KvRlXDdL1zDtcftKjbYf-IkaTm6R-S4ArJ5gmNPY47sM_gVCEF8Ow_JVvFmsWKH-llh21NQ7F1VjUFe8RHKKAA",
   "min_version": "1.1.6",
-  "notes": "Надёжная установка обновления (исправлена ошибка доступа к файлу), тихий апдейт с просьбой перезапустить."
+  "notes": "Версия и кнопка обновления теперь под START, с прогресс-баром. Пока есть обновление — START заблокирован."
 }
