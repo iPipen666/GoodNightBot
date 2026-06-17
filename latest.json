@@ -1,8 +1,8 @@
 {
-  "version": "1.1.14",
+  "version": "1.1.16",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "3d6f79c5eef006d164c76e68438430bdce99df14990729a0f9eeadcd46d839b8",
-  "sig": "KvRlXDdL1zDtcftKjbYf-IkaTm6R-S4ArJ5gmNPY47sM_gVCEF8Ow_JVvFmsWKH-llh21NQ7F1VjUFe8RHKKAA",
+  "sha256": "385d77351396932b6b830adb97b37e80c1cca4d73c9bfafc7296f110426acab5",
+  "sig": "B6xEN9T5uXXfi3N-RML06e3xnrqvmBQ4m-flFhhnOw8zRP4iVFYIN7Y1-rp7p-79nmKjmezPou6rlTDPB32yCw",
   "min_version": "1.1.6",
-  "notes": "Версия и кнопка обновления теперь под START, с прогресс-баром. Пока есть обновление — START заблокирован."
+  "notes": "Стильный прогресс-бар обновления (домино-плитки с зарядом)."
 }

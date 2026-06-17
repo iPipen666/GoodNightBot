@@ -27,6 +27,7 @@ import sessionlog
 import theme as T
 import i18n
 from i18n import t, st
+from domino_bar import DominoBar
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CFG_PATH = os.path.join(HERE, "config.json")
@@ -292,7 +293,7 @@ class Panel:
         self.upd_lbl.pack(side="right")
         # прогресс обновления (скрыт; во время апдейта — бар + понятный статус процесса)
         self._upd_prog = tk.Frame(body, bg=T.NIGHT)
-        self._upd_pbar = ttk.Progressbar(self._upd_prog, mode="determinate", maximum=100)
+        self._upd_pbar = DominoBar(self._upd_prog, segs=20, height=20, bg=T.NIGHT, unlit=T.EDGE)
         self._upd_pbar.pack(fill="x", padx=2, pady=(1, 0))
         self._upd_status = tk.Label(self._upd_prog, text="", bg=T.NIGHT, fg=T.MOON, font=self._font(8),
                                     anchor="w", wraplength=HW - 40, justify="left")
@@ -1054,7 +1055,7 @@ class Panel:
         self._upd_busy = True
         self.upd_lbl.config(state="disabled")
         self._upd_prog.pack(fill="x", padx=2, pady=(0, 2), after=self._verrow)   # показать прогресс
-        self._upd_pbar.config(mode="determinate", value=0)
+        self._upd_pbar.set_pct(0)
         self._upd_status.config(text="Подготовка к обновлению…", fg=T.MOON)
         threading.Thread(target=self._do_update, args=(m,), daemon=True).start()
 
@@ -1063,7 +1064,7 @@ class Panel:
 
         def prog(frac):
             pct = max(0, min(100, int(frac * 100)))
-            self.root.after(0, lambda: (self._upd_pbar.config(value=pct),
+            self.root.after(0, lambda: (self._upd_pbar.set_pct(pct),
                             self._upd_status.config(text="Скачивание обновления… %d%%" % pct)))
         try:
             path = updater.download(m, prog)
@@ -1076,7 +1077,7 @@ class Panel:
 
     def _upd_installing(self):
         try:
-            self._upd_pbar.config(mode="indeterminate"); self._upd_pbar.start(14)
+            self._upd_pbar.wave_start()
             self._upd_status.config(text="Установка… не закрывай панель", fg=T.MOON)
         except Exception:
             pass
@@ -1084,7 +1085,7 @@ class Panel:
     def _update_finished(self, m, ok, err=""):
         self._upd_busy = False
         try:
-            self._upd_pbar.stop(); self._upd_pbar.config(mode="determinate", value=100 if ok else 0)
+            self._upd_pbar.wave_stop(); self._upd_pbar.set_pct(100 if ok else 0)
         except Exception:
             pass
         if ok:
