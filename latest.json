@@ -1,8 +1,8 @@
 {
-  "version": "1.1.8",
+  "version": "1.1.9",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "15a1b115a4bdb68891f05f02eb06d2bcc568b651f9a5af9e1d2015c298c4b5d7",
-  "sig": "gkgFiWpXXFqJMB13tLARYozjRuhVDoSEftgKh6i0nV-fWcmoASgdKSb0aY48kIKy4NcffLBZ3mJ10BCJ_L6sAQ",
+  "sha256": "68a506f88f3d34db64fc8be799ce4ea23991a91c09d94365697eac7f6b79848a",
+  "sig": "IwmIbWhBeY1n-eUgUGwfqNWmDBn0u_yn6JO3pXFF1FrJW2bCpVV7HZFswo0eZ_pSZtin8Kse2LMoY5gjpTTSCw",
   "min_version": "1.1.6",
-  "notes": "Установщик больше не несёт чужую калибровку: каждый калибрует лог и сундуки один раз под своё окно. Первый запуск на Python 3.13/3.14 чинится автоматически."
+  "notes": "Кнопка калибровки теперь реально открывает калибратор. START заблокирован, пока не пройдена калибровка под твоё окно."
 }

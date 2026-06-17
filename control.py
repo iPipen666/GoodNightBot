@@ -8,6 +8,7 @@
 """
 import os
 import re
+import sys
 import json
 import time
 import ctypes
@@ -1981,6 +1982,7 @@ class Panel:
             s = calibration.summary()
         except Exception:
             return
+        ok = not (s["missing"] or s["stale"])
         if s["all_ok"]:
             self._calib_btn.config(text="✓ calibrated — recalibrate", fg=T.GO)
             self._calib_hint.config(text="")
@@ -1989,6 +1991,12 @@ class Panel:
             self._calib_btn.config(text="⚙ Calibrate now (%d)" % n, fg=T.NIGHT, bg=T.MOON)
             self._calib_hint.config(
                 text="%d point-set(s) need a one-time calibration on your window — tap to fix" % n)
+        # ГЕЙТ START: пока есть некалиброванные точки — кнопка недоступна (нельзя фармить без калибровки)
+        try:
+            if getattr(self, "ready", False) and not self._alive():
+                self.btn.config(state=("normal" if ok else "disabled"))
+        except Exception:
+            pass
 
     # ── presets (community + custom) ──
     def _hop_refresh_presets(self):
@@ -2150,6 +2158,14 @@ class Panel:
     def start(self):
         if self._alive():
             return
+        if not self._calib_ready():                        # жёсткий гейт: без калибровки не фармим
+            self._put("⚠ Сначала пройди калибровку — нажми «Calibrate now» под START", T.EV["warn"])
+            try:
+                self.btn.config(state="disabled")
+            except Exception:
+                pass
+            self._refresh_calib_bar()
+            return
         try:
             farm.reload_config(); state.reload_config()   # подхватить настройки
             import vision
@@ -2301,12 +2317,28 @@ class Panel:
         # (old cycle / time / loot tiles removed — now using synthesis/valuable/materials tiles)
         self.root.after(120, self._drain)
 
+    def _calib_ready(self):
+        """Все калибровки готовы для ЭТОГО окна? START разрешён только тогда — фарм без калибровки
+        запрещён (требование: не давать пользоваться ботом, пока юзер не прошёл калибровку).
+        При ошибке реестра не блокируем (fail-open, чтобы баг калибровки не запер бота навсегда)."""
+        try:
+            import calibration
+            s = calibration.summary()
+            return not (s["missing"] or s["stale"])
+        except Exception:
+            return True
+
     def _set_ready(self, win_found):
         self.ready = True
         self._running_ui(False)
-        self.btn.config(state="normal")
+        cal_ok = self._calib_ready()
+        self.btn.config(state=("normal" if cal_ok else "disabled"))
         self._put("☾ готов" + ("" if win_found else " (открой игру)"),
                   T.EV["ok"] if win_found else T.EV["warn"])
+        if not cal_ok:
+            self._put("⚠ сначала калибровка — нажми «Calibrate now» под START (фарм заблокирован)", T.EV["warn"])
+            self._refresh_calib_bar()
+            return
         self._put("жми СТАРТ — тут пойдут события:", T.FAINT)
         self._put("дроп · синтез · тайник · почта · сундуки", T.FAINT)
         # авто-старт (на всю ночь): если включено в конфиге и игра найдена — стартуем сами
