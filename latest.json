@@ -1,8 +1,8 @@
 {
-  "version": "1.1.7",
+  "version": "1.1.8",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "5a57b181fd92c74861be9936cee1f70de3437e76b232cb76a6fe3709a617da6d",
-  "sig": "JUANxyMLX6jWGLkMSl6igjURLkjqLvenZv27KZvbavx0G5OAXDEG1R3JHmDodnDT07_2KIBWV2C9oJ2VPE9HDA",
+  "sha256": "15a1b115a4bdb68891f05f02eb06d2bcc568b651f9a5af9e1d2015c298c4b5d7",
+  "sig": "gkgFiWpXXFqJMB13tLARYozjRuhVDoSEftgKh6i0nV-fWcmoASgdKSb0aY48kIKy4NcffLBZ3mJ10BCJ_L6sAQ",
   "min_version": "1.1.6",
-  "notes": "Исправлен первый запуск на новых Python (3.13/3.14): бот ставит совместимый Python сам. Дальше обновления автоматические."
+  "notes": "Установщик больше не несёт чужую калибровку: каждый калибрует лог и сундуки один раз под своё окно. Первый запуск на Python 3.13/3.14 чинится автоматически."
 }

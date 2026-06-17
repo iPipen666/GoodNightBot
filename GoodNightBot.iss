@@ -3,7 +3,7 @@
 ; GoodNightBot.exe при первом старте сам создаёт venv и ставит зависимости (bootstrap).
 
 #define AppName "GoodNightBot"
-#define AppVer  "1.1.7"
+#define AppVer  "1.1.8"
 #define AppExe  "GoodNightBot.exe"
 
 [Setup]
@@ -35,7 +35,9 @@ Source: "requirements.txt";     DestDir: "{app}"; Flags: ignoreversion
 Source: "VERSION";              DestDir: "{app}"; Flags: ignoreversion
 Source: "icon.ico";             DestDir: "{app}"; Flags: ignoreversion
 Source: "*.py";                 DestDir: "{app}"; Flags: ignoreversion
-Source: "*.json";               DestDir: "{app}"; Flags: ignoreversion
+; *.json кроме оконно-зависимых калибровок: их нельзя шарить между юзерами (сняты на окне разработчика
+; → у нового юзера дали бы ложный статус «откалибровано» и промахи по UI). Каждый калибрует сам, 1 раз.
+Source: "*.json";               DestDir: "{app}"; Excludes: "records_calibration.json,chest_calibration.json,calibration.json,inv_calibration.json,auto_calibration.json,stash_calibration.json,panel_toggles.json,portal_calibration.json,records_ctl.json"; Flags: ignoreversion
 Source: "fonts\*";               DestDir: "{app}\fonts";           Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "templates\*";          DestDir: "{app}\templates";       Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "game_textassets\*";    DestDir: "{app}\game_textassets"; Flags: ignoreversion recursesubdirs createallsubdirs
