@@ -156,9 +156,18 @@ class Panel:
         self._pill = None
         self._loot_n = 0
         self.hud = None
+        # адаптив-масштаб: на низком экране ВЕСЬ UI уменьшается соразмерно (содержимое не уезжает)
+        global HW
+        try:
+            avail = self.root.winfo_screenheight() - 70      # минус таскбар/поля
+            self._scale = max(0.55, min(1.0, avail / 1000.0))
+        except Exception:
+            self._scale = 1.0
+        HW = int(425 * self._scale)
         self._build()
         self.hud = None                             # таймер убран — статус идёт в sysbar под кнопкой БД
         self._add_panel_grip()                      # регулировка высоты панели (низ окна)
+        self.root.after(40, self._fit_height)       # подогнать высоту окна под экран
         self.root.after(60, self._show_in_taskbar)  # кнопка в таскбаре + alt-tab (иначе не найти)
         self.root.after(150, self._animate)
         self.root.after(120, self._drain)
@@ -172,6 +181,7 @@ class Panel:
     def _font(self, size, bold=False):
         if size < 12:               # слегка крупнее для читабельности
             size += 1
+        size = max(6, int(round(size * getattr(self, "_scale", 1.0))))   # адаптив-масштаб к экрану
         fams = set(tkfont.families())
         fam = next((f for f in T.PIX_FONTS if f in fams), "Courier")
         return (fam, size, "bold" if bold else "normal")
@@ -179,8 +189,29 @@ class Panel:
     def _cta_font(self, size):
         """Шрифт CTA — Saira Condensed Bold Italic (если подгрузился), иначе пиксельный жирный."""
         if CTA_FONT in set(tkfont.families()):
-            return (CTA_FONT, size, "bold italic")
+            return (CTA_FONT, max(8, int(round(size * getattr(self, "_scale", 1.0)))), "bold italic")
         return self._font(size, True)
+
+    def _sc(self, px):
+        """Пиксели → масштабированные (для фикс-высот контейнеров)."""
+        return max(1, int(round(px * getattr(self, "_scale", 1.0))))
+
+    def _fit_height(self):
+        """Потолок высоты окна = высота экрана минус таскбар → низ (Save/Telegram) не уезжает.
+        Контент уже масштабирован _scale; тут финальная подгонка + не свисать ниже экрана."""
+        try:
+            self.root.update_idletasks()
+            sh = self.root.winfo_screenheight()
+            avail = sh - 56
+            cur = self.root.winfo_height()
+            cur = cur if cur > 100 else self.root.winfo_reqheight()
+            h = min(cur, avail)
+            x, y = self.root.winfo_x(), self.root.winfo_y()
+            if y + h > sh - 40:
+                y = max(0, sh - 40 - h)
+            self.root.geometry(f"{HW}x{int(h)}+{x}+{y}")
+        except Exception:
+            pass
 
     def _en(self, key, **kw):
         """Английское значение ключа — для БРЕНДОВЫХ CTA (Saira) и анимированной строки статуса:
@@ -291,8 +322,8 @@ class Panel:
                   self._refresh_start_gate(),
                   self._hop_main_var.set(bool((load_cfg().get("hop", {}) or {}).get("enabled")))
                   if hasattr(self, "_hop_main_var") else None),
-                  bg=T.GO, fg=T.GO_INK, relief="flat", bd=0, font=self._cta_font(13),
-                  pady=7, cursor="hand2").pack(fill="x")
+                  bg=T.GO, fg=T.GO_INK, relief="flat", bd=0, font=self._cta_font(16),
+                  pady=3, cursor="hand2").pack(fill="x")
 
         area = tk.Frame(w, bg=T.EDGE); area.pack(fill="both", expand=True, padx=8, pady=8)
         canvas = tk.Canvas(area, bg=T.NIGHT, highlightthickness=0)
@@ -388,13 +419,14 @@ class Panel:
                                font=self._font(12, True))
         self.status.pack(side="left", padx=6)
 
-        bfr = tk.Frame(body, bg=T.EDGE)
+        bfr = tk.Frame(body, bg=T.EDGE, height=self._sc(44))   # ФИКС высоты: текст крупнее, кнопка та же
         bfr.pack(fill="x", pady=(8, 6))
+        bfr.pack_propagate(False)
         self.btn = tk.Button(bfr, text="ASLEEP…", command=self.toggle,
                              bg=T.PANEL, fg=T.FAINT, activebackground=T.PANEL,
-                             relief="flat", font=self._cta_font(17),
-                             cursor="hand2", pady=6, bd=0, state="disabled")
-        self.btn.pack(fill="x", padx=2, pady=2)
+                             relief="flat", font=self._cta_font(24),
+                             cursor="hand2", pady=0, bd=0, state="disabled")
+        self.btn.pack(fill="both", expand=True, padx=2, pady=2)
 
         # версия + ТОНКАЯ кнопка апдейта ПРЯМО под START (заметнее, чем в подвале). Есть апдейт →
         # кнопка зеленеет, START лочится (как при некалиброванном клиенте — сперва обнови).
@@ -440,15 +472,15 @@ class Panel:
             _amts = [99, 499, 999]
         dfr = tk.Frame(body, bg=T.NIGHT)
         dfr.pack(fill="x", pady=(0, 4))
-        tk.Label(dfr, text=self._en("support_project"), bg=T.NIGHT, fg=T.MOON,
-                 font=self._cta_font(13)).pack(anchor="w", pady=(0, 2))
+        tk.Label(dfr, text=self._en("support_project").upper(), bg=T.NIGHT, fg=T.MOON,
+                 font=self._cta_font(16)).pack(anchor="w", pady=(0, 2))
         drow = tk.Frame(dfr, bg=T.NIGHT)
         drow.pack(fill="x")
         for _a in _amts:
-            b = tk.Button(drow, text="%s rub" % _a, command=lambda v=_a: self._donate(v),
+            b = tk.Button(drow, text="%s RUB" % _a, command=lambda v=_a: self._donate(v),
                           bg=T.PANEL2, fg=T.MOON, activebackground=T.EDGE_HI,
                           activeforeground=T.STAR, relief="flat", bd=0,
-                          font=self._font(10, True), cursor="hand2", pady=5)
+                          font=self._cta_font(13), cursor="hand2", pady=4)
             b.pack(side="left", fill="x", expand=True, padx=2)
         # своя сумма (ввод на странице оплаты; минимум 99 — лимит на сервере)
         tk.Button(dfr, text=t("custom_amount"), command=self._donate_custom,
@@ -580,14 +612,15 @@ class Panel:
         cr.pack(side="bottom", pady=(2, 0))
         # (версия + кнопка апдейта теперь ПОД START, см. выше — в подвале их больше нет)
         # ── CTA «вступай в наш Telegram» — золотой акцентный блок, заманиваем в сообщество ──
-        self.tg_wrap = tk.Frame(body, bg=T.MOON, cursor="hand2")
+        self.tg_wrap = tk.Frame(body, bg=T.MOON, cursor="hand2", height=self._sc(46))   # ФИКС высоты
         self.tg_wrap.pack(side="bottom", fill="x", padx=2, pady=(3, 0))
-        self.tg_btn = tk.Label(self.tg_wrap, text=self._en("tg_btn"), bg=T.MOON, fg=T.GO_INK,
-                               font=self._cta_font(15), cursor="hand2")
-        self.tg_btn.pack(fill="x", pady=(5, 0))
+        self.tg_wrap.pack_propagate(False)
+        self.tg_btn = tk.Label(self.tg_wrap, text=self._en("tg_btn").upper(), bg=T.MOON, fg="#4d3500",
+                               font=self._cta_font(19), cursor="hand2")
+        self.tg_btn.pack(fill="x", pady=(4, 0))
         self.tg_sub = tk.Label(self.tg_wrap, text=self._en("tg_sub"), bg=T.MOON, fg="#6e5c22",
                                font=self._font(8), cursor="hand2")
-        self.tg_sub.pack(fill="x", pady=(0, 5))
+        self.tg_sub.pack(fill="x", pady=(0, 3))
 
         def _tg_hover(on):
             c = T.STAR if on else T.MOON
@@ -601,19 +634,20 @@ class Panel:
         self._act_i = 0
         actfr = tk.Frame(body, bg=T.PANEL)
         actfr.pack(side="bottom", fill="x", pady=(4, 2))
-        self.act_now = tk.Label(actfr, text="ready for the night", bg=T.PANEL, fg=T.MOON,
-                                font=self._cta_font(12), anchor="w", padx=8, pady=0)
-        self.act_now.pack(fill="x", pady=(5, 0))
+        self.act_now = tk.Label(actfr, text="READY FOR THE NIGHT", bg=T.PANEL, fg=T.MOON,
+                                font=self._cta_font(15), anchor="w", padx=8, pady=0)
+        self.act_now.pack(fill="x", pady=(3, 0))
         self.act_next = tk.Label(actfr, text="", bg=T.PANEL, fg=T.FAINT,
-                                 font=self._cta_font(9), anchor="w", padx=8, pady=0)
+                                 font=self._cta_font(11), anchor="w", padx=8, pady=0)
         self.act_next.pack(fill="x", pady=(0, 5))
         self.sysbar = self.act_now      # совместимость: статус/системные сообщения → текущая строка
         # кнопка «База знаний» ПОД логом — закреплена снизу, всегда видна
-        self.db_glow = tk.Frame(body, bg=T.EDGE)
+        self.db_glow = tk.Frame(body, bg=T.EDGE, height=self._sc(40))   # ФИКС высоты
         self.db_glow.pack(side="bottom", fill="x")
+        self.db_glow.pack_propagate(False)
         self.db_btn = tk.Label(self.db_glow, text=self._en("db_btn"), bg=T.PANEL2,
-                               fg=T.MOON, font=self._cta_font(13), cursor="hand2", pady=7)
-        self.db_btn.pack(fill="x", padx=2, pady=2)
+                               fg=T.MOON, font=self._cta_font(17), cursor="hand2", pady=0)
+        self.db_btn.pack(fill="both", expand=True, padx=2, pady=2)
         self.db_btn.bind("<Button-1>", lambda e: self._open_db())
         self._lbl_f12 = tk.Label(body, text=t("f12"), bg=T.NIGHT, fg=T.FAINT, font=self._font(7))
         self._lbl_f12.pack(side="bottom", anchor="w", pady=(4, 1))
@@ -1354,8 +1388,8 @@ class Panel:
         self._defaults = {}
         ov = self._overlay(st("настройки"))
         btns = tk.Frame(ov, bg=T.NIGHT); btns.pack(side="bottom", fill="x", padx=12, pady=(4, 10))
-        tk.Button(btns, text="Save ✓", command=self._save_settings, bg=T.GO, fg=T.GO_INK,
-                  relief="flat", bd=0, font=self._cta_font(14), pady=8, cursor="hand2").pack(fill="x")
+        tk.Button(btns, text="SAVE ✓", command=self._save_settings, bg=T.GO, fg=T.GO_INK,
+                  relief="flat", bd=0, font=self._cta_font(17), pady=4, cursor="hand2").pack(fill="x")
         tk.Button(btns, text=st("↺ сброс к умолчаниям"), command=self._reset_defaults, bg=T.PANEL,
                   fg=T.SUB, relief="flat", bd=0, font=self._font(9, True), pady=5,
                   cursor="hand2").pack(fill="x", pady=(4, 0))
@@ -1390,8 +1424,8 @@ class Panel:
         _om.pack(fill="x", pady=2)
         # Advanced — всё остальное (сканы, тайминги, интервалы, выбор грейдов, hoard…)
         tk.Frame(body, bg=T.EDGE, height=1).pack(fill="x", pady=(16, 6))
-        tk.Button(body, text="Advanced  ▾", command=self._open_advanced, bg=T.PANEL, fg=T.SUB,
-                  relief="flat", bd=0, font=self._cta_font(12), pady=6, cursor="hand2").pack(fill="x")
+        tk.Button(body, text="ADVANCED  ▾", command=self._open_advanced, bg=T.PANEL, fg=T.SUB,
+                  relief="flat", bd=0, font=self._cta_font(15), pady=3, cursor="hand2").pack(fill="x")
         tk.Label(body, text=st("сканы · тайминги · интервалы · выбор грейдов · hoard-лист"),
                  bg=T.NIGHT, fg=T.FAINT, font=self._font(7), wraplength=HW - 80,
                  justify="left").pack(anchor="w", pady=(3, 0))
@@ -2427,6 +2461,49 @@ class Panel:
             return
         self.stop() if self._alive() else self.start()
 
+    def _show_prestart_hint(self):
+        """Подсказка-модалка ПОВЕРХ START при первом нажатии: как подготовить лог игры. Старт
+        продолжится только по «OK». Галка «не показывать снова» → больше не появляется."""
+        if getattr(self, "_prestart_ov", None) is not None:
+            try:
+                if self._prestart_ov.winfo_exists():
+                    return
+            except Exception:
+                pass
+        ov = tk.Frame(self.root, bg=T.PANEL, highlightbackground=T.MOON, highlightthickness=2)
+        ov.place(relx=0.5, rely=0.30, anchor="center", relwidth=0.93)
+        self._prestart_ov = ov
+        tk.Label(ov, text="ПЕРЕД СТАРТОМ — настрой лог игры", bg=T.PANEL, fg=T.MOON,
+                 font=self._font(11, True), wraplength=HW - 60, justify="left").pack(anchor="w", padx=12, pady=(10, 4))
+        tk.Label(ov, text=("Чтобы бот точно считал дроп и сундуки:\n"
+                           "1) В игре: шестерёнка Settings → Pin Log Window\n"
+                           "2) Разверни лог до максимума строк (~17)\n"
+                           "3) Закрой окно HERO/инвентарь — при нём лога не видно\n"
+                           "Затем пройди калибровку (кнопка Calibrate под START)."),
+                 bg=T.PANEL, fg=T.INK, font=self._font(9), wraplength=HW - 60,
+                 justify="left").pack(anchor="w", padx=12, pady=(0, 6))
+        dont = tk.BooleanVar(value=False)
+        tk.Checkbutton(ov, text="не показывать снова", variable=dont, bg=T.PANEL, fg=T.SUB,
+                       selectcolor=T.EDGE, activebackground=T.PANEL, activeforeground=T.INK,
+                       font=self._font(8), anchor="w").pack(anchor="w", padx=10)
+
+        def _ok():
+            if dont.get():
+                try:
+                    cfg = load_cfg(); cfg["hint_prestart_done"] = True; save_cfg(cfg)
+                except Exception:
+                    pass
+            self._hint_acked = True
+            try:
+                ov.destroy()
+            except Exception:
+                pass
+            self._prestart_ov = None
+            self.start()
+
+        tk.Button(ov, text="OK, ПОНЯТНО", command=_ok, bg=T.GO, fg="#0e4429", relief="flat", bd=0,
+                  font=self._cta_font(13), pady=4, cursor="hand2").pack(fill="x", padx=10, pady=(4, 10))
+
     def start(self):
         if self._alive():
             return
@@ -2438,6 +2515,10 @@ class Panel:
                 self.btn.config(state="disabled")
             except Exception:
                 pass
+            return
+        # ПЕРВОЕ нажатие START — подсказка про лог (нельзя стартовать, пока не прочёл и не «OK»)
+        if not load_cfg().get("hint_prestart_done", False) and not getattr(self, "_hint_acked", False):
+            self._show_prestart_hint()
             return
         try:
             farm.reload_config(); state.reload_config()   # подхватить настройки
@@ -2466,7 +2547,7 @@ class Panel:
             self._cd_after = self.root.after(1000, lambda: self._countdown(n - 1))
             return
         if hasattr(self, "sysbar"):
-            self.sysbar.config(text=t("go_status"))
+            self.sysbar.config(text=self._en("go_status").upper())   # карусель — англ.
         self._put("☾ просыпаюсь…", T.EV["ok"])
         self.worker = threading.Thread(target=self._run, daemon=True)
         self.worker.start()
@@ -2502,14 +2583,14 @@ class Panel:
             self.dot.itemconfig(self._oval, fill=T.GO)
             self.status.config(text=t("farming"), fg=T.GO)
         else:
-            self.btn.config(text=self._en("start"), bg=T.GO, fg=T.GO_INK, activebackground=T.GO)
+            self.btn.config(text=self._en("start"), bg=T.GO, fg="#0e4429", activebackground=T.GO)
             self.dot.itemconfig(self._oval, fill=T.FAINT)
             self.status.config(text=t("ready"), fg=T.SUB)
 
     # ── карусель активности (текущий шаг бота + следующий по сценарию) ──
     # сценарий count-first цикла бота (см. farm2): осмотр -> оценка -> действие -> следующий проход
-    SCENARIO = ["OCR scan inventory", "assess loot value", "synthesis (if enabled)",
-                "save & sort stash", "open chests", "collect mail", "next pass"]
+    SCENARIO = ["OCR SCAN INVENTORY", "ASSESS LOOT VALUE", "SYNTHESIS (IF ENABLED)",
+                "SAVE & SORT STASH", "OPEN CHESTS", "COLLECT MAIL", "NEXT PASS"]
     _NEXT_MAP = (("count", "assess loot value"), ("scan", "assess loot value"),
                  ("synth", "save & sort stash"), ("merge", "save & sort stash"),
                  ("cube", "save & sort stash"), ("save", "open chests"),
@@ -2523,15 +2604,39 @@ class Panel:
         for k, v in self._NEXT_MAP:
             if k in c:
                 return v
-        return "next pass"
+        return "NEXT PASS"
+
+    # карусель (Saira) — ВСЕГДА англ. Маппим живой статус (любой язык) → англ. SCENARIO-шаг (КАПС).
+    _STEP_MAP = (
+        ("скан", "OCR SCAN INVENTORY"), ("scan", "OCR SCAN INVENTORY"),
+        ("оцен", "ASSESS LOOT VALUE"), ("assess", "ASSESS LOOT VALUE"),
+        ("синтез", "SYNTHESIS"), ("мерж", "SYNTHESIS"), ("куб", "SYNTHESIS"),
+        ("merge", "SYNTHESIS"), ("synth", "SYNTHESIS"), ("cube", "SYNTHESIS"),
+        ("тайник", "SAVE & SORT STASH"), ("раскладк", "SAVE & SORT STASH"), ("сохран", "SAVE & SORT STASH"),
+        ("перелив", "SAVE & SORT STASH"), ("save", "SAVE & SORT STASH"), ("stash", "SAVE & SORT STASH"),
+        ("sort", "SAVE & SORT STASH"),
+        ("сундук", "OPEN CHESTS"), ("chest", "OPEN CHESTS"),
+        ("почт", "COLLECT MAIL"), ("mail", "COLLECT MAIL"),
+        ("прыж", "STAGE HOP"), ("портал", "STAGE HOP"), ("hop", "STAGE HOP"),
+        ("поехали", "WAKING UP"), ("просып", "WAKING UP"), ("waking", "WAKING UP"), ("warm", "WAKING UP"),
+        ("стоп", "STOPPED"), ("stop", "STOPPED"),
+        ("готов", "READY FOR THE NIGHT"), ("ready", "READY FOR THE NIGHT"), ("idle", "READY FOR THE NIGHT"),
+    )
+
+    def _cur_step(self, raw):
+        c = (raw or "").lower()
+        for k, v in self._STEP_MAP:
+            if k in c:
+                return v
+        return "FARMING"
 
     def _activity_tick(self):
         """Каждые ~1.6с обновляет карусель: что сейчас + что дальше. Работает — реальный статус;
         простаивает — крутит превью сценария (что бот будет делать)."""
         try:
             if self._alive():                                  # фарм идёт — act_now пишет ядро
-                self.act_now.config(fg=T.MOON)
-                self.act_next.config(text="→ " + self._next_step(self.act_now.cget("text")))
+                self.act_now.config(text=self.act_now.cget("text").upper(), fg=T.MOON)   # Saira → КАПС
+                self.act_next.config(text="→ " + self._next_step(self.act_now.cget("text")).upper())
             else:                                              # простой — карусель-превью сценария
                 steps = self.SCENARIO
                 i = self._act_i % len(steps)
@@ -2551,7 +2656,7 @@ class Panel:
             if isinstance(item, tuple) and item and item[0] == "__status__":
                 self.status.config(text=item[1], fg=T.SUB)
                 if hasattr(self, "sysbar"):
-                    self.sysbar.config(text=item[1])
+                    self.sysbar.config(text=self._cur_step(item[1]))   # карусель — англ. SCENARIO
                 continue
             if isinstance(item, tuple) and item and item[0] == "__ready__":
                 self._set_ready(item[1]); continue

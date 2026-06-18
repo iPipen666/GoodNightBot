@@ -1,8 +1,8 @@
 {
-  "version": "1.1.20",
+  "version": "1.1.21",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "1b16d80c83bc8e9a187d53c2db1075f4e16e658ebc71adc8de49ec8bbaa0eee1",
-  "sig": "2QFcEyukPLd1LdH5OS8CHfdazIw3jRBDyv8WpjAIM5czv-sNDdkDFlGxY_ONZjtgjdfZOyYiNuClUkQJP0IbCw",
+  "sha256": "35b49db812f51438eb7afb8572ca8a47861792ef5b194593eadf5ab9b87b0558",
+  "sig": "7ytHcYqsRCrCVSDOfSc2OJqFhpdiFMjhc3Y3TeCtV5wumGKggDeU3x-VCf1NMv5wbV932Hi6HmKL9cPVWKp9Bg",
   "min_version": "1.1.6",
-  "notes": "Python теперь в комплекте установщика — больше никакой «проблемы с питоном» (не зависит от скачивания). Установщик чинит любые ранние сборки."
+  "notes": "Python 3.12 в комплекте (без скачивания), адаптивный масштаб под любой экран, счёт сундуков/дропа, ремонт старых сборок, авто-синтез белых (опц.)."
 }

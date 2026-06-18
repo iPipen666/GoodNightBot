@@ -41,10 +41,7 @@
     "count_min_lines": 4
   },
   "merge_grades": [
-    "обычный",
-    "необычный",
-    "редкий",
-    "легендарный"
+    "обычный"
   ],
   "grid_cell_capture_size": 44,
   "empty_cell_margin": 25,
@@ -105,7 +102,7 @@
     "log_prelock": true,
     "lock_from_tier": 4,
     "prescan_stash": false,
-    "merge_enabled": false,
+    "merge_enabled": true,
     "disable_chest_autoopen": false,
     "records_autoopen": false,
     "records_autoexpand": true,

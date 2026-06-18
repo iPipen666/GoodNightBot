@@ -3,7 +3,7 @@
 ; GoodNightBot.exe при первом старте сам создаёт venv и ставит зависимости (bootstrap).
 
 #define AppName "GoodNightBot"
-#define AppVer  "1.1.20"
+#define AppVer  "1.1.21"
 #define AppExe  "GoodNightBot.exe"
 
 [Setup]
