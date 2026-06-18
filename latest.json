@@ -1,8 +1,8 @@
 {
-  "version": "1.1.21",
+  "version": "1.1.22",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "35b49db812f51438eb7afb8572ca8a47861792ef5b194593eadf5ab9b87b0558",
-  "sig": "7ytHcYqsRCrCVSDOfSc2OJqFhpdiFMjhc3Y3TeCtV5wumGKggDeU3x-VCf1NMv5wbV932Hi6HmKL9cPVWKp9Bg",
+  "sha256": "887fd270372ac0bc2b649cbe02386575abe4e019f1c4b85bb11b0415dae7703e",
+  "sig": "wqIyPSyddiKryEc-AqzuS3JcrVelZ5aXl7YkHJ3ALwTd6wBgLF7TXARRqDiTckzpUc9qIV3196ax-od7RcIvAw",
   "min_version": "1.1.6",
   "notes": "Python 3.12 в комплекте (без скачивания), адаптивный масштаб под любой экран, счёт сундуков/дропа, ремонт старых сборок, авто-синтез белых (опц.)."
 }
