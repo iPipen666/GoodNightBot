@@ -80,3 +80,20 @@ portal_calibration.json.bak
 
 models/
 python-setup.exe
+
+# внутренний хэндофф для claude.design (не для паблика)
+claude_design_handoff/
+*-UI-handoff.zip
+
+# оконные калибровки и локальные артефакты (генерятся на машине; в установщик тоже не идут)
+records_calibration.json
+chest_calibration.json
+calibration.json
+inv_calibration.json
+auto_calibration.json
+stash_calibration.json
+panel_toggles.json
+game_settings_calibration.json
+scan_snapshot.json
+custom_routines.json
+ROADMAP_FIXES.md
