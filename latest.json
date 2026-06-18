@@ -1,8 +1,8 @@
 {
-  "version": "1.1.19",
+  "version": "1.1.20",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "8a02eea274464c22553b71f191454909809788be7d05159c3e74e3a91bca0ded",
-  "sig": "TcXrE85ZZ_l49oweEUk8if_lOrP7VuSNxTGyILiA-PnZNuG1rx8_H_SW8XMsbrpMm3QHMYE1qT7fRSexVpboAA",
+  "sha256": "54245b8474fc27e6637671f960c2a2c547ee6732439902218a7d29d773ea539e",
+  "sig": "icQnOd1MeZr5rTQdc3QIafDzh9vj81ONYKYkCa2eGobz0tG08GHvLB2Szf6S152_eboUJs_X9AItnRLyfacvDw",
   "min_version": "1.1.6",
-  "notes": "Чтение игрового лога теперь на кириллице (RapidOCR + модель eslav в комплекте) — корректно считаются сундуки/дроп, защита ценного и прохождение этапов."
+  "notes": "Установщик чинит любые ранние сборки: находит прошлую версию, перезаписывает файлы и пересобирает битый venv начисто. После него — обычные авто-обновления."
 }

@@ -3,7 +3,7 @@
 ; GoodNightBot.exe при первом старте сам создаёт venv и ставит зависимости (bootstrap).
 
 #define AppName "GoodNightBot"
-#define AppVer  "1.1.19"
+#define AppVer  "1.1.20"
 #define AppExe  "GoodNightBot.exe"
 
 [Setup]
@@ -52,3 +52,18 @@ Filename: "{app}\{#AppExe}"; Description: "Запустить {#AppName}"; Flags
 
 ; OCR (Tesseract + рус) ставится АВТОМАТИЧЕСКИ при первом запуске (bootstrap скачает
 ; и положит локально в .tesseract). Ручная установка не нужна.
+
+[Code]
+// Чистый апгрейд с ранних (до-1.1.19) сборок: их venv мог быть собран на несовместимом Python
+// (3.13/3.14 → rapidocr не ставился) или без зависимостей. Признак старой сборки — НЕТ OCR-модели.
+// В этом случае сносим venv ДО копирования файлов → bootstrap пересоберёт его начисто на 1-м запуске
+// (лаунчер 1.1.19 берёт Python ≤3.12). Свежие (1.1.19+) сборки venv НЕ трогаем — апдейты быстрые.
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssInstall then
+  begin
+    if DirExists(ExpandConstant('{app}\.venv')) and
+       (not FileExists(ExpandConstant('{app}\models\ocr\eslav\rec.onnx'))) then
+      DelTree(ExpandConstant('{app}\.venv'), True, True, True);
+  end;
+end;
