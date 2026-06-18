@@ -22,7 +22,29 @@ ICON = os.path.join(APP, "icon.ico")
 FLAGS = 0x08000000 if os.name == "nt" else 0   # CREATE_NO_WINDOW
 
 PYTHON_URL = "https://www.python.org/ftp/python/3.12.7/python-3.12.7-amd64.exe"
+LOG = os.path.join(APP, "bootstrap.log")
 NIGHT, PANEL, MOON, INK, SUB = "#171229", "#221a3d", "#f6e3a1", "#ece8fb", "#9a8fce"
+
+
+def _log(m):
+    try:
+        with open(LOG, "a", encoding="utf-8") as f:
+            f.write("[launcher] " + str(m) + "\n")
+    except Exception:
+        pass
+
+
+def _bundled_python_setup():
+    """Установщик Python, ВЛОЖЕННЫЙ в комплект (рядом с EXE или в _MEIPASS) — чтобы не зависеть
+    от скачивания (главная причина «проблемы с питоном» у юзеров: сеть/прокси/антивирус)."""
+    for p in (os.path.join(APP, "python-setup.exe"),
+              os.path.join(getattr(sys, "_MEIPASS", APP), "python-setup.exe")):
+        try:
+            if os.path.exists(p) and os.path.getsize(p) > 20_000_000:
+                return p
+        except OSError:
+            pass
+    return None
 
 
 def _child_env():
@@ -109,24 +131,45 @@ def find_python():
 
 
 def install_python(status):
-    """Скачать и тихо поставить Python (per-user, без админа). status(text) — апдейт сплэша."""
+    """Поставить Python 3.12 (per-user, без админа). СНАЧАЛА — вложенный установщик (без сети),
+    иначе скачиваем (3 попытки). status(text) — апдейт сплэша. Пишет шаги в bootstrap.log."""
+    dst = _bundled_python_setup()
     try:
-        status("скачиваю Python… (~25 МБ)")
-        dst = os.path.join(os.environ.get("TEMP", APP), "python-setup.exe")
-        req = urllib.request.Request(PYTHON_URL, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=180) as r, open(dst, "wb") as f:
-            while True:
-                chunk = r.read(1 << 16)
-                if not chunk:
-                    break
-                f.write(chunk)
+        if dst:
+            _log("using bundled python installer")
+        else:
+            dst = os.path.join(os.environ.get("TEMP", APP), "python-setup.exe")
+            err = "нет интернета?"
+            for attempt in range(3):
+                try:
+                    status("скачиваю Python… (~26 МБ)")
+                    req = urllib.request.Request(PYTHON_URL, headers={"User-Agent": "Mozilla/5.0"})
+                    with urllib.request.urlopen(req, timeout=180) as r, open(dst, "wb") as f:
+                        while True:
+                            chunk = r.read(1 << 16)
+                            if not chunk:
+                                break
+                            f.write(chunk)
+                    if os.path.getsize(dst) > 20_000_000:
+                        err = None
+                        break
+                    err = "файл недокачан"
+                except Exception as e:
+                    err = str(e)
+                _log(f"download attempt {attempt + 1} failed: {err}")
+            if err:
+                _log("download failed after retries: " + err)
+                return find_python()
         status("устанавливаю Python… (~1-2 мин)")
-        subprocess.run([dst, "/quiet", "InstallAllUsers=0", "PrependPath=1",
-                        "Include_pip=1", "Include_launcher=1", "Include_test=0"],
-                       creationflags=FLAGS, timeout=600, env=_child_env())
-    except Exception:
-        pass
-    return find_python()
+        r = subprocess.run([dst, "/quiet", "InstallAllUsers=0", "PrependPath=1",
+                            "Include_pip=1", "Include_launcher=1", "Include_test=0"],
+                           creationflags=FLAGS, timeout=600, env=_child_env())
+        _log("python installer returncode: " + str(r.returncode))
+    except Exception as e:
+        _log("install_python error: " + str(e))
+    py = find_python()
+    _log("find_python after install: " + str(py))
+    return py
 
 
 class Splash:
@@ -164,7 +207,10 @@ class Splash:
             pass
 
 
-_DEPS_CHECK = "import cv2,mss,pyautogui,numpy,pygetwindow,keyboard,pydirectinput,pytesseract"
+# ВКЛЮЧАЕТ rapidocr/onnxruntime: venv на несовместимом Python (3.13/3.14) их НЕ имеет (нет колеса),
+# значит такой venv провалит проверку → уйдём в bootstrap, а тот пересоберёт его начисто на 3.12.
+_DEPS_CHECK = ("import cv2,mss,pyautogui,numpy,pygetwindow,keyboard,pydirectinput,"
+               "pytesseract,rapidocr_onnxruntime,onnxruntime")
 
 
 def _venv_ready():
@@ -222,8 +268,11 @@ def _launch(py):
         try:
             import ctypes
             ctypes.windll.user32.MessageBoxW(
-                0, "Не удалось поставить Python автоматически.\n"
-                   "Поставь Python 3.10+ с python.org и запусти снова.", "GoodNightBot", 0x10)
+                0, "Не удалось подготовить Python автоматически.\n\n"
+                   "Проверь интернет и запусти снова — бот сам поставит нужную версию.\n"
+                   "Если не помогает: установи Python 3.12 с python.org (именно 3.12, НЕ новее — "
+                   "3.13/3.14 пока не подходят) и запусти снова.\n\n"
+                   "Детали — в файле bootstrap.log рядом с программой.", "GoodNightBot", 0x10)
         except Exception:
             pass
 

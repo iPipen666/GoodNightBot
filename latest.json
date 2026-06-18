@@ -1,8 +1,8 @@
 {
   "version": "1.1.20",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "54245b8474fc27e6637671f960c2a2c547ee6732439902218a7d29d773ea539e",
-  "sig": "icQnOd1MeZr5rTQdc3QIafDzh9vj81ONYKYkCa2eGobz0tG08GHvLB2Szf6S152_eboUJs_X9AItnRLyfacvDw",
+  "sha256": "1b16d80c83bc8e9a187d53c2db1075f4e16e658ebc71adc8de49ec8bbaa0eee1",
+  "sig": "2QFcEyukPLd1LdH5OS8CHfdazIw3jRBDyv8WpjAIM5czv-sNDdkDFlGxY_ONZjtgjdfZOyYiNuClUkQJP0IbCw",
   "min_version": "1.1.6",
-  "notes": "Установщик чинит любые ранние сборки: находит прошлую версию, перезаписывает файлы и пересобирает битый venv начисто. После него — обычные авто-обновления."
+  "notes": "Python теперь в комплекте установщика — больше никакой «проблемы с питоном» (не зависит от скачивания). Установщик чинит любые ранние сборки."
 }

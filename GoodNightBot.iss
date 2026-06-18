@@ -30,6 +30,8 @@ Name: "desktopicon"; Description: "Создать ярлык на рабочем
 
 [Files]
 Source: "{#AppExe}";            DestDir: "{app}"; Flags: ignoreversion
+; вложенный установщик Python 3.12 — чтобы не зависеть от скачивания (главная причина «проблемы с питоном»)
+Source: "python-setup.exe";     DestDir: "{app}"; Flags: ignoreversion
 Source: "bootstrap.py";         DestDir: "{app}"; Flags: ignoreversion
 Source: "requirements.txt";     DestDir: "{app}"; Flags: ignoreversion
 Source: "VERSION";              DestDir: "{app}"; Flags: ignoreversion
