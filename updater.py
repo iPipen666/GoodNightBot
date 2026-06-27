@@ -101,8 +101,10 @@ def download(m, on_progress=None):
 
 
 def install(path):
-    """Тихо поставить скачанный установщик поверх, ДОЖДАТЬСЯ конца. Возвращает код возврата
-    (Inno ставит .py/.exe поверх даже при открытой панели — локов на них нет)."""
+    """Тихо поставить скачанный установщик поверх, ДОЖДАТЬСЯ конца. Возвращает код возврата.
+    Панель держит models\\ocr\\eslav\\rec.onnx (onnxruntime) → раньше тихий установщик упирался в
+    занятый файл и делал Abort = код 5. Теперь installer (CloseApplications=force) закрывает держателя
+    через Restart Manager до замены файлов и перезапускает панель после."""
     flags = 0x08000000 if os.name == "nt" else 0
     return subprocess.run([path, "/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART"],
                           creationflags=flags, timeout=420).returncode

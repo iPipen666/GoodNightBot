@@ -3,7 +3,7 @@
 ; GoodNightBot.exe при первом старте сам создаёт venv и ставит зависимости (bootstrap).
 
 #define AppName "GoodNightBot"
-#define AppVer  "1.1.22"
+#define AppVer  "1.1.23"
 #define AppExe  "GoodNightBot.exe"
 
 [Setup]
@@ -21,6 +21,13 @@ UninstallDisplayIcon={app}\{#AppExe}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+; Авто-обновление идёт ТИХО поверх работающей панели. onnxruntime в ней держит models\ocr\eslav\rec.onnx
+; (ERROR_SHARING_VIOLATION) → тихий установщик по умолчанию делал Abort = код 5, апдейт не ставился.
+; Restart Manager принудительно закрывает процесс-держатель ДО замены файлов и перезапускает его после.
+; Filter=* — иначе RM не проверяет .onnx (дефолтный фильтр только *.exe,*.dll,...). Чинит и старых клиентов.
+CloseApplications=force
+CloseApplicationsFilter=*
+RestartApplications=yes
 
 [Languages]
 Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"

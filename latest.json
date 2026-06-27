@@ -1,8 +1,8 @@
 {
-  "version": "1.1.22",
+  "version": "1.1.23",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "887fd270372ac0bc2b649cbe02386575abe4e019f1c4b85bb11b0415dae7703e",
-  "sig": "wqIyPSyddiKryEc-AqzuS3JcrVelZ5aXl7YkHJ3ALwTd6wBgLF7TXARRqDiTckzpUc9qIV3196ax-od7RcIvAw",
+  "sha256": "14153602e3a564fcbc8212cf79095ff796b796988cd92e5b91f021771325f0ac",
+  "sig": "JyiypI30IQPm7kXNIzI8DBp50DHuas6xny4KqziKyu-SCZfWBgiQ58mZvHu0r1xKwTMzGrHQKHLv7PHJ78mFBA",
   "min_version": "1.1.6",
-  "notes": "Python 3.12 в комплекте (без скачивания), адаптивный масштаб под любой экран, счёт сундуков/дропа, ремонт старых сборок, авто-синтез белых (опц.)."
+  "notes": "Исправлено авто-обновление: установщик больше не прерывается на занятых файлах (OCR-модель), код 5 устранён. Требуется Python 3.12."
 }
