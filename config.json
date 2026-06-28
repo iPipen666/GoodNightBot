@@ -41,7 +41,9 @@
     "count_min_lines": 4
   },
   "merge_grades": [
-    "обычный"
+    "обычный",
+    "необычный",
+    "редкий"
   ],
   "grid_cell_capture_size": 44,
   "empty_cell_margin": 25,

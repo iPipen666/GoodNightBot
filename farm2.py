@@ -597,14 +597,23 @@ def _scan_merge_save(sct, ctx):
     # ждём реворк (ручная раскладка 9). Но SAVE-ALL (перелив в тайник) БЕЗОПАСЕН (без куба) и
     # ОБЯЗАТЕЛЕН — иначе инвентарь за ночь забьётся и фарм встанет. Поэтому сейв идёт ВСЕГДА.
     if farm.CFG.get("policy", {}).get("merge_enabled", False):
-        logx.log_human(f"инвентарь: {inv_n} занято — разбираю кубом")
-        for _ in range(3):                        # мерж → пересчёт → повтор (cap 3, без зацикла)
-            m = _do_merge(sct, ctx)
-            if not m or farm._hardstop():
-                break
-            farm.ensure_inventory_tab(sct)        # куб вернул предмет → пересчитать, переоценить
-            inv_n = farm.inv_fill(sct)
-            ctx["last_inv_fill"] = inv_n
+        # АНТИ-ПЕТЛЯ: тот же объём инвентаря уже разбирали и мержить было нечего (остался только хлам
+        # не из списка)? Не лезем в куб снова, пока не придёт НОВЫЙ лут (grew). Иначе бот каждый цикл
+        # автофиллит те же отклонённые предметы и спамит лог — ровно то, на что жаловался юзер.
+        if not grew and ctx.get("_merge_dry_fill") == inv_n:
+            logx.log_human(f"инвентарь: {inv_n} занято — нового нет, перелив в тайник")
+        else:
+            logx.log_human(f"инвентарь: {inv_n} занято — разбираю кубом")
+            merged_any = 0
+            for _ in range(3):                    # мерж → пересчёт → повтор (cap 3, без зацикла)
+                m = _do_merge(sct, ctx)
+                merged_any += m or 0
+                if not m or farm._hardstop():
+                    break
+                farm.ensure_inventory_tab(sct)    # куб вернул предмет → пересчитать, переоценить
+                inv_n = farm.inv_fill(sct)
+                ctx["last_inv_fill"] = inv_n
+            ctx["_merge_dry_fill"] = inv_n if merged_any == 0 else None  # сухой объём → не долбить впустую
     else:
         logx.log_human(f"инвентарь: {inv_n} занято — перелив в тайник (куб выключен)")
     _do_save(sct, ctx)                            # ВСЕГДА: безопасный перелив в тайник, освобождает инвентарь

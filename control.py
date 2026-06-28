@@ -136,8 +136,13 @@ def _pretty(raw):
     if low.startswith("скан") or low.startswith("инвентарь") or low.startswith("тайник") \
             or low.startswith("персонаж") or low.startswith("ростер"):
         return (s, T.EV.get("save", T.SUB))
+    # строки мержа («снаряжение: мержу набор …», «материалы: … не в списке») — ЦЕЛИКОМ, без обрезки
+    if low.startswith(("снаряжение", "материалы", "бижутерия")):
+        merged = "мержу" in low
+        return (("🧊 " + s) if merged else ("· " + s),
+                T.EV.get("ok") if merged else T.EV.get("idle", T.SUB))
     if gc:
-        return (s[:46], gc)
+        return (s[:100], gc)
     return None
 
 

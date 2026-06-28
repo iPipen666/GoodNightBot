@@ -1,8 +1,8 @@
 {
-  "version": "1.1.23",
+  "version": "1.1.24",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "14153602e3a564fcbc8212cf79095ff796b796988cd92e5b91f021771325f0ac",
-  "sig": "JyiypI30IQPm7kXNIzI8DBp50DHuas6xny4KqziKyu-SCZfWBgiQ58mZvHu0r1xKwTMzGrHQKHLv7PHJ78mFBA",
+  "sha256": "da36f5e75c2e1e53e918abcfe1b547ec2f2ba342cc25e8c05cba8ed0e4979d48",
+  "sig": "c5rfo3hqHkwNcss9SmeUnGjeq_xySypLkYCBijsFioaq5G51RbBgV2q1sthBYTvoc0EGtja4x5zmad4Nyw0cBw",
   "min_version": "1.1.6",
-  "notes": "Исправлено авто-обновление: установщик больше не прерывается на занятых файлах (OCR-модель), код 5 устранён. Требуется Python 3.12."
+  "notes": "Мерж по грейдам: теперь синтезирует зелёное и синее снаряжение и легендарные материалы (ценное берёт). Убрано зацикливание мержа на отклонённых предметах, понятные логи, ускорение цикла. Требуется Python 3.12."
 }

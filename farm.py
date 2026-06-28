@@ -187,6 +187,12 @@ FORBIDDEN_GRADES = set(CFG.get("forbidden_merge_grades", ["epic", "red"]))
 # Дефолт: 4 низких (безопасно). Галки в настройках пишут сюда. FORBIDDEN_GRADES (рамочный
 # первичный фильтр) выводится из этого набора в reload_config().
 MERGE_GRADES_RU = set(CFG.get("merge_grades", ["обычный", "необычный", "редкий", "легендарный"]))
+# Русские имена типов для понятного лога (без «type_gear»).
+TYPE_RU = {"type_gear": "снаряжение", "type_materials": "материалы", "type_accessory": "бижутерия"}
+# Материалы — расходники: мержим до легендарного включительно, даже если в gear-список (merge_grades)
+# легендарный не входит. Иначе легендарные материалы копятся и спамят «не выбран». Снаряжение бережём
+# строго по merge_grades (юзер: бело/зелёно/синее — легендарный+ шмот не трогать).
+MATERIALS_EXTRA_RU = {"легендарный"}
 # дроп-фид: OCR имени/уровня/грейда у НОВЫХ предметов (надёжнее рамки, имя из items_db).
 _POLICY = CFG.get("policy", {})
 OCR_DROPS = _POLICY.get("ocr_drops", True)
@@ -1097,15 +1103,18 @@ def merge_all(sct):
             break
         _, d = detect(sct); cube = d.get("cube", cube)
         set_type(sct, cube, tp)
+        ru = TYPE_RU.get(tp, tp)
+        # разрешённые грейды для ЭТОГО типа: материалы — расходники (до легендарного), снаряжение — по списку
+        allowed = set(MERGE_GRADES_RU) | (MATERIALS_EXTRA_RU if tp == "type_materials" else set())
         for attempt in range(MAX_MERGES_PER_TYPE + 1):
             if k():
                 break
             _, d = detect(sct); cube = d.get("cube", cube)
             if not _ensure_cube_empty(sct, cube):     # защита: остаток прошлого набора не смешать
-                log(f"  [{tp}] куб не пуст перед autofill — пропуск (защита смешения)")
+                log(f"{ru}: куб не пуст — пропуск (защита)")
                 break
             click_el(cube, "cube", "autofill", f"autofill[{tp}]#{attempt+1}")
-            human.pause(CFG, 1.0, 1.7)
+            human.pause(CFG, 0.7, 1.2)
             if DRY:
                 break
             n = cube_filled(sct, cube)
@@ -1113,29 +1122,29 @@ def merge_all(sct):
             if n >= 9:
                 grade = cube_grade(sct, cube)            # рамка (грубо), для дешёвого отказа
                 frame_ru = _RANK_RU.get(grade)
-                # дешёвый первичный отказ: рамка уверенно-высокая (epic/red) и грейд НЕ выбран в настройках
-                if grade in ("epic", "red") and frame_ru not in MERGE_GRADES_RU:
-                    log(f"  [{tp}] 9/9 рамка='{grade}' — грейд не выбран, возврат, НЕ мержу")
-                    click_el(cube, "cube", "return_btn", "возврат (грейд не выбран)")
-                    human.pause(CFG, 0.6, 1.1)
+                # дешёвый первичный отказ: рамка уверенно-высокая (epic/red) и грейд НЕ разрешён
+                if grade in ("epic", "red") and frame_ru not in allowed:
+                    log(f"{ru}: набор «{frame_ru or grade}» берегу — пропуск")
+                    click_el(cube, "cube", "return_btn", "возврат (берегу)")
+                    human.pause(CFG, 0.4, 0.7)
                     break
                 # OCR — АВТОРИТЕТ (рамка врёт на высоких тирах). ДВА чтения: расходятся → не мержим
                 # (страховка от единичного мисрида — «пугающая строка» рамка≠OCR).
                 ocr = cube_grade_ocr(sct, cube)
                 ocr2 = cube_grade_ocr(sct, cube)
                 if ocr != ocr2:
-                    log(f"  [{tp}] 9/9 OCR нестабилен ({ocr!r}≠{ocr2!r}) — возврат (защита)")
-                    click_el(cube, "cube", "return_btn", "возврат (OCR нестабилен)")
-                    human.pause(CFG, 0.6, 1.1)
+                    log(f"{ru}: грейд не прочитался уверенно — пропуск (защита)")
+                    click_el(cube, "cube", "return_btn", "возврат (грейд нестабилен)")
+                    human.pause(CFG, 0.4, 0.7)
                     break
-                if not ocr or ocr not in MERGE_GRADES_RU:
-                    log(f"  [{tp}] 9/9 OCR-грейд={ocr!r} не выбран/нечитаем — возврат (защита)")
-                    click_el(cube, "cube", "return_btn", "возврат (OCR-защита)")
-                    human.pause(CFG, 0.6, 1.1)
+                if not ocr or ocr not in allowed:
+                    log(f"{ru}: набор «{ocr or 'нечитаем'}» не в списке — пропуск")
+                    click_el(cube, "cube", "return_btn", "возврат (не в списке)")
+                    human.pause(CFG, 0.4, 0.7)
                     break
-                log(f"  [{tp}] 9/9 рамка='{grade}' OCR='{ocr}' — разрешён, мержу")
+                log(f"{ru}: мержу набор «{ocr}»")
                 if NOMERGE:
-                    log(f"  [{tp}] 9/9 грейд '{grade}' — NOMERGE: confirm пропущен, возврат")
+                    log(f"{ru}: набор «{ocr}» — NOMERGE, confirm пропущен")
                     click_el(cube, "cube", "return_btn", "возврат (nomerge)")
                     human.pause(CFG, 0.6, 1.1)
                     break
@@ -1149,12 +1158,12 @@ def merge_all(sct):
                 total += 1
                 landing_mark_stale()      # мерж сдвинул инвентарь → посадочную ячейку пересчитать
             elif n == 0:
-                log(f"  [{tp}] autofill 0 — нет предметов этого типа")
+                log(f"{ru}: предметов нет")
                 break
             else:
-                log(f"  [{tp}] autofill {n}/9 — неполный сет, возврат")
+                log(f"{ru}: набор неполный ({n}/9) — пропуск")
                 click_el(cube, "cube", "return_btn", "возврат")
-                human.pause(CFG, 0.5, 1.0)
+                human.pause(CFG, 0.4, 0.7)
                 break
         if total >= MAX_MERGES_PER_TYPE:
             break
