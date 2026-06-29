@@ -189,10 +189,6 @@ FORBIDDEN_GRADES = set(CFG.get("forbidden_merge_grades", ["epic", "red"]))
 MERGE_GRADES_RU = set(CFG.get("merge_grades", ["обычный", "необычный", "редкий", "легендарный"]))
 # Русские имена типов для понятного лога (без «type_gear»).
 TYPE_RU = {"type_gear": "снаряжение", "type_materials": "материалы", "type_accessory": "бижутерия"}
-# Материалы — расходники: мержим до легендарного включительно, даже если в gear-список (merge_grades)
-# легендарный не входит. Иначе легендарные материалы копятся и спамят «не выбран». Снаряжение бережём
-# строго по merge_grades (юзер: бело/зелёно/синее — легендарный+ шмот не трогать).
-MATERIALS_EXTRA_RU = {"легендарный"}
 # дроп-фид: OCR имени/уровня/грейда у НОВЫХ предметов (надёжнее рамки, имя из items_db).
 _POLICY = CFG.get("policy", {})
 OCR_DROPS = _POLICY.get("ocr_drops", True)
@@ -1018,6 +1014,29 @@ def set_type(sct, cube, type_elem):
     close_dropdown(cube2)  # закрыть список типа, чтобы autofill не попал в него
 
 
+def ensure_cube_level_max(sct, cube):
+    """Выставить дропдаун ДИАПАЗОНА УРОВНЯ куба на МАКСИМУМ (нижний пункт списка = самый высокий
+    доступный, напр. Lv.65~80) перед autofill. Иначе autofill берёт предметы выбранного диапазона
+    и может смешать хай-/лоу-лвл. Юзер: «держать уровень максимальный из открытых». Идемпотентно —
+    раз за мерж-проход. Не откалибровано (нет offset) → тихий пропуск (старое поведение)."""
+    if DRY:
+        log("  DRY уровень→макс"); return
+    # по флагу: форсить макс. диапазон уровня. ВЫКЛ по умолчанию — у юзера с лоу-лвл предметами
+    # макс (65~80) autofill ничего не подхватит и мерж встанет. Вкл для энд-гейма / «мерж из тайника».
+    if not CFG.get("cube_level_max", False):
+        return
+    co = OFF.get("cube", {})
+    if not co.get("level_toggle") or not co.get("level_max"):
+        return
+    click_el(cube, "cube", "level_toggle", "уровень-дропдаун")
+    human.pause(CFG, 0.4, 0.7)
+    _, d = detect(sct); cube = d.get("cube", cube)
+    click_el(cube, "cube", "level_max", "уровень=макс")
+    human.pause(CFG, 0.4, 0.7)
+    close_dropdown(cube)
+    log("уровень куба → максимум")
+
+
 def do_saveall_sort(sct):
     """Разложить инвентарь по ВСЕМ 5 вкладкам стэша + сортировка.
     На каждой вкладке: выбрать вкладку -> Stash All (перелив идёт в выбранную вкладку,
@@ -1092,6 +1111,8 @@ def merge_all(sct):
         log("  [мерж] режим Synthesis не подтверждён — пропуск мержа (защита)")
         return 0
     _, d = detect(sct); cube = d.get("cube", cube)
+    ensure_cube_level_max(sct, cube)            # держать диапазон уровня на максимуме перед autofill
+    _, d = detect(sct); cube = d.get("cube", cube)
     # какие типы мержим: lock_accessory (дефолт ON) → украшения НЕ трогаем; merge_materials → материалы
     pol = CFG.get("policy", {})
     types = [t for t in MERGE_TYPES
@@ -1104,8 +1125,8 @@ def merge_all(sct):
         _, d = detect(sct); cube = d.get("cube", cube)
         set_type(sct, cube, tp)
         ru = TYPE_RU.get(tp, tp)
-        # разрешённые грейды для ЭТОГО типа: материалы — расходники (до легендарного), снаряжение — по списку
-        allowed = set(MERGE_GRADES_RU) | (MATERIALS_EXTRA_RU if tp == "type_materials" else set())
+        # единый список грейдов для всех типов (бело/зелёно/синее); бижу всё равно залочена lock_accessory
+        allowed = set(MERGE_GRADES_RU)
         for attempt in range(MAX_MERGES_PER_TYPE + 1):
             if k():
                 break

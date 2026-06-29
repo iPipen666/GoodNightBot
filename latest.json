@@ -1,8 +1,8 @@
 {
-  "version": "1.1.24",
+  "version": "1.1.25",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "da36f5e75c2e1e53e918abcfe1b547ec2f2ba342cc25e8c05cba8ed0e4979d48",
-  "sig": "c5rfo3hqHkwNcss9SmeUnGjeq_xySypLkYCBijsFioaq5G51RbBgV2q1sthBYTvoc0EGtja4x5zmad4Nyw0cBw",
+  "sha256": "af2cea00bf97eae9995b8853ae532df218b8234af72ea42d054c046a45655236",
+  "sig": "ABNQ8TSlc0e6Jy2W24u_3_CKKnF6GEEue-dn5sXnPcmyuvsEGqXzaEFMZ6dE0h10AzWAgtIw34vbIkMn0mEPCg",
   "min_version": "1.1.6",
-  "notes": "Мерж по грейдам: теперь синтезирует зелёное и синее снаряжение и легендарные материалы (ценное берёт). Убрано зацикливание мержа на отклонённых предметах, понятные логи, ускорение цикла. Требуется Python 3.12."
+  "notes": "Синтез по выбранным грейдам для всех типов (материалы больше не уходят выше списка). Новый режим: куб держит максимальный диапазон уровня (опционально). Требуется Python 3.12."
 }
