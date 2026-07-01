@@ -670,7 +670,7 @@ def ensure_log_ready(attempts=4, log=logx.log_human):
             if n < COUNT_MIN_LINES:                         # реально закрыт → открыть через Settings
                 log(f"лог-гейт {i}/{attempts}: n={n} < {COUNT_MIN_LINES} — открываю лог…")
                 try:
-                    records_ctl.ensure_ready(farm.CFG, log=log, expand=False)
+                    records_ctl.ensure_ready(farm.CFG, log=log, expand=True)
                 except Exception as e:
                     log(f"лог-гейт open err: {e!r}")
                 time.sleep(0.3)

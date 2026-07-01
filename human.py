@@ -333,7 +333,7 @@ def click(x, y, cfg, size=None, button="left", mod=None):
     jx = x + _gauss_jitter(ampx)
     jy = y + _gauss_jitter(ampy)
     _move(jx, jy, cfg)
-    time.sleep(random.uniform(0.04, 0.16))
+    time.sleep(random.uniform(0.02, 0.07))
     if mod:
         (PDI or pyautogui).keyDown(mod); time.sleep(random.uniform(0.03, 0.08))
     if button == "right":

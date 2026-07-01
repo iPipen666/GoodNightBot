@@ -186,7 +186,7 @@ FORBIDDEN_GRADES = set(CFG.get("forbidden_merge_grades", ["epic", "red"]))
 # Грейды, РАЗРЕШЁННЫЕ к мержу — словами рус-тиров (10 тиров из items.RANK_TIERS). Авторитет — OCR.
 # Дефолт: 4 низких (безопасно). Галки в настройках пишут сюда. FORBIDDEN_GRADES (рамочный
 # первичный фильтр) выводится из этого набора в reload_config().
-MERGE_GRADES_RU = set(CFG.get("merge_grades", ["обычный", "необычный", "редкий", "легендарный"]))
+MERGE_GRADES_RU = set(CFG.get("merge_grades", ["обычный", "необычный", "редкий"]))
 # Русские имена типов для понятного лога (без «type_gear»).
 TYPE_RU = {"type_gear": "снаряжение", "type_materials": "материалы", "type_accessory": "бижутерия"}
 # дроп-фид: OCR имени/уровня/грейда у НОВЫХ предметов (надёжнее рамки, имя из items_db).
@@ -211,7 +211,7 @@ def reload_config():
     global OCR_DROPS, OCR_DROPS_MAX, RESUME_IDLE, MAX_MERGES_PER_TYPE
     global SCAN_SETTLE, COUNT_SETTLE, INV_SCROLL_ROWS, INV_MAX_PAGES, IDLE_START, CURSOR_TOL, HERO_ROWS, STASH_TABS, OFF
     CFG = json.load(open(os.path.join(HERE, "config.json"), encoding="utf-8"))
-    MERGE_GRADES_RU = set(CFG.get("merge_grades", ["обычный", "необычный", "редкий", "легендарный"]))
+    MERGE_GRADES_RU = set(CFG.get("merge_grades", ["обычный", "необычный", "редкий"]))
     # merge_grades (рус-тиры) — единственный источник правды; рамочный FORBIDDEN_GRADES выводим из него
     FORBIDDEN_GRADES = {en for en, ru in _RANK_RU.items() if ru not in MERGE_GRADES_RU}
     INV = CFG["inventory"]
@@ -949,7 +949,7 @@ def close_dropdown(cube):
     x, y = vision.pt(cube, 0.0, 0.0)  # центр баннера куба = безопасная пустая точка
     human.click(x, y, CFG)
     _bot_cursor[0] = idle.cursor_pos()
-    time.sleep(0.35)
+    time.sleep(0.18)
 
 
 def in_synthesis(cube, sct):
@@ -987,11 +987,11 @@ def ensure_synthesis(sct, cube):
         if in_synthesis(cube, sct):
             return True
         click_el(cube, "cube", "mode_toggle", "режим-дропдаун")
-        time.sleep(0.5)
+        time.sleep(0.28)
         _, d = detect(sct)
         cube = d.get("cube", cube)
         click_el(cube, "cube", "mode_synthesis", "выбрать Synthesis")
-        time.sleep(0.4)
+        time.sleep(0.22)
         close_dropdown(cube)  # закрыть список, иначе след. клик уедет в Offering
         _, d = detect(sct)
         cube = d.get("cube", cube)
@@ -1006,11 +1006,11 @@ def set_type(sct, cube, type_elem):
     if DRY:
         log(f"  DRY set type {type_elem}"); return
     click_el(cube, "cube", "type_toggle", "тип-дропдаун")
-    time.sleep(0.4)
+    time.sleep(0.22)
     _, d = detect(sct)
     cube2 = d.get("cube", cube)
     click_el(cube2, "cube", type_elem, f"тип={type_elem}")
-    time.sleep(0.4)
+    time.sleep(0.22)
     close_dropdown(cube2)  # закрыть список типа, чтобы autofill не попал в него
 
 
@@ -1029,10 +1029,10 @@ def ensure_cube_level_max(sct, cube):
     if not co.get("level_toggle") or not co.get("level_max"):
         return
     click_el(cube, "cube", "level_toggle", "уровень-дропдаун")
-    human.pause(CFG, 0.4, 0.7)
+    human.pause(CFG, 0.2, 0.38)
     _, d = detect(sct); cube = d.get("cube", cube)
     click_el(cube, "cube", "level_max", "уровень=макс")
-    human.pause(CFG, 0.4, 0.7)
+    human.pause(CFG, 0.2, 0.38)
     close_dropdown(cube)
     log("уровень куба → максимум")
 
@@ -1056,7 +1056,7 @@ def do_saveall_sort(sct):
         human.pause(CFG, 0.4, 0.8)
         _, d = detect(sct); st = d.get("stash", st)
         click_el(st, "stash", "save_all", f"Stash All -> вкл{i}")
-        human.pause(CFG, 0.6, 1.1)
+        human.pause(CFG, 0.3, 0.5)
         _, d = detect(sct); st = d.get("stash", st)
         nf, tot = count_filled(sct, st, "stash", "grid_tl", "grid_br", 7, 6)
         invn = inv_fill(sct)
@@ -1135,7 +1135,7 @@ def merge_all(sct):
                 log(f"{ru}: куб не пуст — пропуск (защита)")
                 break
             click_el(cube, "cube", "autofill", f"autofill[{tp}]#{attempt+1}")
-            human.pause(CFG, 0.7, 1.2)
+            human.pause(CFG, 0.4, 0.65)
             if DRY:
                 break
             n = cube_filled(sct, cube)
@@ -1147,7 +1147,7 @@ def merge_all(sct):
                 if grade in ("epic", "red") and frame_ru not in allowed:
                     log(f"{ru}: набор «{frame_ru or grade}» берегу — пропуск")
                     click_el(cube, "cube", "return_btn", "возврат (берегу)")
-                    human.pause(CFG, 0.4, 0.7)
+                    human.pause(CFG, 0.2, 0.38)
                     break
                 # OCR — АВТОРИТЕТ (рамка врёт на высоких тирах). ДВА чтения: расходятся → не мержим
                 # (страховка от единичного мисрида — «пугающая строка» рамка≠OCR).
@@ -1156,26 +1156,26 @@ def merge_all(sct):
                 if ocr != ocr2:
                     log(f"{ru}: грейд не прочитался уверенно — пропуск (защита)")
                     click_el(cube, "cube", "return_btn", "возврат (грейд нестабилен)")
-                    human.pause(CFG, 0.4, 0.7)
+                    human.pause(CFG, 0.2, 0.38)
                     break
                 if not ocr or ocr not in allowed:
                     log(f"{ru}: набор «{ocr or 'нечитаем'}» не в списке — пропуск")
                     click_el(cube, "cube", "return_btn", "возврат (не в списке)")
-                    human.pause(CFG, 0.4, 0.7)
+                    human.pause(CFG, 0.2, 0.38)
                     break
                 log(f"{ru}: мержу набор «{ocr}»")
                 if NOMERGE:
                     log(f"{ru}: набор «{ocr}» — NOMERGE, confirm пропущен")
                     click_el(cube, "cube", "return_btn", "возврат (nomerge)")
-                    human.pause(CFG, 0.6, 1.1)
+                    human.pause(CFG, 0.3, 0.5)
                     break
                 click_el(cube, "cube", "confirm", f"CONFIRM 9/9 [{tp}] грейд={grade}")
-                human.pause(CFG, 2.0, 3.2)
+                human.pause(CFG, 1.2, 1.7)
                 dismiss_popups(sct)  # мерж триггерит серверный попап валидации — снять сразу
                 # ВОЗВРАТ результата в инвентарь (требование: «бэкспейс»)
                 _, d = detect(sct); cube = d.get("cube", cube)
                 click_el(cube, "cube", "return_btn", "возврат результата")
-                human.pause(CFG, 0.6, 1.1)
+                human.pause(CFG, 0.3, 0.5)
                 total += 1
                 landing_mark_stale()      # мерж сдвинул инвентарь → посадочную ячейку пересчитать
             elif n == 0:
@@ -1184,7 +1184,7 @@ def merge_all(sct):
             else:
                 log(f"{ru}: набор неполный ({n}/9) — пропуск")
                 click_el(cube, "cube", "return_btn", "возврат")
-                human.pause(CFG, 0.4, 0.7)
+                human.pause(CFG, 0.2, 0.38)
                 break
         if total >= MAX_MERGES_PER_TYPE:
             break

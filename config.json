@@ -106,7 +106,7 @@
     "prescan_stash": false,
     "merge_enabled": true,
     "disable_chest_autoopen": false,
-    "records_autoopen": false,
+    "records_autoopen": true,
     "records_autoexpand": true,
     "chest_color_kind": false
   },
