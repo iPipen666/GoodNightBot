@@ -12,9 +12,14 @@ Usage:
 import json
 import os
 import functools
+import urllib.request
 
 _HERE  = os.path.dirname(os.path.abspath(__file__))
 _GDIR  = os.path.join(_HERE, "gamedb")
+# gamedb/ тяжёлый (drop_map/box_index) и в установщик НЕ идёт → у юзеров тянем датасеты с GitHub raw
+# при первом обращении и кэшируем в LOCALAPPDATA. Dev-машина использует локальный gamedb/ напрямую.
+_CACHE = os.path.join(os.environ.get("LOCALAPPDATA", _HERE), "GoodNightBot", "gamedb_cache")
+_RAW   = "https://raw.githubusercontent.com/iPipen666/GoodNightBot/main/gamedb"
 
 # Locale preference order for name_in fallback
 _LOCALE_FALLBACK = ("en-US", "ru-RU")
@@ -26,12 +31,40 @@ _LOCALE_FALLBACK = ("en-US", "ru-RU")
 _cache: dict = {}
 
 
-def load(name: str):
-    """Load and cache gamedb/<name>.json.  Returns list or dict as stored."""
-    if name not in _cache:
-        fp = os.path.join(_GDIR, name if name.endswith(".json") else name + ".json")
+def _read_json(fp):
+    try:
         with open(fp, encoding="utf-8") as f:
-            _cache[name] = json.load(f)
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def _fetch(fn: str):
+    """Скачать gamedb/<fn> с GitHub raw в локальный кэш. Вернуть данные или None (оффлайн/ошибка)."""
+    try:
+        req = urllib.request.Request(f"{_RAW}/{fn}", headers={"User-Agent": "GoodNightBot"})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            data = json.load(r)
+        os.makedirs(_CACHE, exist_ok=True)
+        with open(os.path.join(_CACHE, fn), "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False)
+        return data
+    except Exception:
+        return None
+
+
+def load(name: str):
+    """gamedb/<name>.json: локальный gamedb/ (dev) → кэш → GitHub raw (fetch+cache).
+    Оффлайн при первом обращении → {} (браузер покажет пусто, без падения)."""
+    if name in _cache:
+        return _cache[name]
+    fn = name if name.endswith(".json") else name + ".json"
+    data = _read_json(os.path.join(_GDIR, fn))          # dev-машина: локальные файлы
+    if data is None:
+        data = _read_json(os.path.join(_CACHE, fn))     # ранее скачанный кэш
+    if data is None:
+        data = _fetch(fn)                               # скачать с GitHub raw
+    _cache[name] = data if data is not None else {}
     return _cache[name]
 
 
