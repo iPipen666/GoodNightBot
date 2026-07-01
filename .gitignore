@@ -97,3 +97,6 @@ game_settings_calibration.json
 scan_snapshot.json
 custom_routines.json
 ROADMAP_FIXES.md
+
+# сырой скрейп вики (источник для items_db.json/gamedb — не рантайм, не шипится, guard'ится в loot_data)
+wiki_data/
