@@ -1,8 +1,8 @@
 {
-  "version": "1.1.26",
+  "version": "1.1.27",
   "url": "https://github.com/iPipen666/GoodNightBot/releases/latest/download/GoodNightBot-Setup.exe",
-  "sha256": "cb523c5793a4a774abb93e2cc4756f898d02a7455ade58d808ba6a79fd7f8e2a",
-  "sig": "yON7_QhNjaUHlnOODKkDDETpPfKGVYestWw8bYyQICgiSC1oHtT2hchqaXVwH0sKf7fAM3lpkf39k0JNlg3FDA",
+  "sha256": "52abd2e66aaae0eab756bdfcf494271756aa82ebd473bda69a02ef503cf359cb",
+  "sig": "E_1BT2nz29Kkme4QHyNf7IHHJC3rbCkBj1TLisb67PRldSnHbrQHxDMYIaMaCuEb-35IBeVUareN4jmzUNFDDA",
   "min_version": "1.1.6",
-  "notes": "Бот сам закрепляет и разворачивает окно лога при старте (не нужно вручную). Ускорены движения и клики. Требуется Python 3.12."
+  "notes": "Браузер игровой базы данных теперь работает у всех (данные подгружаются автоматически). Требуется Python 3.12."
 }
